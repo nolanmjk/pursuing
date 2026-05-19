@@ -1,0 +1,440 @@
+[
+  {
+    "id": "adm_00001", "collegeId": "col_0013", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 668, "minRank": 112, "avgScore": 672, "maxScore": 685,
+    "plannedEnrollment": 3, "actualEnrollment": 3
+  },
+  {
+    "id": "adm_00002", "collegeId": "col_0013", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 660, "minRank": 108, "avgScore": 665, "maxScore": 678,
+    "plannedEnrollment": 3, "actualEnrollment": 3
+  },
+  {
+    "id": "adm_00003", "collegeId": "col_0013", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2022, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 655, "minRank": 102, "avgScore": 660, "maxScore": 670,
+    "plannedEnrollment": 2, "actualEnrollment": 2
+  },
+  {
+    "id": "adm_00004", "collegeId": "col_0014", "majorId": "maj_030101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 645, "minRank": 28, "avgScore": 650, "maxScore": 658,
+    "plannedEnrollment": 2, "actualEnrollment": 2
+  },
+  {
+    "id": "adm_00005", "collegeId": "col_0014", "majorId": "maj_020101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 665, "minRank": 125, "avgScore": 670, "maxScore": 680,
+    "plannedEnrollment": 2, "actualEnrollment": 2
+  },
+  {
+    "id": "adm_00006", "collegeId": "col_0001", "majorId": "maj_070201",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 552, "minRank": 14820, "avgScore": 558, "maxScore": 572,
+    "plannedEnrollment": 45, "actualEnrollment": 46
+  },
+  {
+    "id": "adm_00007", "collegeId": "col_0001", "majorId": "maj_070301",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 548, "minRank": 15850, "avgScore": 555, "maxScore": 568,
+    "plannedEnrollment": 50, "actualEnrollment": 51
+  },
+  {
+    "id": "adm_00008", "collegeId": "col_0001", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 556, "minRank": 13900, "avgScore": 563, "maxScore": 580,
+    "plannedEnrollment": 60, "actualEnrollment": 62
+  },
+  {
+    "id": "adm_00009", "collegeId": "col_0001", "majorId": "maj_100201",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 575, "minRank": 8500, "avgScore": 582, "maxScore": 598,
+    "plannedEnrollment": 80, "actualEnrollment": 82
+  },
+  {
+    "id": "adm_00010", "collegeId": "col_0001", "majorId": "maj_030101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 565, "minRank": 2180, "avgScore": 572, "maxScore": 585,
+    "plannedEnrollment": 30, "actualEnrollment": 30
+  },
+  {
+    "id": "adm_00011", "collegeId": "col_0001", "majorId": "maj_050101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 560, "minRank": 2520, "avgScore": 566, "maxScore": 578,
+    "plannedEnrollment": 35, "actualEnrollment": 36
+  },
+  {
+    "id": "adm_00012", "collegeId": "col_0001", "majorId": "maj_070101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 545, "minRank": 16500, "avgScore": 552, "maxScore": 565,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00013", "collegeId": "col_0001", "majorId": "maj_080902",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 554, "minRank": 14300, "avgScore": 560, "maxScore": 575,
+    "plannedEnrollment": 55, "actualEnrollment": 56
+  },
+  {
+    "id": "adm_00014", "collegeId": "col_0002", "majorId": "maj_040101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 520, "minRank": 6120, "avgScore": 528, "maxScore": 542,
+    "plannedEnrollment": 60, "actualEnrollment": 62
+  },
+  {
+    "id": "adm_00015", "collegeId": "col_0002", "majorId": "maj_050101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 518, "minRank": 6350, "avgScore": 525, "maxScore": 540,
+    "plannedEnrollment": 55, "actualEnrollment": 55
+  },
+  {
+    "id": "adm_00016", "collegeId": "col_0002", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 478, "minRank": 38500, "avgScore": 485, "maxScore": 498,
+    "plannedEnrollment": 40, "actualEnrollment": 42
+  },
+  {
+    "id": "adm_00017", "collegeId": "col_0002", "majorId": "maj_070101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 475, "minRank": 39800, "avgScore": 482, "maxScore": 495,
+    "plannedEnrollment": 45, "actualEnrollment": 45
+  },
+  {
+    "id": "adm_00018", "collegeId": "col_0002", "majorId": "maj_060101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 515, "minRank": 6680, "avgScore": 522, "maxScore": 538,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00019", "collegeId": "col_0003", "majorId": "maj_081001",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 465, "minRank": 45200, "avgScore": 472, "maxScore": 488,
+    "plannedEnrollment": 80, "actualEnrollment": 82
+  },
+  {
+    "id": "adm_00020", "collegeId": "col_0003", "majorId": "maj_080201",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 462, "minRank": 46800, "avgScore": 470, "maxScore": 485,
+    "plannedEnrollment": 70, "actualEnrollment": 71
+  },
+  {
+    "id": "adm_00021", "collegeId": "col_0003", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 470, "minRank": 42500, "avgScore": 478, "maxScore": 492,
+    "plannedEnrollment": 50, "actualEnrollment": 52
+  },
+  {
+    "id": "adm_00022", "collegeId": "col_0003", "majorId": "maj_080401",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 460, "minRank": 47800, "avgScore": 468, "maxScore": 482,
+    "plannedEnrollment": 45, "actualEnrollment": 46
+  },
+  {
+    "id": "adm_00023", "collegeId": "col_0004", "majorId": "maj_081801",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 480, "minRank": 37800, "avgScore": 488, "maxScore": 502,
+    "plannedEnrollment": 65, "actualEnrollment": 66
+  },
+  {
+    "id": "adm_00024", "collegeId": "col_0004", "majorId": "maj_081001",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 472, "minRank": 41500, "avgScore": 480, "maxScore": 495,
+    "plannedEnrollment": 70, "actualEnrollment": 70
+  },
+  {
+    "id": "adm_00025", "collegeId": "col_0004", "majorId": "maj_080207",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 475, "minRank": 39800, "avgScore": 483, "maxScore": 498,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00026", "collegeId": "col_0004", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 478, "minRank": 38500, "avgScore": 485, "maxScore": 500,
+    "plannedEnrollment": 45, "actualEnrollment": 46
+  },
+  {
+    "id": "adm_00027", "collegeId": "col_0005", "majorId": "maj_090101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 435, "minRank": 62500, "avgScore": 445, "maxScore": 460,
+    "plannedEnrollment": 50, "actualEnrollment": 52
+  },
+  {
+    "id": "adm_00028", "collegeId": "col_0005", "majorId": "maj_090401",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 432, "minRank": 64500, "avgScore": 442, "maxScore": 458,
+    "plannedEnrollment": 55, "actualEnrollment": 56
+  },
+  {
+    "id": "adm_00029", "collegeId": "col_0012", "majorId": "maj_100501",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 488, "minRank": 33800, "avgScore": 496, "maxScore": 512,
+    "plannedEnrollment": 60, "actualEnrollment": 62
+  },
+  {
+    "id": "adm_00030", "collegeId": "col_0012", "majorId": "maj_100502",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 482, "minRank": 36500, "avgScore": 490, "maxScore": 505,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00031", "collegeId": "col_0012", "majorId": "maj_100201",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 495, "minRank": 30800, "avgScore": 505, "maxScore": 522,
+    "plannedEnrollment": 70, "actualEnrollment": 72
+  },
+  {
+    "id": "adm_00032", "collegeId": "col_0012", "majorId": "maj_101101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 488, "minRank": 11800, "avgScore": 496, "maxScore": 510,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00033", "collegeId": "col_0006", "majorId": "maj_020101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 485, "minRank": 12500, "avgScore": 492, "maxScore": 508,
+    "plannedEnrollment": 50, "actualEnrollment": 51
+  },
+  {
+    "id": "adm_00034", "collegeId": "col_0006", "majorId": "maj_120201",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 480, "minRank": 13800, "avgScore": 488, "maxScore": 502,
+    "plannedEnrollment": 45, "actualEnrollment": 46
+  },
+  {
+    "id": "adm_00035", "collegeId": "col_0006", "majorId": "maj_120203",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 450, "minRank": 53500, "avgScore": 458, "maxScore": 475,
+    "plannedEnrollment": 50, "actualEnrollment": 51
+  },
+  {
+    "id": "adm_00036", "collegeId": "col_0006", "majorId": "maj_020301",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 445, "minRank": 56500, "avgScore": 455, "maxScore": 472,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00037", "collegeId": "col_0007", "majorId": "maj_030101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 502, "minRank": 9280, "avgScore": 510, "maxScore": 525,
+    "plannedEnrollment": 55, "actualEnrollment": 56
+  },
+  {
+    "id": "adm_00038", "collegeId": "col_0007", "majorId": "maj_030101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 458, "minRank": 48800, "avgScore": 466, "maxScore": 480,
+    "plannedEnrollment": 30, "actualEnrollment": 30
+  },
+  {
+    "id": "adm_00039", "collegeId": "col_0011", "majorId": "maj_030401",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 478, "minRank": 14200, "avgScore": 485, "maxScore": 498,
+    "plannedEnrollment": 25, "actualEnrollment": 26
+  },
+  {
+    "id": "adm_00040", "collegeId": "col_0011", "majorId": "maj_050107",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 475, "minRank": 14800, "avgScore": 482, "maxScore": 495,
+    "plannedEnrollment": 20, "actualEnrollment": 21
+  },
+  {
+    "id": "adm_00041", "collegeId": "col_0015", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 620, "minRank": 1580, "avgScore": 628, "maxScore": 642,
+    "plannedEnrollment": 5, "actualEnrollment": 5
+  },
+  {
+    "id": "adm_00042", "collegeId": "col_0015", "majorId": "maj_080501",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 618, "minRank": 1720, "avgScore": 625, "maxScore": 638,
+    "plannedEnrollment": 6, "actualEnrollment": 6
+  },
+  {
+    "id": "adm_00043", "collegeId": "col_0015", "majorId": "maj_080601",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 615, "minRank": 1900, "avgScore": 622, "maxScore": 635,
+    "plannedEnrollment": 4, "actualEnrollment": 4
+  },
+  {
+    "id": "adm_00044", "collegeId": "col_0016", "majorId": "maj_100201",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 598, "minRank": 4200, "avgScore": 608, "maxScore": 625,
+    "plannedEnrollment": 8, "actualEnrollment": 8
+  },
+  {
+    "id": "adm_00045", "collegeId": "col_0016", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 595, "minRank": 4580, "avgScore": 602, "maxScore": 618,
+    "plannedEnrollment": 6, "actualEnrollment": 6
+  },
+  {
+    "id": "adm_00046", "collegeId": "col_0017", "majorId": "maj_040101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 545, "minRank": 3900, "avgScore": 552, "maxScore": 565,
+    "plannedEnrollment": 10, "actualEnrollment": 10
+  },
+  {
+    "id": "adm_00047", "collegeId": "col_0017", "majorId": "maj_050101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 542, "minRank": 4150, "avgScore": 548, "maxScore": 562,
+    "plannedEnrollment": 8, "actualEnrollment": 8
+  },
+  {
+    "id": "adm_00048", "collegeId": "col_0018", "majorId": "maj_082001",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 612, "minRank": 2100, "avgScore": 620, "maxScore": 635,
+    "plannedEnrollment": 4, "actualEnrollment": 4
+  },
+  {
+    "id": "adm_00049", "collegeId": "col_0018", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 608, "minRank": 2450, "avgScore": 615, "maxScore": 628,
+    "plannedEnrollment": 5, "actualEnrollment": 5
+  },
+  {
+    "id": "adm_00050", "collegeId": "col_0019", "majorId": "maj_081006",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 538, "minRank": 17580, "avgScore": 545, "maxScore": 560,
+    "plannedEnrollment": 8, "actualEnrollment": 8
+  },
+  {
+    "id": "adm_00051", "collegeId": "col_0019", "majorId": "maj_081001",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 535, "minRank": 18200, "avgScore": 542, "maxScore": 558,
+    "plannedEnrollment": 10, "actualEnrollment": 10
+  },
+  {
+    "id": "adm_00052", "collegeId": "col_0022", "majorId": "maj_030101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 625, "minRank": 125, "avgScore": 632, "maxScore": 642,
+    "plannedEnrollment": 2, "actualEnrollment": 2
+  },
+  {
+    "id": "adm_00053", "collegeId": "col_0022", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 632, "minRank": 980, "avgScore": 640, "maxScore": 655,
+    "plannedEnrollment": 3, "actualEnrollment": 3
+  },
+  {
+    "id": "adm_00054", "collegeId": "col_0023", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 645, "minRank": 520, "avgScore": 652, "maxScore": 665,
+    "plannedEnrollment": 3, "actualEnrollment": 3
+  },
+  {
+    "id": "adm_00055", "collegeId": "col_0008", "majorId": "maj_040101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 468, "minRank": 16200, "avgScore": 475, "maxScore": 488,
+    "plannedEnrollment": 50, "actualEnrollment": 51
+  },
+  {
+    "id": "adm_00056", "collegeId": "col_0008", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 415, "minRank": 76200, "avgScore": 425, "maxScore": 440,
+    "plannedEnrollment": 35, "actualEnrollment": 36
+  },
+  {
+    "id": "adm_00057", "collegeId": "col_0009", "majorId": "maj_040101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 458, "minRank": 18200, "avgScore": 465, "maxScore": 478,
+    "plannedEnrollment": 45, "actualEnrollment": 46
+  },
+  {
+    "id": "adm_00058", "collegeId": "col_0009", "majorId": "maj_090101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 405, "minRank": 83500, "avgScore": 415, "maxScore": 430,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00059", "collegeId": "col_0010", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 420, "minRank": 72500, "avgScore": 430, "maxScore": 445,
+    "plannedEnrollment": 45, "actualEnrollment": 46
+  },
+  {
+    "id": "adm_00060", "collegeId": "col_0010", "majorId": "maj_130502",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 450, "minRank": 19800, "avgScore": 458, "maxScore": 472,
+    "plannedEnrollment": 30, "actualEnrollment": 30
+  },
+  {
+    "id": "adm_00061", "collegeId": "col_0020", "majorId": "maj_081301",
+    "province": "甘肃", "year": 2024, "subjectCategory": "物理类", "batch": "本科批",
+    "minScore": 412, "minRank": 78200, "avgScore": 420, "maxScore": 438,
+    "plannedEnrollment": 50, "actualEnrollment": 52
+  },
+  {
+    "id": "adm_00062", "collegeId": "col_0021", "majorId": "maj_050101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 452, "minRank": 19000, "avgScore": 460, "maxScore": 475,
+    "plannedEnrollment": 40, "actualEnrollment": 41
+  },
+  {
+    "id": "adm_00063", "collegeId": "col_0024", "majorId": "maj_040101",
+    "province": "甘肃", "year": 2024, "subjectCategory": "历史类", "batch": "本科批",
+    "minScore": 448, "minRank": 20200, "avgScore": 455, "maxScore": 468,
+    "plannedEnrollment": 35, "actualEnrollment": 35
+  },
+  {
+    "id": "adm_00064", "collegeId": "col_0001", "majorId": "maj_070201",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 538, "minRank": 15200, "avgScore": 545, "maxScore": 558,
+    "plannedEnrollment": 45, "actualEnrollment": 45
+  },
+  {
+    "id": "adm_00065", "collegeId": "col_0001", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 542, "minRank": 14200, "avgScore": 550, "maxScore": 565,
+    "plannedEnrollment": 58, "actualEnrollment": 60
+  },
+  {
+    "id": "adm_00066", "collegeId": "col_0001", "majorId": "maj_100201",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 562, "minRank": 8800, "avgScore": 572, "maxScore": 588,
+    "plannedEnrollment": 78, "actualEnrollment": 80
+  },
+  {
+    "id": "adm_00067", "collegeId": "col_0001", "majorId": "maj_030101",
+    "province": "甘肃", "year": 2023, "subjectCategory": "文科", "batch": "本科一批",
+    "minScore": 552, "minRank": 2250, "avgScore": 560, "maxScore": 572,
+    "plannedEnrollment": 30, "actualEnrollment": 30
+  },
+  {
+    "id": "adm_00068", "collegeId": "col_0001", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2022, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 530, "minRank": 14800, "avgScore": 538, "maxScore": 555,
+    "plannedEnrollment": 55, "actualEnrollment": 56
+  },
+  {
+    "id": "adm_00069", "collegeId": "col_0001", "majorId": "maj_100201",
+    "province": "甘肃", "year": 2022, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 550, "minRank": 9200, "avgScore": 560, "maxScore": 575,
+    "plannedEnrollment": 75, "actualEnrollment": 77
+  },
+  {
+    "id": "adm_00070", "collegeId": "col_0003", "majorId": "maj_081001",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 455, "minRank": 45800, "avgScore": 462, "maxScore": 478,
+    "plannedEnrollment": 78, "actualEnrollment": 80
+  },
+  {
+    "id": "adm_00071", "collegeId": "col_0004", "majorId": "maj_081801",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 468, "minRank": 38500, "avgScore": 475, "maxScore": 490,
+    "plannedEnrollment": 62, "actualEnrollment": 64
+  },
+  {
+    "id": "adm_00072", "collegeId": "col_0015", "majorId": "maj_080901",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 608, "minRank": 1650, "avgScore": 615, "maxScore": 628,
+    "plannedEnrollment": 5, "actualEnrollment": 5
+  },
+  {
+    "id": "adm_00073", "collegeId": "col_0016", "majorId": "maj_100201",
+    "province": "甘肃", "year": 2023, "subjectCategory": "理科", "batch": "本科一批",
+    "minScore": 585, "minRank": 4350, "avgScore": 595, "maxScore": 612,
+    "plannedEnrollment": 8, "actualEnrollment": 8
+  }
+]

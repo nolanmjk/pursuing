@@ -1,0 +1,22 @@
+[
+  {
+    "code": "62",
+    "name": "甘肃省",
+    "gaokaoType": "新高考",
+    "subjectCategories": ["物理类", "历史类"],
+    "batches": [
+      {
+        "name": "本科批",
+        "parallelChoices": 45,
+        "majorsPerChoice": 6
+      },
+      {
+        "name": "高职(专科)批",
+        "parallelChoices": 45,
+        "majorsPerChoice": 6
+      }
+    ],
+    "totalScore": 750,
+    "description": "甘肃省自2024年起实行新高考'3+1+2'模式。本科批实行平行志愿投档，设45个院校专业组志愿。"
+  }
+]
