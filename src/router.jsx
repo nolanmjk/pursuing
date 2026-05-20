@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import App from './App';
 import HomePage from './pages/Home/HomePage';
 import ScoreMatchPage from './pages/ScoreMatch/ScoreMatchPage';
@@ -7,13 +7,15 @@ import CollegeDetail from './pages/CollegeSearch/CollegeDetail';
 import MajorDetail from './pages/CollegeSearch/MajorDetail';
 import SimulatedFormPage from './pages/SimulatedForm/SimulatedFormPage';
 import AssessmentPage from './pages/Assessment/AssessmentPage';
+import RankConversionPage from './pages/RankConversion/RankConversionPage';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'rank-conversion', element: <RankConversionPage /> },
       { path: 'score-match', element: <ScoreMatchPage /> },
       { path: 'colleges', element: <CollegeSearchPage /> },
       { path: 'colleges/:id', element: <CollegeDetail /> },

@@ -13,7 +13,16 @@ export default function ScoreMatchPage() {
   const [results, setResults] = useState(null);
 
   const filteredData = useMemo(() => {
-    return admissionData.filter(a => a.province === selectedProvince && a.subjectCategory === userSubject);
+    const collegeMap = {};
+    collegesData.forEach(c => { collegeMap[c.id] = c; });
+    return admissionData.filter(a => {
+      const college = collegeMap[a.collegeId];
+      if (!college || college.province !== selectedProvince) return false;
+      if (a.subjectCategory === userSubject) return true;
+      if (userSubject === '物理类' && a.subjectCategory === '理科') return true;
+      if (userSubject === '历史类' && a.subjectCategory === '文科') return true;
+      return false;
+    });
   }, [selectedProvince, userSubject]);
 
   const handleMatch = () => {

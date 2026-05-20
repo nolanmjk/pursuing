@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, Descriptions, Tag, Tabs, Table, Typography, Button, Empty } from 'antd';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, EnvironmentOutlined, BankOutlined } from '@ant-design/icons';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import collegesData from '../../data/colleges.json';
 import majorsData from '../../data/majors.json';
@@ -9,12 +9,23 @@ import { useAppContext } from '../../context/AppContext';
 
 const levelColors = { '985': 'magenta', '211': 'blue', '双一流': 'geekblue', '省重点': 'orange', '本科': 'green' };
 
+function campusGradient(level) {
+  const gradients = {
+    '985': 'linear-gradient(135deg, #0F2027 0%, #203A43 30%, #2C5364 100%)',
+    '211': 'linear-gradient(135deg, #1A1A3E 0%, #2D3561 30%, #4A6FA5 100%)',
+    '省重点': 'linear-gradient(135deg, #0F1F14 0%, #1A4731 30%, #2D6A4F 100%)',
+    '本科': 'linear-gradient(135deg, #1A1A2E 0%, #2B2B5C 30%, #4A4A8A 100%)',
+    '专科': 'linear-gradient(135deg, #2D2D2D 0%, #3D3D3D 50%, #505050 100%)',
+  };
+  return gradients[level] || gradients['本科'];
+}
+
 export default function CollegeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addHistory, toggleFavorite, isFavorited } = useAppContext();
-  const college = collegesData.find(c => c.id === id);
 
+  const college = collegesData.find(c => c.id === id);
   if (!college) return <Empty description="院校不存在" />;
 
   const collegeMajors = majorsData.filter(m => college.majors.includes(m.id));
@@ -81,7 +92,7 @@ export default function CollegeDetail() {
                 <XAxis dataKey="year" />
                 <YAxis domain={['dataMin - 10', 'dataMax + 10']} />
                 <Tooltip />
-                <Line type="monotone" dataKey="最低分" stroke="#1677ff" strokeWidth={2} dot={{ r: 4 }} />
+                <Line type="monotone" dataKey="最低分" stroke="#00C8E0" strokeWidth={2} dot={{ r: 4, fill: '#00C8E0' }} />
               </LineChart>
             </ResponsiveContainer>
           )}
@@ -107,13 +118,67 @@ export default function CollegeDetail() {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+      {/* Back button */}
+      <div style={{ marginBottom: 16 }}>
         <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>返回</Button>
-        <Typography.Title level={3} style={{ margin: 0 }}>{college.name}</Typography.Title>
-        <Button type={isFavorited(id, 'college') ? 'primary' : 'default'} size="small" onClick={() => toggleFavorite({ id, type: 'college', name: college.name })}>
-          {isFavorited(id, 'college') ? '★ 已收藏' : '☆ 收藏'}
-        </Button>
       </div>
+
+      {/* Campus Photo Hero */}
+      <div style={{
+        position: 'relative',
+        borderRadius: 14,
+        overflow: 'hidden',
+        marginBottom: 24,
+        height: 260,
+        background: college.image ? `url(${college.image}) center/cover no-repeat` : campusGradient(college.level),
+      }}>
+        {/* Gradient overlay for readability */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(180deg, rgba(6,9,24,0.15) 0%, rgba(6,9,24,0.45) 50%, rgba(6,9,24,0.8) 100%)',
+          pointerEvents: 'none',
+        }} />
+
+        {/* Content overlay */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: '28px 32px',
+          zIndex: 1,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+            <Typography.Title level={2} style={{ color: '#fff', margin: 0, textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
+              {college.name}
+            </Typography.Title>
+            <Button
+              type={isFavorited(id, 'college') ? 'primary' : 'default'}
+              size="small"
+              onClick={() => toggleFavorite({ id, type: 'college', name: college.name })}
+              style={{ backdropFilter: 'blur(8px)', background: isFavorited(id, 'college') ? '#00C8E0' : 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', color: isFavorited(id, 'college') ? '#000' : '#fff' }}
+            >
+              {isFavorited(id, 'college') ? '★ 已收藏' : '☆ 收藏'}
+            </Button>
+          </div>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14 }}>
+              <EnvironmentOutlined /> {college.city}
+            </span>
+            <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14 }}>
+              <BankOutlined /> {college.type} · {college.level}
+            </span>
+            {college.tags.map(t => (
+              <Tag key={t} color="rgba(255,255,255,0.15)" style={{ color: '#fff', border: '1px solid rgba(255,255,255,0.2)', backdropFilter: 'blur(4px)' }}>
+                {t}
+              </Tag>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs content */}
       <Tabs items={tabItems} />
     </div>
   );

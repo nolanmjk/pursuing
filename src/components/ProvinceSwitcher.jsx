@@ -1,16 +1,12 @@
-import { Select } from 'antd';
-import provincesData from '../data/provinces.json';
+import { Tag } from 'antd';
 import { useAppContext } from '../context/AppContext';
 
 export default function ProvinceSwitcher() {
-  const { selectedProvince, setSelectedProvince } = useAppContext();
+  const { selectedProvince } = useAppContext();
 
   return (
-    <Select
-      value={selectedProvince}
-      onChange={setSelectedProvince}
-      style={{ width: 120 }}
-      options={provincesData.map(p => ({ value: p.name, label: p.name }))}
-    />
+    <Tag className="pursuing-province-tag">
+      {selectedProvince}
+    </Tag>
   );
 }

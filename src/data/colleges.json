@@ -9,8 +9,26 @@
     "isDoubleFirstClass": true,
     "website": "http://www.lzu.edu.cn",
     "description": "兰州大学是教育部直属的全国重点综合性大学，国家'985工程'和'211工程'重点建设高校，首批入选国家'双一流'建设高校。学校创建于1909年，是中国西北地区最具影响力的综合性大学之一，在化学、物理、生物、地理等基础学科领域具有突出优势。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_070301", "maj_070201", "maj_071001", "maj_080901", "maj_100201", "maj_030101", "maj_050101", "maj_060101", "maj_070101", "maj_080902"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_070301",
+      "maj_070201",
+      "maj_071001",
+      "maj_080901",
+      "maj_100201",
+      "maj_030101",
+      "maj_050101",
+      "maj_060101",
+      "maj_070101",
+      "maj_080902"
+    ],
+    "image": "/images/campuses/col_0001_hero.svg",
+    "thumbImage": "/images/campuses/col_0001_thumb.svg"
   },
   {
     "id": "col_0002",
@@ -22,8 +40,22 @@
     "isDoubleFirstClass": false,
     "website": "http://www.nwnu.edu.cn",
     "description": "西北师范大学为甘肃省和教育部共建高校，是甘肃省属重点大学。学校前身为1902年成立的京师大学堂师范馆，具有悠久的师范教育传统，在教育学、文学、历史学等领域具有显著优势。",
-    "tags": ["省重点", "师范类"],
-    "majors": ["maj_040101", "maj_050101", "maj_060101", "maj_070101", "maj_080901", "maj_120201", "maj_130202", "maj_030101"]
+    "tags": [
+      "省重点",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_060101",
+      "maj_070101",
+      "maj_080901",
+      "maj_120201",
+      "maj_130202",
+      "maj_030101"
+    ],
+    "image": "/images/campuses/col_0002_hero.svg",
+    "thumbImage": "/images/campuses/col_0002_thumb.svg"
   },
   {
     "id": "col_0003",
@@ -35,8 +67,22 @@
     "isDoubleFirstClass": false,
     "website": "http://www.lut.edu.cn",
     "description": "兰州理工大学是甘肃省属重点大学，是一所以工学为主、多学科协调发展的理工类大学。学校在土木工程、机械工程、材料科学等工科领域具有较强实力。",
-    "tags": ["省重点", "理工类"],
-    "majors": ["maj_081001", "maj_080201", "maj_080401", "maj_080901", "maj_081301", "maj_080501", "maj_081801", "maj_082801"]
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_080201",
+      "maj_080401",
+      "maj_080901",
+      "maj_081301",
+      "maj_080501",
+      "maj_081801",
+      "maj_082801"
+    ],
+    "image": "/images/campuses/col_0003_hero.svg",
+    "thumbImage": "/images/campuses/col_0003_thumb.svg"
   },
   {
     "id": "col_0004",
@@ -48,8 +94,22 @@
     "isDoubleFirstClass": false,
     "website": "http://www.lzjtu.edu.cn",
     "description": "兰州交通大学是甘肃省属重点大学，以交通为特色、工科为主。学校在交通运输工程、土木工程、车辆工程等轨道交通相关学科领域特色鲜明。",
-    "tags": ["省重点", "理工类"],
-    "majors": ["maj_081801", "maj_081001", "maj_081006", "maj_080207", "maj_080901", "maj_081301", "maj_120601", "maj_082801"]
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081801",
+      "maj_081001",
+      "maj_081006",
+      "maj_080207",
+      "maj_080901",
+      "maj_081301",
+      "maj_120601",
+      "maj_082801"
+    ],
+    "image": "/images/campuses/col_0004_hero.svg",
+    "thumbImage": "/images/campuses/col_0004_thumb.svg"
   },
   {
     "id": "col_0005",
@@ -61,8 +121,21 @@
     "isDoubleFirstClass": false,
     "website": "http://www.gsau.edu.cn",
     "description": "甘肃农业大学是甘肃省属重点大学，以农学为特色。学校在草业科学、动物医学、农学等领域具有显著优势，草业科学为国家级重点学科。",
-    "tags": ["省重点", "农林类"],
-    "majors": ["maj_090101", "maj_090401", "maj_090401", "maj_090301", "maj_090501", "maj_090601", "maj_082701"]
+    "tags": [
+      "省重点",
+      "农林类"
+    ],
+    "majors": [
+      "maj_090101",
+      "maj_090401",
+      "maj_090401",
+      "maj_090301",
+      "maj_090501",
+      "maj_090601",
+      "maj_082701"
+    ],
+    "image": "/images/campuses/col_0005_hero.svg",
+    "thumbImage": "/images/campuses/col_0005_thumb.svg"
   },
   {
     "id": "col_0006",
@@ -74,8 +147,21 @@
     "isDoubleFirstClass": false,
     "website": "http://www.lzufe.edu.cn",
     "description": "兰州财经大学是甘肃省属财经类普通本科院校，以经济学、管理学为主体，以财经为特色，多学科协调发展。",
-    "tags": ["本科", "财经类"],
-    "majors": ["maj_020101", "maj_020301", "maj_120201", "maj_120203", "maj_120801", "maj_020401", "maj_050201"]
+    "tags": [
+      "本科",
+      "财经类"
+    ],
+    "majors": [
+      "maj_020101",
+      "maj_020301",
+      "maj_120201",
+      "maj_120203",
+      "maj_120801",
+      "maj_020401",
+      "maj_050201"
+    ],
+    "image": "/images/campuses/col_0006_hero.svg",
+    "thumbImage": "/images/campuses/col_0006_thumb.svg"
   },
   {
     "id": "col_0007",
@@ -87,8 +173,20 @@
     "isDoubleFirstClass": false,
     "website": "http://www.gsupl.edu.cn",
     "description": "甘肃政法大学是甘肃省属政法类普通本科院校，以法学为主体，多学科协调发展，是西北地区重要的政法人才培养基地。",
-    "tags": ["本科", "政法类"],
-    "majors": ["maj_030101", "maj_030601", "maj_030602", "maj_120402", "maj_050301", "maj_030201"]
+    "tags": [
+      "本科",
+      "政法类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_030601",
+      "maj_030602",
+      "maj_120402",
+      "maj_050301",
+      "maj_030201"
+    ],
+    "image": "/images/campuses/col_0007_hero.svg",
+    "thumbImage": "/images/campuses/col_0007_thumb.svg"
   },
   {
     "id": "col_0008",
@@ -100,8 +198,20 @@
     "isDoubleFirstClass": false,
     "website": "http://www.tsnu.edu.cn",
     "description": "天水师范学院是甘肃省属普通本科师范院校，以教师教育为主，文理并重，多学科协调发展。",
-    "tags": ["本科", "师范类"],
-    "majors": ["maj_040101", "maj_050101", "maj_070101", "maj_060101", "maj_080901", "maj_130401"]
+    "tags": [
+      "本科",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_070101",
+      "maj_060101",
+      "maj_080901",
+      "maj_130401"
+    ],
+    "image": "/images/campuses/col_0008_hero.svg",
+    "thumbImage": "/images/campuses/col_0008_thumb.svg"
   },
   {
     "id": "col_0009",
@@ -113,8 +223,19 @@
     "isDoubleFirstClass": false,
     "website": "http://www.hxu.edu.cn",
     "description": "河西学院是甘肃省属普通本科院校，位于河西走廊中部的张掖市，服务区域经济社会发展，以教师教育和应用型人才培养为特色。",
-    "tags": ["本科", "综合类"],
-    "majors": ["maj_040101", "maj_050101", "maj_080901", "maj_090101", "maj_101101"]
+    "tags": [
+      "本科",
+      "综合类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_080901",
+      "maj_090101",
+      "maj_101101"
+    ],
+    "image": "/images/campuses/col_0009_hero.svg",
+    "thumbImage": "/images/campuses/col_0009_thumb.svg"
   },
   {
     "id": "col_0010",
@@ -126,8 +247,19 @@
     "isDoubleFirstClass": false,
     "website": "http://www.lzcu.edu.cn",
     "description": "兰州城市学院是甘肃省属普通本科院校，以工科和应用型专业为特色，服务城市发展和区域经济建设。",
-    "tags": ["本科", "综合类"],
-    "majors": ["maj_080901", "maj_081001", "maj_120901", "maj_130502", "maj_050306"]
+    "tags": [
+      "本科",
+      "综合类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_081001",
+      "maj_120901",
+      "maj_130502",
+      "maj_050306"
+    ],
+    "image": "/images/campuses/col_0010_hero.svg",
+    "thumbImage": "/images/campuses/col_0010_thumb.svg"
   },
   {
     "id": "col_0011",
@@ -139,8 +271,20 @@
     "isDoubleFirstClass": false,
     "website": "http://www.xbmu.edu.cn",
     "description": "西北民族大学是国家民族事务委员会直属高校，以民族学为特色，多学科协调发展，是西北地区培养少数民族人才的重要基地。",
-    "tags": ["省重点", "民族类"],
-    "majors": ["maj_030401", "maj_050107", "maj_050101", "maj_080901", "maj_100201", "maj_120901"]
+    "tags": [
+      "省重点",
+      "民族类"
+    ],
+    "majors": [
+      "maj_030401",
+      "maj_050107",
+      "maj_050101",
+      "maj_080901",
+      "maj_100201",
+      "maj_120901"
+    ],
+    "image": "/images/campuses/col_0011_hero.svg",
+    "thumbImage": "/images/campuses/col_0011_thumb.svg"
   },
   {
     "id": "col_0012",
@@ -152,8 +296,20 @@
     "isDoubleFirstClass": false,
     "website": "http://www.gszy.edu.cn",
     "description": "甘肃中医药大学是甘肃省属重点大学，以中医药为特色，医、理、文、管多学科协调发展，是西北地区重要的中医药人才培养基地。",
-    "tags": ["省重点", "医药类"],
-    "majors": ["maj_100501", "maj_100502", "maj_100701", "maj_100201", "maj_100801", "maj_101101"]
+    "tags": [
+      "省重点",
+      "医药类"
+    ],
+    "majors": [
+      "maj_100501",
+      "maj_100502",
+      "maj_100701",
+      "maj_100201",
+      "maj_100801",
+      "maj_101101"
+    ],
+    "image": "/images/campuses/col_0012_hero.svg",
+    "thumbImage": "/images/campuses/col_0012_thumb.svg"
   },
   {
     "id": "col_0013",
@@ -165,8 +321,24 @@
     "isDoubleFirstClass": true,
     "website": "http://www.tsinghua.edu.cn",
     "description": "清华大学是中国最顶尖的综合性研究型大学之一，国家'985工程'和'211工程'重点建设高校，首批入选国家'双一流'建设高校。在工科、理科、管理等领域均处于国内领先地位。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_080901", "maj_080902", "maj_080701", "maj_081001", "maj_080201", "maj_070201", "maj_070101", "maj_020101"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_080902",
+      "maj_080701",
+      "maj_081001",
+      "maj_080201",
+      "maj_070201",
+      "maj_070101",
+      "maj_020101"
+    ],
+    "image": "/images/campuses/col_0013_hero.svg",
+    "thumbImage": "/images/campuses/col_0013_thumb.svg"
   },
   {
     "id": "col_0014",
@@ -178,8 +350,24 @@
     "isDoubleFirstClass": true,
     "website": "http://www.pku.edu.cn",
     "description": "北京大学是中国最顶尖的综合性研究型大学，国家'985工程'和'211工程'重点建设高校，首批入选国家'双一流'建设高校。在人文社科、理学、医学等领域具有世界级影响力。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_030101", "maj_020101", "maj_070101", "maj_070201", "maj_080901", "maj_100201", "maj_050101", "maj_060101"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_020101",
+      "maj_070101",
+      "maj_070201",
+      "maj_080901",
+      "maj_100201",
+      "maj_050101",
+      "maj_060101"
+    ],
+    "image": "/images/campuses/col_0014_hero.svg",
+    "thumbImage": "/images/campuses/col_0014_thumb.svg"
   },
   {
     "id": "col_0015",
@@ -191,8 +379,23 @@
     "isDoubleFirstClass": true,
     "website": "http://www.xjtu.edu.cn",
     "description": "西安交通大学是中国著名的综合性研究型大学，国家'985工程'和'211工程'重点建设高校，C9联盟成员。在能源动力、机械工程、电气工程等领域具有全国领先地位。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_080501", "maj_080201", "maj_080601", "maj_080901", "maj_080702", "maj_080401", "maj_120201"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_080501",
+      "maj_080201",
+      "maj_080601",
+      "maj_080901",
+      "maj_080702",
+      "maj_080401",
+      "maj_120201"
+    ],
+    "image": "/images/campuses/col_0015_hero.svg",
+    "thumbImage": "/images/campuses/col_0015_thumb.svg"
   },
   {
     "id": "col_0016",
@@ -204,8 +407,23 @@
     "isDoubleFirstClass": true,
     "website": "http://www.scu.edu.cn",
     "description": "四川大学是教育部直属的全国重点大学，国家'985工程'和'211工程'重点建设高校，首批入选国家'双一流'建设高校。具有医学、工学、人文社科全面发展的综合优势。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_100201", "maj_080901", "maj_080401", "maj_030101", "maj_050101", "maj_070101", "maj_100301"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_080901",
+      "maj_080401",
+      "maj_030101",
+      "maj_050101",
+      "maj_070101",
+      "maj_100301"
+    ],
+    "image": "/images/campuses/col_0016_hero.svg",
+    "thumbImage": "/images/campuses/col_0016_thumb.svg"
   },
   {
     "id": "col_0017",
@@ -217,8 +435,21 @@
     "isDoubleFirstClass": true,
     "website": "http://www.snnu.edu.cn",
     "description": "陕西师范大学是教育部直属的全国重点师范大学，国家'211工程'重点建设高校，首批入选国家'双一流'建设高校。以教师教育为特色，文理基础学科实力雄厚。",
-    "tags": ["211", "双一流", "师范类"],
-    "majors": ["maj_040101", "maj_050101", "maj_060101", "maj_070101", "maj_070201", "maj_080901"]
+    "tags": [
+      "211",
+      "双一流",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_060101",
+      "maj_070101",
+      "maj_070201",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0017_hero.svg",
+    "thumbImage": "/images/campuses/col_0017_thumb.svg"
   },
   {
     "id": "col_0018",
@@ -230,8 +461,23 @@
     "isDoubleFirstClass": true,
     "website": "http://www.nwpu.edu.cn",
     "description": "西北工业大学是中国唯一一所以同时发展航空、航天、航海工程教育和科研为特色的全国重点大学，国家'985工程'和'211工程'重点建设高校。",
-    "tags": ["985", "211", "双一流", "理工类"],
-    "majors": ["maj_082001", "maj_082004", "maj_082005", "maj_080901", "maj_080401", "maj_080201", "maj_080701"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_082001",
+      "maj_082004",
+      "maj_082005",
+      "maj_080901",
+      "maj_080401",
+      "maj_080201",
+      "maj_080701"
+    ],
+    "image": "/images/campuses/col_0018_hero.svg",
+    "thumbImage": "/images/campuses/col_0018_thumb.svg"
   },
   {
     "id": "col_0019",
@@ -243,8 +489,21 @@
     "isDoubleFirstClass": true,
     "website": "http://www.chd.edu.cn",
     "description": "长安大学是教育部直属的全国重点大学，国家'211工程'重点建设高校。以交通运输、国土资源、城乡建设为特色，在公路交通领域享有盛誉。",
-    "tags": ["211", "双一流", "理工类"],
-    "majors": ["maj_081006", "maj_081001", "maj_081801", "maj_080901", "maj_081301", "maj_082801"]
+    "tags": [
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081006",
+      "maj_081001",
+      "maj_081801",
+      "maj_080901",
+      "maj_081301",
+      "maj_082801"
+    ],
+    "image": "/images/campuses/col_0019_hero.svg",
+    "thumbImage": "/images/campuses/col_0019_thumb.svg"
   },
   {
     "id": "col_0020",
@@ -256,8 +515,19 @@
     "isDoubleFirstClass": false,
     "website": "http://www.lzpuvt.edu.cn",
     "description": "兰州石化职业技术大学是甘肃省属本科层次职业大学，以石油化工为特色，培养应用型技术技能人才。",
-    "tags": ["本科", "理工类"],
-    "majors": ["maj_081301", "maj_081001", "maj_080401", "maj_080901", "maj_082801"]
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081301",
+      "maj_081001",
+      "maj_080401",
+      "maj_080901",
+      "maj_082801"
+    ],
+    "image": "/images/campuses/col_0020_hero.svg",
+    "thumbImage": "/images/campuses/col_0020_thumb.svg"
   },
   {
     "id": "col_0021",
@@ -269,8 +539,19 @@
     "isDoubleFirstClass": false,
     "website": "http://www.luas.edu.cn",
     "description": "兰州文理学院是甘肃省属普通本科院校，以文学、理学为主体，服务地方基础教育和社会发展。",
-    "tags": ["本科", "综合类"],
-    "majors": ["maj_050101", "maj_040101", "maj_080901", "maj_120901", "maj_130401"]
+    "tags": [
+      "本科",
+      "综合类"
+    ],
+    "majors": [
+      "maj_050101",
+      "maj_040101",
+      "maj_080901",
+      "maj_120901",
+      "maj_130401"
+    ],
+    "image": "/images/campuses/col_0021_hero.svg",
+    "thumbImage": "/images/campuses/col_0021_thumb.svg"
   },
   {
     "id": "col_0022",
@@ -282,8 +563,23 @@
     "isDoubleFirstClass": true,
     "website": "http://www.whu.edu.cn",
     "description": "武汉大学是教育部直属的全国重点大学，国家'985工程'和'211工程'重点建设高校，首批入选国家'双一流'建设高校。以人文社科和测绘遥感等学科闻名。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_030101", "maj_081201", "maj_080901", "maj_100301", "maj_050301", "maj_020101", "maj_070101"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_081201",
+      "maj_080901",
+      "maj_100301",
+      "maj_050301",
+      "maj_020101",
+      "maj_070101"
+    ],
+    "image": "/images/campuses/col_0022_hero.svg",
+    "thumbImage": "/images/campuses/col_0022_thumb.svg"
   },
   {
     "id": "col_0023",
@@ -295,8 +591,23 @@
     "isDoubleFirstClass": true,
     "website": "http://www.zju.edu.cn",
     "description": "浙江大学是中国顶尖的综合性研究型大学，国家'985工程'和'211工程'重点建设高校，C9联盟成员。学科门类齐全，在工科、农学、医学等领域均居全国前列。",
-    "tags": ["985", "211", "双一流", "综合类"],
-    "majors": ["maj_080901", "maj_080902", "maj_080701", "maj_080201", "maj_090101", "maj_100201", "maj_070101"]
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_080902",
+      "maj_080701",
+      "maj_080201",
+      "maj_090101",
+      "maj_100201",
+      "maj_070101"
+    ],
+    "image": "/images/campuses/col_0023_hero.svg",
+    "thumbImage": "/images/campuses/col_0023_thumb.svg"
   },
   {
     "id": "col_0024",
@@ -308,7 +619,1739 @@
     "isDoubleFirstClass": false,
     "website": "http://www.gnun.edu.cn",
     "description": "甘肃民族师范学院是甘肃省属普通本科师范院校，位于甘南藏族自治州，以民族教育和双语教学为特色。",
-    "tags": ["本科", "师范类"],
-    "majors": ["maj_040101", "maj_050107", "maj_050101", "maj_030401", "maj_130401"]
+    "tags": [
+      "本科",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050107",
+      "maj_050101",
+      "maj_030401",
+      "maj_130401"
+    ],
+    "image": "/images/campuses/col_0024_hero.svg",
+    "thumbImage": "/images/campuses/col_0024_thumb.svg"
+  },
+  {
+    "id": "col_0025",
+    "name": "兰州工业学院",
+    "province": "甘肃",
+    "city": "兰州市",
+    "type": "理工",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.lzit.edu.cn",
+    "description": "兰州工业学院是甘肃省属普通本科院校，以工科为主，培养应用型工程技术人才。",
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_080201",
+      "maj_080601",
+      "maj_081001",
+      "maj_080401",
+      "maj_080905",
+      "maj_120204"
+    ],
+    "image": "/images/campuses/col_0025_hero.svg",
+    "thumbImage": "/images/campuses/col_0025_thumb.svg"
+  },
+  {
+    "id": "col_0026",
+    "name": "甘肃医学院",
+    "province": "甘肃",
+    "city": "平凉市",
+    "type": "医药",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.gsmc.edu.cn",
+    "description": "甘肃医学院是甘肃省属医学类普通本科院校，培养基层医疗卫生人才。",
+    "tags": [
+      "本科",
+      "医药类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_101101",
+      "maj_100701",
+      "maj_100401",
+      "maj_100502"
+    ],
+    "image": "/images/campuses/col_0026_hero.svg",
+    "thumbImage": "/images/campuses/col_0026_thumb.svg"
+  },
+  {
+    "id": "col_0027",
+    "name": "陇东学院",
+    "province": "甘肃",
+    "city": "庆阳市",
+    "type": "综合",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.ldxy.edu.cn",
+    "description": "陇东学院是甘肃省属普通本科院校，位于庆阳市，以教师教育和应用型专业为特色。",
+    "tags": [
+      "本科",
+      "综合类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_080901",
+      "maj_090101",
+      "maj_082502",
+      "maj_120202"
+    ],
+    "image": "/images/campuses/col_0027_hero.svg",
+    "thumbImage": "/images/campuses/col_0027_thumb.svg"
+  },
+  {
+    "id": "col_0028",
+    "name": "华中科技大学",
+    "province": "湖北",
+    "city": "武汉市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.hust.edu.cn",
+    "description": "华中科技大学是教育部直属的全国重点大学，国家'985工程'和'211工程'重点建设高校，以工科和医学见长。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_080910",
+      "maj_080201",
+      "maj_100201",
+      "maj_080601",
+      "maj_080701",
+      "maj_080401"
+    ],
+    "image": "/images/campuses/col_0028_hero.svg",
+    "thumbImage": "/images/campuses/col_0028_thumb.svg"
+  },
+  {
+    "id": "col_0029",
+    "name": "中山大学",
+    "province": "广东",
+    "city": "广州市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.sysu.edu.cn",
+    "description": "中山大学是教育部直属的全国重点大学，国家'985工程'和'211工程'重点建设高校，华南地区最高学府。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_030101",
+      "maj_080901",
+      "maj_020101",
+      "maj_120201",
+      "maj_070201"
+    ],
+    "image": "/images/campuses/col_0029_hero.svg",
+    "thumbImage": "/images/campuses/col_0029_thumb.svg"
+  },
+  {
+    "id": "col_0030",
+    "name": "同济大学",
+    "province": "上海",
+    "city": "上海市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.tongji.edu.cn",
+    "description": "同济大学是教育部直属的全国重点大学，在土木建筑、城市规划、交通工程等领域全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_082801",
+      "maj_081801",
+      "maj_082502",
+      "maj_080901",
+      "maj_080201",
+      "maj_081005"
+    ],
+    "image": "/images/campuses/col_0030_hero.svg",
+    "thumbImage": "/images/campuses/col_0030_thumb.svg"
+  },
+  {
+    "id": "col_0031",
+    "name": "南开大学",
+    "province": "天津",
+    "city": "天津市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.nankai.edu.cn",
+    "description": "南开大学是教育部直属的全国重点大学，以文理见长，经济学、化学、历史学等学科全国闻名。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_020101",
+      "maj_070301",
+      "maj_060101",
+      "maj_080901",
+      "maj_120201",
+      "maj_050101"
+    ],
+    "image": "/images/campuses/col_0031_hero.svg",
+    "thumbImage": "/images/campuses/col_0031_thumb.svg"
+  },
+  {
+    "id": "col_0032",
+    "name": "重庆大学",
+    "province": "重庆",
+    "city": "重庆市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.cqu.edu.cn",
+    "description": "重庆大学是教育部直属的全国重点大学，在建筑、土木、机械、电气等工程领域实力雄厚。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_082801",
+      "maj_080201",
+      "maj_080601",
+      "maj_080901",
+      "maj_080702"
+    ],
+    "image": "/images/campuses/col_0032_hero.svg",
+    "thumbImage": "/images/campuses/col_0032_thumb.svg"
+  },
+  {
+    "id": "col_0033",
+    "name": "中南大学",
+    "province": "湖南",
+    "city": "长沙市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.csu.edu.cn",
+    "description": "中南大学是教育部直属的全国重点大学，在材料科学、交通运输、矿业工程和临床医学领域具有突出优势。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_081801",
+      "maj_080401",
+      "maj_081001",
+      "maj_080901",
+      "maj_080301"
+    ],
+    "image": "/images/campuses/col_0033_hero.svg",
+    "thumbImage": "/images/campuses/col_0033_thumb.svg"
+  },
+  {
+    "id": "col_0034",
+    "name": "中国科学技术大学",
+    "province": "安徽",
+    "city": "合肥市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.ustc.edu.cn",
+    "description": "中国科学技术大学是中国科学院直属的以前沿科学和高新技术为主的全国重点大学，C9联盟成员。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_070201",
+      "maj_080901",
+      "maj_080717",
+      "maj_070101",
+      "maj_070301",
+      "maj_080701"
+    ],
+    "image": "/images/campuses/col_0034_hero.svg",
+    "thumbImage": "/images/campuses/col_0034_thumb.svg"
+  },
+  {
+    "id": "col_0035",
+    "name": "北京航空航天大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.buaa.edu.cn",
+    "description": "北京航空航天大学是工信部直属的全国重点大学，在航空航天、计算机、仪器科学等领域全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_082001",
+      "maj_080901",
+      "maj_080717",
+      "maj_080201",
+      "maj_080702",
+      "maj_080301"
+    ],
+    "image": "/images/campuses/col_0035_hero.svg",
+    "thumbImage": "/images/campuses/col_0035_thumb.svg"
+  },
+  {
+    "id": "col_0036",
+    "name": "上海交通大学",
+    "province": "上海",
+    "city": "上海市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.sjtu.edu.cn",
+    "description": "上海交通大学是中国历史最悠久、享誉海内外的高等学府之一，C9联盟成员，在工科、医科、管理学科领域实力顶尖。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_080901",
+      "maj_080201",
+      "maj_080601",
+      "maj_120201",
+      "maj_080701"
+    ],
+    "image": "/images/campuses/col_0036_hero.svg",
+    "thumbImage": "/images/campuses/col_0036_thumb.svg"
+  },
+  {
+    "id": "col_0037",
+    "name": "北京理工大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.bit.edu.cn",
+    "description": "北京理工大学是工信部直属的全国重点大学，以国防科技为特色，在车辆、光电、信息等领域实力突出。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_080207",
+      "maj_080701",
+      "maj_080702",
+      "maj_080201",
+      "maj_080601"
+    ],
+    "image": "/images/campuses/col_0037_hero.svg",
+    "thumbImage": "/images/campuses/col_0037_thumb.svg"
+  },
+  {
+    "id": "col_0038",
+    "name": "中国农业大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "农林",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.cau.edu.cn",
+    "description": "中国农业大学是教育部直属的全国重点大学，在农学、生命科学、食品科学与工程等领域处于国内领先地位。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "农林类"
+    ],
+    "majors": [
+      "maj_090101",
+      "maj_082701",
+      "maj_090401",
+      "maj_082502",
+      "maj_090301",
+      "maj_120204"
+    ],
+    "image": "/images/campuses/col_0038_hero.svg",
+    "thumbImage": "/images/campuses/col_0038_thumb.svg"
+  },
+  {
+    "id": "col_0039",
+    "name": "兰州资源环境职业技术大学",
+    "province": "甘肃",
+    "city": "兰州市",
+    "type": "理工",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.lzre.edu.cn",
+    "description": "甘肃省属本科层次职业大学，以资源环境、安全生产为特色，培养应用型技术技能人才。",
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_082503",
+      "maj_081301",
+      "maj_081001",
+      "maj_080901",
+      "maj_081201"
+    ],
+    "image": "/images/campuses/col_0039_hero.svg",
+    "thumbImage": "/images/campuses/col_0039_thumb.svg"
+  },
+  {
+    "id": "col_0040",
+    "name": "甘肃林业职业技术大学",
+    "province": "甘肃",
+    "city": "天水市",
+    "type": "农林",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.gslyzy.edu.cn",
+    "description": "甘肃省属本科层次职业大学，以林业、园林、生态保护为特色。",
+    "tags": [
+      "本科",
+      "农林类"
+    ],
+    "majors": [
+      "maj_090501",
+      "maj_082803",
+      "maj_082503",
+      "maj_082701",
+      "maj_090101"
+    ],
+    "image": "/images/campuses/col_0040_hero.svg",
+    "thumbImage": "/images/campuses/col_0040_thumb.svg"
+  },
+  {
+    "id": "col_0041",
+    "name": "陇南师范学院",
+    "province": "甘肃",
+    "city": "陇南市",
+    "type": "师范",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.lnsfxy.edu.cn",
+    "description": "甘肃省属普通本科师范院校，以教师教育和地方文化研究为特色。",
+    "tags": [
+      "本科",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_070101",
+      "maj_060101",
+      "maj_130202"
+    ],
+    "image": "/images/campuses/col_0041_hero.svg",
+    "thumbImage": "/images/campuses/col_0041_thumb.svg"
+  },
+  {
+    "id": "col_0042",
+    "name": "甘肃警察学院",
+    "province": "甘肃",
+    "city": "兰州市",
+    "type": "政法",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.gspc.edu.cn",
+    "description": "甘肃省属公安类本科院校，培养公安、司法等执法人才。",
+    "tags": [
+      "本科",
+      "政法类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_030602",
+      "maj_030601",
+      "maj_030201",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0042_hero.svg",
+    "thumbImage": "/images/campuses/col_0042_thumb.svg"
+  },
+  {
+    "id": "col_0043",
+    "name": "西安电子科技大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.xidian.edu.cn",
+    "description": "教育部直属全国重点大学，国家\"211工程\"和\"双一流\"建设高校，在电子信息、通信工程领域全国顶尖。",
+    "tags": [
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_080701",
+      "maj_080703",
+      "maj_080702",
+      "maj_080717",
+      "maj_080911"
+    ],
+    "image": "/images/campuses/col_0043_hero.svg",
+    "thumbImage": "/images/campuses/col_0043_thumb.svg"
+  },
+  {
+    "id": "col_0044",
+    "name": "西北大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "综合",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.nwu.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，以文理基础学科见长，考古学和地质学全国领先。",
+    "tags": [
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_060101",
+      "maj_070901",
+      "maj_070301",
+      "maj_020101",
+      "maj_050101",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0044_hero.svg",
+    "thumbImage": "/images/campuses/col_0044_thumb.svg"
+  },
+  {
+    "id": "col_0045",
+    "name": "西北农林科技大学",
+    "province": "陕西",
+    "city": "咸阳市",
+    "type": "农林",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.nwsuaf.edu.cn",
+    "description": "国家\"985工程\"\"211工程\"和\"双一流\"建设高校，中国农林领域的顶尖学府。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "农林类"
+    ],
+    "majors": [
+      "maj_090101",
+      "maj_090401",
+      "maj_082701",
+      "maj_090501",
+      "maj_090301",
+      "maj_082503"
+    ],
+    "image": "/images/campuses/col_0045_hero.svg",
+    "thumbImage": "/images/campuses/col_0045_thumb.svg"
+  },
+  {
+    "id": "col_0046",
+    "name": "西安建筑科技大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "省重点",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xauat.edu.cn",
+    "description": "中国建筑老八校之一，在土木建筑、城乡规划领域具有全国影响力。",
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_082801",
+      "maj_082802",
+      "maj_082803",
+      "maj_081301",
+      "maj_082502"
+    ],
+    "image": "/images/campuses/col_0046_hero.svg",
+    "thumbImage": "/images/campuses/col_0046_thumb.svg"
+  },
+  {
+    "id": "col_0047",
+    "name": "西安理工大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "省重点",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xaut.edu.cn",
+    "description": "陕西省属重点大学，以水利工程和机械工程为特色，工科实力强劲。",
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081101",
+      "maj_080201",
+      "maj_080601",
+      "maj_080901",
+      "maj_081001",
+      "maj_080501"
+    ],
+    "image": "/images/campuses/col_0047_hero.svg",
+    "thumbImage": "/images/campuses/col_0047_thumb.svg"
+  },
+  {
+    "id": "col_0048",
+    "name": "陕西科技大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "省重点",
+    "isDoubleFirstClass": false,
+    "website": "http://www.sust.edu.cn",
+    "description": "陕西省属重点大学，以轻工为特色，在材料、化工领域有较强实力。",
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080401",
+      "maj_081301",
+      "maj_080501",
+      "maj_080901",
+      "maj_081801"
+    ],
+    "image": "/images/campuses/col_0048_hero.svg",
+    "thumbImage": "/images/campuses/col_0048_thumb.svg"
+  },
+  {
+    "id": "col_0049",
+    "name": "西安科技大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "省重点",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xust.edu.cn",
+    "description": "陕西省属重点大学，以矿业工程、安全科学为传统特色。",
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081501",
+      "maj_080401",
+      "maj_081001",
+      "maj_080901",
+      "maj_081201"
+    ],
+    "image": "/images/campuses/col_0049_hero.svg",
+    "thumbImage": "/images/campuses/col_0049_thumb.svg"
+  },
+  {
+    "id": "col_0050",
+    "name": "西安邮电大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xiyou.edu.cn",
+    "description": "以信息通信技术为特色的省属本科院校，在通信和计算机领域就业优势明显。",
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080703",
+      "maj_080901",
+      "maj_080702",
+      "maj_080910",
+      "maj_120801"
+    ],
+    "image": "/images/campuses/col_0050_hero.svg",
+    "thumbImage": "/images/campuses/col_0050_thumb.svg"
+  },
+  {
+    "id": "col_0051",
+    "name": "西安石油大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xsyu.edu.cn",
+    "description": "以石油石化为特色的省属本科院校，资源勘查和石油工程领域特色鲜明。",
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081502",
+      "maj_081301",
+      "maj_080201",
+      "maj_080901",
+      "maj_081801"
+    ],
+    "image": "/images/campuses/col_0051_hero.svg",
+    "thumbImage": "/images/campuses/col_0051_thumb.svg"
+  },
+  {
+    "id": "col_0052",
+    "name": "西安工程大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xpu.edu.cn",
+    "description": "以纺织服装为特色的省属本科院校，艺术设计与工程学科协调发展。",
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081601",
+      "maj_080401",
+      "maj_080901",
+      "maj_130502",
+      "maj_130503"
+    ],
+    "image": "/images/campuses/col_0052_hero.svg",
+    "thumbImage": "/images/campuses/col_0052_thumb.svg"
+  },
+  {
+    "id": "col_0053",
+    "name": "西北政法大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "政法",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.nwupl.edu.cn",
+    "description": "中国西北地区最具影响力的政法类高校，法学五院四系之一。",
+    "tags": [
+      "本科",
+      "政法类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_030601",
+      "maj_030201",
+      "maj_030602",
+      "maj_050301"
+    ],
+    "image": "/images/campuses/col_0053_hero.svg",
+    "thumbImage": "/images/campuses/col_0053_thumb.svg"
+  },
+  {
+    "id": "col_0054",
+    "name": "西安外国语大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "综合",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xisu.edu.cn",
+    "description": "中国西北地区外语和涉外人才培养的重要基地。",
+    "tags": [
+      "本科",
+      "综合类"
+    ],
+    "majors": [
+      "maj_050201",
+      "maj_050261",
+      "maj_050103",
+      "maj_020401",
+      "maj_050306"
+    ],
+    "image": "/images/campuses/col_0054_hero.svg",
+    "thumbImage": "/images/campuses/col_0054_thumb.svg"
+  },
+  {
+    "id": "col_0055",
+    "name": "延安大学",
+    "province": "陕西",
+    "city": "延安市",
+    "type": "综合",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.yau.edu.cn",
+    "description": "中国共产党创办的第一所综合性大学，具有光荣革命传统。",
+    "tags": [
+      "本科",
+      "综合类"
+    ],
+    "majors": [
+      "maj_030201",
+      "maj_050101",
+      "maj_040101",
+      "maj_100201",
+      "maj_120201"
+    ],
+    "image": "/images/campuses/col_0055_hero.svg",
+    "thumbImage": "/images/campuses/col_0055_thumb.svg"
+  },
+  {
+    "id": "col_0056",
+    "name": "西安工业大学",
+    "province": "陕西",
+    "city": "西安市",
+    "type": "理工",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xatu.edu.cn",
+    "description": "以军工为特色的省属本科院校，光学工程和机械制造实力突出。",
+    "tags": [
+      "本科",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080301",
+      "maj_080201",
+      "maj_080901",
+      "maj_080401",
+      "maj_080213"
+    ],
+    "image": "/images/campuses/col_0056_hero.svg",
+    "thumbImage": "/images/campuses/col_0056_thumb.svg"
+  },
+  {
+    "id": "col_0057",
+    "name": "电子科技大学",
+    "province": "四川",
+    "city": "成都市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.uestc.edu.cn",
+    "description": "国家\"985工程\"\"211工程\"和\"双一流\"建设高校，中国电子信息领域的顶尖学府。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080701",
+      "maj_080703",
+      "maj_080901",
+      "maj_080702",
+      "maj_080717",
+      "maj_080911"
+    ],
+    "image": "/images/campuses/col_0057_hero.svg",
+    "thumbImage": "/images/campuses/col_0057_thumb.svg"
+  },
+  {
+    "id": "col_0058",
+    "name": "西南交通大学",
+    "province": "四川",
+    "city": "成都市",
+    "type": "理工",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.swjtu.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，中国轨道交通领域第一学府。",
+    "tags": [
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081801",
+      "maj_081001",
+      "maj_081006",
+      "maj_080201",
+      "maj_080901",
+      "maj_082801"
+    ],
+    "image": "/images/campuses/col_0058_hero.svg",
+    "thumbImage": "/images/campuses/col_0058_thumb.svg"
+  },
+  {
+    "id": "col_0059",
+    "name": "西南财经大学",
+    "province": "四川",
+    "city": "成都市",
+    "type": "财经",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.swufe.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，中国财经类名校。",
+    "tags": [
+      "211",
+      "双一流",
+      "财经类"
+    ],
+    "majors": [
+      "maj_020101",
+      "maj_020301",
+      "maj_020302",
+      "maj_120201",
+      "maj_120203",
+      "maj_020401"
+    ],
+    "image": "/images/campuses/col_0059_hero.svg",
+    "thumbImage": "/images/campuses/col_0059_thumb.svg"
+  },
+  {
+    "id": "col_0060",
+    "name": "四川农业大学",
+    "province": "四川",
+    "city": "雅安市",
+    "type": "农林",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.sicau.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，以生物科技和农业科学为特色。",
+    "tags": [
+      "211",
+      "双一流",
+      "农林类"
+    ],
+    "majors": [
+      "maj_090101",
+      "maj_090401",
+      "maj_090301",
+      "maj_082701",
+      "maj_090501"
+    ],
+    "image": "/images/campuses/col_0060_hero.svg",
+    "thumbImage": "/images/campuses/col_0060_thumb.svg"
+  },
+  {
+    "id": "col_0061",
+    "name": "成都理工大学",
+    "province": "四川",
+    "city": "成都市",
+    "type": "理工",
+    "level": "省重点",
+    "isDoubleFirstClass": true,
+    "website": "http://www.cdut.edu.cn",
+    "description": "国家\"双一流\"建设高校，以地质、能源、核技术为特色。",
+    "tags": [
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_070901",
+      "maj_081502",
+      "maj_081401",
+      "maj_081001",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0061_hero.svg",
+    "thumbImage": "/images/campuses/col_0061_thumb.svg"
+  },
+  {
+    "id": "col_0062",
+    "name": "西南科技大学",
+    "province": "四川",
+    "city": "绵阳市",
+    "type": "理工",
+    "level": "省重点",
+    "isDoubleFirstClass": false,
+    "website": "http://www.swust.edu.cn",
+    "description": "四川省属重点大学，军工背景，材料科学与工程实力突出。",
+    "tags": [
+      "省重点",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080401",
+      "maj_080901",
+      "maj_081001",
+      "maj_080213",
+      "maj_080301"
+    ],
+    "image": "/images/campuses/col_0062_hero.svg",
+    "thumbImage": "/images/campuses/col_0062_thumb.svg"
+  },
+  {
+    "id": "col_0063",
+    "name": "宁夏大学",
+    "province": "宁夏",
+    "city": "银川市",
+    "type": "综合",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.nxu.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，宁夏回族自治区唯一的211院校。",
+    "tags": [
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_070301",
+      "maj_071201",
+      "maj_090101",
+      "maj_120201",
+      "maj_050101"
+    ],
+    "image": "/images/campuses/col_0063_hero.svg",
+    "thumbImage": "/images/campuses/col_0063_thumb.svg"
+  },
+  {
+    "id": "col_0064",
+    "name": "北方民族大学",
+    "province": "宁夏",
+    "city": "银川市",
+    "type": "民族",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.nmu.edu.cn",
+    "description": "国家民族事务委员会直属高校，以民族学和文史为特色。",
+    "tags": [
+      "本科",
+      "民族类"
+    ],
+    "majors": [
+      "maj_030401",
+      "maj_050101",
+      "maj_080901",
+      "maj_120201",
+      "maj_020401"
+    ],
+    "image": "/images/campuses/col_0064_hero.svg",
+    "thumbImage": "/images/campuses/col_0064_thumb.svg"
+  },
+  {
+    "id": "col_0065",
+    "name": "宁夏医科大学",
+    "province": "宁夏",
+    "city": "银川市",
+    "type": "医药",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.nxmu.edu.cn",
+    "description": "宁夏唯一的医学本科院校，为区域医疗卫生事业培养人才。",
+    "tags": [
+      "本科",
+      "医药类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_100301",
+      "maj_100701",
+      "maj_101001",
+      "maj_100401"
+    ],
+    "image": "/images/campuses/col_0065_hero.svg",
+    "thumbImage": "/images/campuses/col_0065_thumb.svg"
+  },
+  {
+    "id": "col_0066",
+    "name": "青海大学",
+    "province": "青海",
+    "city": "西宁市",
+    "type": "综合",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.qhu.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，青海省唯一的211院校，高原医学和生态学特色鲜明。",
+    "tags": [
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_090101",
+      "maj_080601",
+      "maj_081101",
+      "maj_082503",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0066_hero.svg",
+    "thumbImage": "/images/campuses/col_0066_thumb.svg"
+  },
+  {
+    "id": "col_0067",
+    "name": "青海师范大学",
+    "province": "青海",
+    "city": "西宁市",
+    "type": "师范",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.qhnu.edu.cn",
+    "description": "青海省属重点师范院校，以教师教育和青藏高原研究为特色。",
+    "tags": [
+      "本科",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_050101",
+      "maj_070101",
+      "maj_060101",
+      "maj_070901"
+    ],
+    "image": "/images/campuses/col_0067_hero.svg",
+    "thumbImage": "/images/campuses/col_0067_thumb.svg"
+  },
+  {
+    "id": "col_0068",
+    "name": "青海民族大学",
+    "province": "青海",
+    "city": "西宁市",
+    "type": "民族",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.qhmu.edu.cn",
+    "description": "青藏高原最早的民族高校，以藏学、民族学研究著称。",
+    "tags": [
+      "本科",
+      "民族类"
+    ],
+    "majors": [
+      "maj_030401",
+      "maj_050107",
+      "maj_050101",
+      "maj_071101",
+      "maj_120402"
+    ],
+    "image": "/images/campuses/col_0068_hero.svg",
+    "thumbImage": "/images/campuses/col_0068_thumb.svg"
+  },
+  {
+    "id": "col_0069",
+    "name": "新疆大学",
+    "province": "新疆",
+    "city": "乌鲁木齐市",
+    "type": "综合",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.xju.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，中国西北边疆最重要的综合性大学。",
+    "tags": [
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_080901",
+      "maj_070301",
+      "maj_030401",
+      "maj_081301",
+      "maj_080601",
+      "maj_050107"
+    ],
+    "image": "/images/campuses/col_0069_hero.svg",
+    "thumbImage": "/images/campuses/col_0069_thumb.svg"
+  },
+  {
+    "id": "col_0070",
+    "name": "石河子大学",
+    "province": "新疆",
+    "city": "石河子市",
+    "type": "综合",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.shzu.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，由北京大学等高校对口支援。",
+    "tags": [
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_090101",
+      "maj_100201",
+      "maj_080901",
+      "maj_020101",
+      "maj_081101"
+    ],
+    "image": "/images/campuses/col_0070_hero.svg",
+    "thumbImage": "/images/campuses/col_0070_thumb.svg"
+  },
+  {
+    "id": "col_0071",
+    "name": "新疆医科大学",
+    "province": "新疆",
+    "city": "乌鲁木齐市",
+    "type": "医药",
+    "level": "本科",
+    "isDoubleFirstClass": false,
+    "website": "http://www.xjmu.edu.cn",
+    "description": "新疆唯一独立设置的医科大学，培养区域医疗卫生人才。",
+    "tags": [
+      "本科",
+      "医药类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_100501",
+      "maj_100701",
+      "maj_100401",
+      "maj_101001"
+    ],
+    "image": "/images/campuses/col_0071_hero.svg",
+    "thumbImage": "/images/campuses/col_0071_thumb.svg"
+  },
+  {
+    "id": "col_0072",
+    "name": "复旦大学",
+    "province": "上海",
+    "city": "上海市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.fudan.edu.cn",
+    "description": "中国最顶尖的综合性研究型大学之一，C9联盟成员。人文社科、医学、理学均居国内顶尖水平。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_020101",
+      "maj_100201",
+      "maj_050301",
+      "maj_070201",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0072_hero.svg",
+    "thumbImage": "/images/campuses/col_0072_thumb.svg"
+  },
+  {
+    "id": "col_0073",
+    "name": "南京大学",
+    "province": "江苏",
+    "city": "南京市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.nju.edu.cn",
+    "description": "中国历史最悠久的高等学府之一，C9联盟成员，文理并重、基础学科实力超群。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_070101",
+      "maj_070401",
+      "maj_070201",
+      "maj_080901",
+      "maj_020101",
+      "maj_060101"
+    ],
+    "image": "/images/campuses/col_0073_hero.svg",
+    "thumbImage": "/images/campuses/col_0073_thumb.svg"
+  },
+  {
+    "id": "col_0074",
+    "name": "哈尔滨工业大学",
+    "province": "黑龙江",
+    "city": "哈尔滨市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.hit.edu.cn",
+    "description": "中国顶尖工科大学，C9联盟成员，航天、机器人、材料等领域全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080201",
+      "maj_080901",
+      "maj_080401",
+      "maj_082001",
+      "maj_080803",
+      "maj_081001"
+    ],
+    "image": "/images/campuses/col_0074_hero.svg",
+    "thumbImage": "/images/campuses/col_0074_thumb.svg"
+  },
+  {
+    "id": "col_0075",
+    "name": "厦门大学",
+    "province": "福建",
+    "city": "厦门市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.xmu.edu.cn",
+    "description": "中国最美大学之一，国家\"985工程\"重点建设高校，海洋、经济、化学学科突出。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_020101",
+      "maj_070301",
+      "maj_070701",
+      "maj_080901",
+      "maj_120201"
+    ],
+    "image": "/images/campuses/col_0075_hero.svg",
+    "thumbImage": "/images/campuses/col_0075_thumb.svg"
+  },
+  {
+    "id": "col_0076",
+    "name": "东南大学",
+    "province": "江苏",
+    "city": "南京市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.seu.edu.cn",
+    "description": "国家\"985工程\"重点建设高校，建筑老八校之一，土木建筑和电子信息实力雄厚。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_082801",
+      "maj_080701",
+      "maj_080901",
+      "maj_081801",
+      "maj_082802"
+    ],
+    "image": "/images/campuses/col_0076_hero.svg",
+    "thumbImage": "/images/campuses/col_0076_thumb.svg"
+  },
+  {
+    "id": "col_0077",
+    "name": "天津大学",
+    "province": "天津",
+    "city": "天津市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.tju.edu.cn",
+    "description": "中国第一所现代大学，建筑老八校之一，工科实力雄厚。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081301",
+      "maj_081001",
+      "maj_080201",
+      "maj_080901",
+      "maj_081101",
+      "maj_082502"
+    ],
+    "image": "/images/campuses/col_0077_hero.svg",
+    "thumbImage": "/images/campuses/col_0077_thumb.svg"
+  },
+  {
+    "id": "col_0078",
+    "name": "北京师范大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "师范",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.bnu.edu.cn",
+    "description": "中国最顶尖的师范大学，教育学、心理学、文学等学科全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_071101",
+      "maj_050101",
+      "maj_060101",
+      "maj_070101",
+      "maj_071201"
+    ],
+    "image": "/images/campuses/col_0078_hero.svg",
+    "thumbImage": "/images/campuses/col_0078_thumb.svg"
+  },
+  {
+    "id": "col_0079",
+    "name": "中国人民大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.ruc.edu.cn",
+    "description": "中国人文社会科学领域的最高学府，经济学、法学、新闻学全国第一。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_020101",
+      "maj_050301",
+      "maj_120201",
+      "maj_020201",
+      "maj_030201"
+    ],
+    "image": "/images/campuses/col_0079_hero.svg",
+    "thumbImage": "/images/campuses/col_0079_thumb.svg"
+  },
+  {
+    "id": "col_0080",
+    "name": "华南理工大学",
+    "province": "广东",
+    "city": "广州市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.scut.edu.cn",
+    "description": "国家\"985工程\"重点建设高校，建筑老八校之一，在轻工、建筑领域全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_081301",
+      "maj_080201",
+      "maj_080901",
+      "maj_081801",
+      "maj_080701"
+    ],
+    "image": "/images/campuses/col_0080_hero.svg",
+    "thumbImage": "/images/campuses/col_0080_thumb.svg"
+  },
+  {
+    "id": "col_0081",
+    "name": "大连理工大学",
+    "province": "辽宁",
+    "city": "大连市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.dlut.edu.cn",
+    "description": "国家\"985工程\"重点建设高校，在化工、力学、机械等领域实力强劲。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081301",
+      "maj_080201",
+      "maj_080401",
+      "maj_080901",
+      "maj_081001",
+      "maj_080501"
+    ],
+    "image": "/images/campuses/col_0081_hero.svg",
+    "thumbImage": "/images/campuses/col_0081_thumb.svg"
+  },
+  {
+    "id": "col_0082",
+    "name": "吉林大学",
+    "province": "吉林",
+    "city": "长春市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.jlu.edu.cn",
+    "description": "中国规模最大的综合性大学之一，法学、化学、车辆工程等学科全国著名。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_070301",
+      "maj_080207",
+      "maj_100201",
+      "maj_070901",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0082_hero.svg",
+    "thumbImage": "/images/campuses/col_0082_thumb.svg"
+  },
+  {
+    "id": "col_0083",
+    "name": "山东大学",
+    "province": "山东",
+    "city": "济南市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.sdu.edu.cn",
+    "description": "国家\"985工程\"重点建设高校，文史和医学见长，数学和材料科学突出。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_100201",
+      "maj_070101",
+      "maj_050101",
+      "maj_080401",
+      "maj_030101",
+      "maj_080901"
+    ],
+    "image": "/images/campuses/col_0083_hero.svg",
+    "thumbImage": "/images/campuses/col_0083_thumb.svg"
+  },
+  {
+    "id": "col_0084",
+    "name": "湖南大学",
+    "province": "湖南",
+    "city": "长沙市",
+    "type": "综合",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.hnu.edu.cn",
+    "description": "国家\"985工程\"重点建设高校，千年学府传承，土木和设计学科全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_081001",
+      "maj_081801",
+      "maj_080201",
+      "maj_130503",
+      "maj_080901",
+      "maj_082802"
+    ],
+    "image": "/images/campuses/col_0084_hero.svg",
+    "thumbImage": "/images/campuses/col_0084_thumb.svg"
+  },
+  {
+    "id": "col_0085",
+    "name": "东北大学",
+    "province": "辽宁",
+    "city": "沈阳市",
+    "type": "理工",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.neu.edu.cn",
+    "description": "国家\"985工程\"重点建设高校，在自动化、计算机、冶金等领域实力突出。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080801",
+      "maj_080901",
+      "maj_080201",
+      "maj_080401",
+      "maj_080213",
+      "maj_080717"
+    ],
+    "image": "/images/campuses/col_0085_hero.svg",
+    "thumbImage": "/images/campuses/col_0085_thumb.svg"
+  },
+  {
+    "id": "col_0086",
+    "name": "华东理工大学",
+    "province": "上海",
+    "city": "上海市",
+    "type": "理工",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.ecust.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，化工和材料领域全国顶尖。",
+    "tags": [
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_081301",
+      "maj_080401",
+      "maj_100701",
+      "maj_080501",
+      "maj_082701"
+    ],
+    "image": "/images/campuses/col_0086_hero.svg",
+    "thumbImage": "/images/campuses/col_0086_thumb.svg"
+  },
+  {
+    "id": "col_0087",
+    "name": "北京邮电大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "理工",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.bupt.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，信息通信领域的黄埔军校。",
+    "tags": [
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_080703",
+      "maj_080901",
+      "maj_080701",
+      "maj_080717",
+      "maj_080911",
+      "maj_080702"
+    ],
+    "image": "/images/campuses/col_0087_hero.svg",
+    "thumbImage": "/images/campuses/col_0087_thumb.svg"
+  },
+  {
+    "id": "col_0088",
+    "name": "中国政法大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "政法",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.cupl.edu.cn",
+    "description": "中国法学教育最高学府，五院四系之首。",
+    "tags": [
+      "211",
+      "双一流",
+      "政法类"
+    ],
+    "majors": [
+      "maj_030101",
+      "maj_030201",
+      "maj_030601",
+      "maj_030602",
+      "maj_050301"
+    ],
+    "image": "/images/campuses/col_0088_hero.svg",
+    "thumbImage": "/images/campuses/col_0088_thumb.svg"
+  },
+  {
+    "id": "col_0089",
+    "name": "中国传媒大学",
+    "province": "北京",
+    "city": "北京市",
+    "type": "综合",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.cuc.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，新闻传播和影视艺术领域最高学府。",
+    "tags": [
+      "211",
+      "双一流",
+      "综合类"
+    ],
+    "majors": [
+      "maj_050301",
+      "maj_050306",
+      "maj_130310",
+      "maj_130502",
+      "maj_050261"
+    ],
+    "image": "/images/campuses/col_0089_hero.svg",
+    "thumbImage": "/images/campuses/col_0089_thumb.svg"
+  },
+  {
+    "id": "col_0090",
+    "name": "南京航空航天大学",
+    "province": "江苏",
+    "city": "南京市",
+    "type": "理工",
+    "level": "211",
+    "isDoubleFirstClass": true,
+    "website": "http://www.nuaa.edu.cn",
+    "description": "国家\"211工程\"和\"双一流\"建设高校，航空航天和力学领域实力突出。",
+    "tags": [
+      "211",
+      "双一流",
+      "理工类"
+    ],
+    "majors": [
+      "maj_082001",
+      "maj_080201",
+      "maj_080901",
+      "maj_080401",
+      "maj_080701",
+      "maj_080803"
+    ],
+    "image": "/images/campuses/col_0090_hero.svg",
+    "thumbImage": "/images/campuses/col_0090_thumb.svg"
+  },
+  {
+    "id": "col_0091",
+    "name": "华东师范大学",
+    "province": "上海",
+    "city": "上海市",
+    "type": "师范",
+    "level": "985",
+    "isDoubleFirstClass": true,
+    "website": "http://www.ecnu.edu.cn",
+    "description": "中国最顶尖的师范大学之一，教育学、地理学、软件工程全国领先。",
+    "tags": [
+      "985",
+      "211",
+      "双一流",
+      "师范类"
+    ],
+    "majors": [
+      "maj_040101",
+      "maj_071101",
+      "maj_070501",
+      "maj_080902",
+      "maj_050101",
+      "maj_071201"
+    ],
+    "image": "/images/campuses/col_0091_hero.svg",
+    "thumbImage": "/images/campuses/col_0091_thumb.svg"
   }
 ]

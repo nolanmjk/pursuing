@@ -10,13 +10,14 @@ export function matchColleges(userRank, admissionData, options = {}) {
   const results = { reach: [], match: [], safety: [] };
 
   for (const entry of admissionData) {
-    const ratio = userRank / entry.minRank;
+    // minRank / userRank: >1 means school easier than user level, <1 means harder
+    const ratio = entry.minRank / userRank;
 
-    if (ratio >= reachLower && ratio < reachUpper) {
+    if (ratio <= reachUpper) {
       results.reach.push({ ...entry, matchRatio: ratio, probability: estimateProbability(ratio) });
-    } else if (ratio >= matchLower && ratio < matchUpper) {
+    } else if (ratio <= matchUpper) {
       results.match.push({ ...entry, matchRatio: ratio, probability: estimateProbability(ratio) });
-    } else if (ratio >= safetyLower) {
+    } else {
       results.safety.push({ ...entry, matchRatio: ratio, probability: estimateProbability(ratio) });
     }
   }
@@ -37,9 +38,9 @@ function estimateProbability(ratio) {
 }
 
 export function classifyChoice(userRank, entryMinRank) {
-  const ratio = userRank / entryMinRank;
+  const ratio = entryMinRank / userRank;
   if (ratio >= 1.20) return { level: '保底', color: 'green' };
   if (ratio >= 1.00) return { level: '稳妥', color: 'orange' };
-  if (ratio >= 0.75) return { level: '冲刺', color: 'red' };
+  if (ratio > 0) return { level: '冲刺', color: 'red' };
   return { level: '差距较大', color: 'default' };
 }
