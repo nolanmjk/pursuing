@@ -1,22 +1,14 @@
 [
   {
     "code": "62",
-    "name": "甘肃省",
+    "name": "甘肃",
     "gaokaoType": "新高考",
     "subjectCategories": ["物理类", "历史类"],
     "batches": [
-      {
-        "name": "本科批",
-        "parallelChoices": 45,
-        "majorsPerChoice": 6
-      },
-      {
-        "name": "高职(专科)批",
-        "parallelChoices": 45,
-        "majorsPerChoice": 6
-      }
+      { "name": "本科批", "parallelChoices": 45, "majorsPerChoice": 6 },
+      { "name": "高职(专科)批", "parallelChoices": 45, "majorsPerChoice": 6 }
     ],
     "totalScore": 750,
-    "description": "甘肃省自2024年起实行新高考'3+1+2'模式。本科批实行平行志愿投档，设45个院校专业组志愿。"
+    "description": "甘肃省2024年起实行新高考'3+1+2'模式。本科批C段合并原一本二本，设45个院校专业组平行志愿。高职(专科)批F段同样为45个平行志愿。"
   }
 ]

@@ -4,20 +4,21 @@ import { ArrowLeftOutlined, BookOutlined, CompassOutlined, TeamOutlined, TrophyO
 import majorsData from '../../data/majors.json';
 import collegesData from '../../data/colleges.json';
 import { useAppContext } from '../../context/AppContext';
+import { FadeInView } from '../../components/AnimatedPresence';
 
 const levelColors = { '985': 'magenta', '211': 'blue', '双一流': 'geekblue', '省重点': 'orange', '本科': 'green' };
 
 // 霍兰德兴趣类型中文描述
 const interestLabels = {
-  '现实型': { label: '现实型 (R)', desc: '喜欢动手操作，偏好具体任务', color: '#EB2F96' },
-  '研究型': { label: '研究型 (I)', desc: '喜欢思考探索，偏好分析研究', color: '#00C8E0' },
-  '艺术型': { label: '艺术型 (A)', desc: '喜欢创意表达，偏好自由创作', color: '#7C5CFC' },
+  '现实型': { label: '现实型 (R)', desc: '喜欢动手操作，偏好具体任务', color: '#faaf32' },
+  '研究型': { label: '研究型 (I)', desc: '喜欢思考探索，偏好分析研究', color: '#327de1' },
+  '艺术型': { label: '艺术型 (A)', desc: '喜欢创意表达，偏好自由创作', color: '#4b96e1' },
   '社会型': { label: '社会型 (S)', desc: '喜欢帮助他人，偏好人际互动', color: '#52C41A' },
-  '企业型': { label: '企业型 (E)', desc: '喜欢领导说服，偏好商业活动', color: '#FA8C16' },
-  '常规型': { label: '常规型 (C)', desc: '喜欢规范有序，偏好数据处理', color: '#8884D8' },
+  '企业型': { label: '企业型 (E)', desc: '喜欢领导说服，偏好商业活动', color: '#faaf32' },
+  '常规型': { label: '常规型 (C)', desc: '喜欢规范有序，偏好数据处理', color: '#00194b' },
 };
 
-const demandColors = { '快速增长': '#52C41A', '持续增长': '#00C8E0', '稳定增长': '#FA8C16', '稳定': '#8884D8' };
+const demandColors = { '快速增长': '#52C41A', '持续增长': '#327de1', '稳定增长': '#faaf32', '稳定': '#7890a8' };
 
 export default function MajorDetail() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function MajorDetail() {
 
   if (!major) return <Empty description="专业不存在" />;
 
-  const offeringColleges = collegesData.filter(c => c.majors.includes(id));
+  const offeringColleges = collegesData.filter(c => c.majors?.includes(id));
   const careers = major.employmentProspects.careerPaths || [];
 
   return (
@@ -37,21 +38,22 @@ export default function MajorDetail() {
         <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)} style={{ marginBottom: 16 }}>返回</Button>
 
         {/* Hero Card */}
+        <FadeInView>
         <Card style={{
           borderRadius: 12,
           background: 'linear-gradient(135deg, #060918 0%, #0F1F2E 100%)',
-          border: '1px solid rgba(0,200,230,0.08)',
+          border: '1px solid rgba(50,125,225,0.08)',
           overflow: 'hidden',
         }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, flexWrap: 'wrap' }}>
             <div style={{
               width: 64, height: 64, borderRadius: 16,
-              background: 'linear-gradient(135deg, rgba(0,200,230,0.15), rgba(124,92,252,0.1))',
-              border: '1px solid rgba(0,200,230,0.2)',
+              background: 'linear-gradient(135deg, rgba(50,125,225,0.15), rgba(75,150,225,0.1))',
+              border: '1px solid rgba(50,125,225,0.2)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 28, flexShrink: 0,
             }}>
-              <BookOutlined style={{ color: '#00C8E0' }} />
+              <BookOutlined style={{ color: '#327de1' }} />
             </div>
             <div style={{ flex: 1, minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
@@ -60,15 +62,15 @@ export default function MajorDetail() {
                   type={isFavorited(id, 'major') ? 'primary' : 'default'}
                   size="small"
                   onClick={() => toggleFavorite({ id, type: 'major', name: major.name })}
-                  style={{ backdropFilter: 'blur(8px)', background: isFavorited(id, 'major') ? '#00C8E0' : 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: isFavorited(id, 'major') ? '#000' : '#fff' }}
+                  style={{ backdropFilter: 'blur(8px)', background: isFavorited(id, 'major') ? '#327de1' : 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: isFavorited(id, 'major') ? '#fff' : '#fff' }}
                 >
                   {isFavorited(id, 'major') ? '★ 已收藏' : '☆ 收藏'}
                 </Button>
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                <Tag color="rgba(0,200,230,0.12)" style={{ color: '#00C8E0', border: '1px solid rgba(0,200,230,0.2)', background: 'rgba(0,200,230,0.06)' }}>{major.category}</Tag>
-                <Tag color="rgba(124,92,252,0.12)" style={{ color: '#7C5CFC', border: '1px solid rgba(124,92,252,0.2)', background: 'rgba(124,92,252,0.06)' }}>{major.degree}</Tag>
-                <Tag color="rgba(250,140,22,0.12)" style={{ color: '#FA8C16', border: '1px solid rgba(250,140,22,0.2)', background: 'rgba(250,140,22,0.06)' }}>代码: {major.code}</Tag>
+                <Tag color="rgba(50,125,225,0.12)" style={{ color: '#327de1', border: '1px solid rgba(50,125,225,0.2)', background: 'rgba(50,125,225,0.06)' }}>{major.category}</Tag>
+                <Tag color="rgba(75,150,225,0.12)" style={{ color: '#4b96e1', border: '1px solid rgba(75,150,225,0.2)', background: 'rgba(75,150,225,0.06)' }}>{major.degree}</Tag>
+                <Tag color="rgba(250,175,50,0.12)" style={{ color: '#faaf32', border: '1px solid rgba(250,175,50,0.2)', background: 'rgba(250,175,50,0.06)' }}>代码: {major.code}</Tag>
                 <Tag color="rgba(82,196,26,0.12)" style={{ color: '#52C41A', border: '1px solid rgba(82,196,26,0.2)', background: 'rgba(82,196,26,0.06)' }}>学制: {major.duration}年</Tag>
               </div>
             </div>
@@ -82,20 +84,22 @@ export default function MajorDetail() {
               flexShrink: 0,
             }}>
               <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginBottom: 4 }}>人才需求趋势</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: demandColors[major.employmentProspects.demandTrend] || '#00C8E0' }}>
+              <div style={{ fontSize: 20, fontWeight: 700, color: demandColors[major.employmentProspects.demandTrend] || '#327de1' }}>
                 {major.employmentProspects.demandTrend}
               </div>
             </div>
           </div>
         </Card>
+        </FadeInView>
       </div>
 
+      <FadeInView delay={0.1}>
       <Row gutter={[16, 16]}>
         {/* Left column */}
         <Col xs={24} lg={15}>
           {/* 专业概述 */}
           <Card
-            title={<span><BookOutlined style={{ marginRight: 8, color: '#00C8E0' }} />专业概述</span>}
+            title={<span><BookOutlined style={{ marginRight: 8, color: '#327de1' }} />专业概述</span>}
             style={{ marginBottom: 16, borderRadius: 10 }}
           >
             <Typography.Paragraph style={{ fontSize: 15, lineHeight: 1.8 }}>
@@ -105,14 +109,14 @@ export default function MajorDetail() {
 
           {/* 核心课程 */}
           <Card
-            title={<span><TrophyOutlined style={{ marginRight: 8, color: '#FA8C16' }} />主要课程</span>}
+            title={<span><TrophyOutlined style={{ marginRight: 8, color: '#faaf32' }} />主要课程</span>}
             style={{ marginBottom: 16, borderRadius: 10 }}
           >
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {major.coreCourses.map((course, i) => (
                 <Tag key={i} style={{
                   fontSize: 13, padding: '4px 14px', borderRadius: 6,
-                  background: 'rgba(0,200,230,0.04)', border: '1px solid rgba(0,200,230,0.12)',
+                  background: 'rgba(50,125,225,0.04)', border: '1px solid rgba(50,125,225,0.12)',
                   color: '#0088A0', fontWeight: 500,
                 }}>
                   {course}
@@ -129,7 +133,7 @@ export default function MajorDetail() {
             >
               <Timeline
                 items={careers.map((career, i) => ({
-                  color: i === 0 ? '#52C41A' : i === careers.length - 1 ? '#7C5CFC' : '#00C8E0',
+                  color: i === 0 ? '#52C41A' : i === careers.length - 1 ? '#4b96e1' : '#327de1',
                   children: (
                     <div>
                       <Typography.Text strong style={{ fontSize: 15 }}>{career}</Typography.Text>
@@ -149,12 +153,12 @@ export default function MajorDetail() {
         <Col xs={24} lg={9}>
           {/* 就业前景 */}
           <Card
-            title={<span><CompassOutlined style={{ marginRight: 8, color: '#EB2F96' }} />就业前景</span>}
+            title={<span><CompassOutlined style={{ marginRight: 8, color: '#4b96e1' }} />就业前景</span>}
             style={{ marginBottom: 16, borderRadius: 10 }}
           >
             <Descriptions column={1} size="small" bordered labelStyle={{ fontWeight: 500 }}>
               <Descriptions.Item label="薪资范围">
-                <Typography.Text strong style={{ color: '#EB2F96' }}>{major.employmentProspects.averageSalary}</Typography.Text>
+                <Typography.Text strong style={{ color: '#4b96e1' }}>{major.employmentProspects.averageSalary}</Typography.Text>
               </Descriptions.Item>
               <Descriptions.Item label="需求趋势">
                 <Tag color={major.employmentProspects.demandTrend === '快速增长' ? 'green' : major.employmentProspects.demandTrend === '持续增长' ? 'cyan' : 'gold'}>
@@ -177,13 +181,13 @@ export default function MajorDetail() {
 
           {/* 适合人群 */}
           <Card
-            title={<span><TeamOutlined style={{ marginRight: 8, color: '#7C5CFC' }} />适合人群</span>}
+            title={<span><TeamOutlined style={{ marginRight: 8, color: '#4b96e1' }} />适合人群</span>}
             style={{ marginBottom: 16, borderRadius: 10 }}
           >
             <div style={{ marginBottom: 12 }}>
               <Typography.Text type="secondary" style={{ fontSize: 12 }}>兴趣类型</Typography.Text>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 6 }}>
-                {major.suitableFor.interests.map(type => {
+                {major.suitableFor?.interests?.map(type => {
                   const info = interestLabels[type];
                   return info ? (
                     <div key={type} style={{
@@ -201,7 +205,7 @@ export default function MajorDetail() {
             <div>
               <Typography.Text type="secondary" style={{ fontSize: 12 }}>所需能力</Typography.Text>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>
-                {major.suitableFor.skills.map(skill => (
+                {major.suitableFor?.skills?.map(skill => (
                   <Tag key={skill} style={{ fontSize: 13, padding: '2px 12px', borderRadius: 4, background: '#f5f5f5', border: '1px solid #e8e8e8' }}>
                     {skill}
                   </Tag>
@@ -212,7 +216,7 @@ export default function MajorDetail() {
 
           {/* 开设院校 */}
           <Card
-            title={<span><BankOutlined style={{ marginRight: 8, color: '#FA8C16' }} />开设院校 ({offeringColleges.length}所)</span>}
+            title={<span><BankOutlined style={{ marginRight: 8, color: '#faaf32' }} />开设院校 ({offeringColleges.length}所)</span>}
             style={{ borderRadius: 10 }}
           >
             {offeringColleges.length === 0 ? (
@@ -229,7 +233,7 @@ export default function MajorDetail() {
                       marginBottom: 6, transition: 'all 0.2s',
                       border: '1px solid #f0f0f0',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,200,230,0.03)'; e.currentTarget.style.borderColor = 'rgba(0,200,230,0.2)'; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(50,125,225,0.03)'; e.currentTarget.style.borderColor = 'rgba(50,125,225,0.2)'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = '#f0f0f0'; }}
                   >
                     <div>
@@ -246,6 +250,7 @@ export default function MajorDetail() {
           </Card>
         </Col>
       </Row>
+      </FadeInView>
     </div>
   );
 }

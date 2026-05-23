@@ -8,6 +8,13 @@ import MajorDetail from './pages/CollegeSearch/MajorDetail';
 import SimulatedFormPage from './pages/SimulatedForm/SimulatedFormPage';
 import AssessmentPage from './pages/Assessment/AssessmentPage';
 import RankConversionPage from './pages/RankConversion/RankConversionPage';
+import CollegeComparePage from './pages/CollegeCompare/CollegeComparePage';
+import MajorComparePage from './pages/MajorCompare/MajorComparePage';
+import PolicyGuidePage from './pages/PolicyGuide/PolicyGuidePage';
+import RankQueryPage from './pages/RankQuery/RankQueryPage';
+import MajorMatchPage from './pages/MajorMatch/MajorMatchPage';
+import AssistantPage from './pages/Assistant/AssistantPage';
+import AiFillPage from './pages/AiFill/AiFillPage';
 
 export const router = createHashRouter([
   {
@@ -22,6 +29,13 @@ export const router = createHashRouter([
       { path: 'majors/:id', element: <MajorDetail /> },
       { path: 'simulate', element: <SimulatedFormPage /> },
       { path: 'assessment', element: <AssessmentPage /> },
+      { path: 'rank-query', element: <RankQueryPage /> },
+      { path: 'major-match', element: <MajorMatchPage /> },
+      { path: 'college-compare', element: <CollegeComparePage /> },
+      { path: 'major-compare', element: <MajorComparePage /> },
+      { path: 'assistant', element: <AssistantPage /> },
+      { path: 'ai-fill', element: <AiFillPage /> },
+      { path: 'policy', element: <PolicyGuidePage /> },
     ],
   },
 ]);

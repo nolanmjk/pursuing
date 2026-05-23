@@ -13,8 +13,21 @@ export function scoreToRank(score, year, subjectCategory) {
       return row.cumulativeCount;
     }
   }
-  // Score lower than all entries
-  return relevant[relevant.length - 1].cumulativeCount;
+
+  // Score lower than all entries — extrapolate from the tail
+  const sorted = [...relevant].sort((a, b) => a.score - b.score); // ascending
+  const lowest = sorted[0];
+  const gap = lowest.score - score;
+
+  // Density from bottom 25% of available data
+  const windowSize = Math.max(20, Math.floor(sorted.length * 0.25));
+  const window = sorted.slice(0, windowSize);
+  const scoreRange = window[window.length - 1].score - window[0].score;
+  const density = scoreRange > 0
+    ? Math.abs(window[window.length - 1].cumulativeCount - window[0].cumulativeCount) / scoreRange
+    : 300;
+
+  return Math.round(lowest.cumulativeCount + gap * density);
 }
 
 // Find the equivalent score for a given rank in a given year/subject
@@ -30,7 +43,6 @@ export function rankToScore(rank, year, subjectCategory) {
       return row.score;
     }
   }
-  // Rank worse than all entries
   return relevant[relevant.length - 1].score;
 }
 
@@ -42,12 +54,20 @@ const normalizeSubject = {
   '文科': ['历史类', '文科'],
 };
 
-// Compute equivalent scores for past 3 years given current score/rank
+// Get available years from rank data, sorted newest first
+export function getAvailableYears() {
+  const years = [...new Set(rankTable.map(r => r.year))];
+  years.sort((a, b) => b - a);
+  return years;
+}
+
+// Compute equivalent scores for past 3 available years given current score/rank
 export function computeEquivalentScores(currentScore, currentYear, subjectCategory) {
   const rank = scoreToRank(currentScore, currentYear, subjectCategory);
   if (rank === null) return null;
 
-  const pastYears = [currentYear - 1, currentYear - 2, currentYear - 3];
+  const allYears = getAvailableYears();
+  const pastYears = allYears.filter(y => y < currentYear).slice(0, 3);
   const equivalents = [];
 
   for (const year of pastYears) {

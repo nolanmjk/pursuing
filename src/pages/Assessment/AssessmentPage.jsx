@@ -3,6 +3,8 @@ import { Card, Button, Radio, Typography, Progress, Result, Row, Col, Tag, Space
 import { useNavigate } from 'react-router-dom';
 import assessmentData from '../../data/assessment.json';
 import majorsData from '../../data/majors.json';
+import { FadeInView } from '../../components/AnimatedPresence';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AssessmentPage() {
   const navigate = useNavigate();
@@ -48,7 +50,7 @@ export default function AssessmentPage() {
       .slice(0, 12);
 
     return (
-      <div>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <Result status="success" title="测评完成！" subTitle="以下是你的霍兰德职业兴趣测评结果" />
         <Row gutter={[16, 16]}>
           <Col span={12}>
@@ -84,7 +86,7 @@ export default function AssessmentPage() {
             </Card>
           </Col>
         </Row>
-      </div>
+      </motion.div>
     );
   }
 
@@ -94,30 +96,40 @@ export default function AssessmentPage() {
   const progress = Math.round((answeredCount / totalQuestions) * 100);
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto' }}>
+    <motion.div style={{ maxWidth: 600, margin: '0 auto' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <Typography.Title level={4}>兴趣测评</Typography.Title>
       <div style={{ marginBottom: 16 }}>
         <Typography.Text type="secondary">进度：{answeredCount}/{totalQuestions} 题</Typography.Text>
         <Progress percent={progress} size="small" />
       </div>
-      <Card title={`第 ${currentIndex + 1} 题`}>
-        <Typography.Title level={5}>{currentQ.text}</Typography.Title>
-        <Radio.Group
-          style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 24 }}
-          value={answers[currentQ.id]}
-          onChange={e => handleAnswer(currentQ.id, e.target.value)}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.25 }}
         >
-          {assessmentData.options.map(opt => (
-            <Radio key={opt.value} value={opt.value}>{opt.label}</Radio>
-          ))}
-        </Radio.Group>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32 }}>
-          <Button onClick={goPrev} disabled={currentIndex === 0}>上一题</Button>
-          <Button type="primary" onClick={goNext} disabled={!answers[currentQ.id]}>
-            {currentIndex === totalQuestions - 1 ? '完成测评' : '下一题'}
-          </Button>
-        </div>
-      </Card>
-    </div>
+          <Card title={`第 ${currentIndex + 1} 题`}>
+            <Typography.Title level={5}>{currentQ.text}</Typography.Title>
+            <Radio.Group
+              style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 24 }}
+              value={answers[currentQ.id]}
+              onChange={e => handleAnswer(currentQ.id, e.target.value)}
+            >
+              {assessmentData.options.map(opt => (
+                <Radio key={opt.value} value={opt.value}>{opt.label}</Radio>
+              ))}
+            </Radio.Group>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32 }}>
+              <Button onClick={goPrev} disabled={currentIndex === 0}>上一题</Button>
+              <Button type="primary" onClick={goNext} disabled={!answers[currentQ.id]}>
+                {currentIndex === totalQuestions - 1 ? '完成测评' : '下一题'}
+              </Button>
+            </div>
+          </Card>
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
   );
 }

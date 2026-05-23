@@ -1,30 +1,34 @@
 import { useState, useMemo } from 'react';
 import {
   Card, Form, InputNumber, Select, Button, Steps, Typography,
-  Descriptions, Tag, Table, Statistic, Row, Col, Alert, Space, Divider, Empty,
+  Tag, Table, Statistic, Row, Col, Alert, Space, Empty, Tabs, Segmented,
 } from 'antd';
 import {
   TrophyOutlined, CalculatorOutlined, AimOutlined,
   RiseOutlined, FallOutlined, MinusOutlined,
 } from '@ant-design/icons';
 import { useAppContext } from '../../context/AppContext';
-import { computeEquivalentScores, calculateZones } from '../../utils/rankConverter';
+import { computeEquivalentScores, calculateZones, getAvailableYears } from '../../utils/rankConverter';
 import { matchColleges } from '../../utils/matchAlgorithm';
 import admissionData from '../../data/admission_scores.json';
 import collegesData from '../../data/colleges.json';
 import majorsData from '../../data/majors.json';
 import { useNavigate } from 'react-router-dom';
+import { FadeInView, StaggerCards, CardItem } from '../../components/AnimatedPresence';
+import { motion } from 'framer-motion';
 
-const CURRENT_YEAR = 2025;
+const CURRENT_YEAR = getAvailableYears()[0] || 2025;
 
 export default function RankConversionPage() {
   const navigate = useNavigate();
-  const { userScore, setUserScore, userRank, setUserRank, userSubject, setUserSubject, selectedProvince } = useAppContext();
+  const { userScore, setUserScore, userRank, setUserRank, userSubject, setUserSubject } = useAppContext();
   const [currentStep, setCurrentStep] = useState(0);
   const [result, setResult] = useState(null);
   const [zoneType, setZoneType] = useState('moderate');
   const [matchResults, setMatchResults] = useState(null);
+  const [regionFilter, setRegionFilter] = useState('省内');
 
+  // Step 1: Input score → find rank
   const handleStep1 = () => {
     if (!userScore) return;
     const data = computeEquivalentScores(userScore, CURRENT_YEAR, userSubject);
@@ -33,30 +37,32 @@ export default function RankConversionPage() {
     setUserRank(data?.rank);
   };
 
+  // Step 2: View details → show explanation + reveal step 3
   const handleStep2 = () => {
     setCurrentStep(2);
   };
 
+  // Step 3: Match colleges
   const handleStep3 = () => {
-    if (!userRank) return;
+    if (userRank == null) return;
     setCurrentStep(3);
-    // Build a college lookup map for province
     const collegeMap = {};
     collegesData.forEach(c => { collegeMap[c.id] = c; });
     const filtered = admissionData.filter(a => {
       const college = collegeMap[a.collegeId];
-      if (!college || college.province !== selectedProvince) return false;
+      if (!college) return false;
+      if (regionFilter === '省内' && college.province !== '甘肃') return false;
+      if (regionFilter === '省外' && college.province === '甘肃') return false;
       if (a.subjectCategory === userSubject) return true;
       if (userSubject === '物理类' && a.subjectCategory === '理科') return true;
       if (userSubject === '历史类' && a.subjectCategory === '文科') return true;
       return false;
     });
-    const matched = matchColleges(userRank, filtered);
-    setMatchResults(matched);
+    setMatchResults(matchColleges(userRank, filtered, zoneType));
   };
 
   const zones = useMemo(() => {
-    if (!userRank) return null;
+    if (userRank == null) return null;
     return calculateZones(userRank, zoneType);
   }, [userRank, zoneType]);
 
@@ -85,12 +91,22 @@ export default function RankConversionPage() {
         size="small"
         pagination={{ pageSize: 8 }}
         columns={[
-          { title: '院校', dataIndex: ['college', 'name'], key: 'college', render: (t, r) => (
-            <a onClick={() => navigate(`/colleges/${r.collegeId}`)}>{r.college?.name}</a>
-          )},
-          { title: '专业', dataIndex: ['major', 'name'], key: 'major', render: (t, r) => (
-            <a onClick={() => navigate(`/majors/${r.majorId}`)}>{r.major?.name}</a>
-          )},
+          { title: '院校', dataIndex: ['college', 'name'], key: 'college', render: (t, r) => {
+            const level = r.college?.level;
+            const doubleFirst = r.college?.isDoubleFirstClass;
+            let tag = null;
+            if (level === '985') tag = <Tag color="red" style={{ marginLeft: 4, fontSize: 11, lineHeight: '18px' }}>985</Tag>;
+            else if (level === '211') tag = <Tag color="orange" style={{ marginLeft: 4, fontSize: 11, lineHeight: '18px' }}>211</Tag>;
+            else if (doubleFirst) tag = <Tag color="purple" style={{ marginLeft: 4, fontSize: 11, lineHeight: '18px' }}>双一流</Tag>;
+            else if (level === '省重点') tag = <Tag color="green" style={{ marginLeft: 4, fontSize: 11, lineHeight: '18px' }}>省重点</Tag>;
+            return <span><a onClick={() => navigate(`/colleges/${r.collegeId}`)}>{r.college?.name}</a>{tag}</span>;
+          }},
+          { title: '专业', dataIndex: ['major', 'name'], key: 'major', render: (t, r) => {
+            if (r.majorId === 'maj_020101' && (r._groupName || '').includes('普通类')) {
+              return <span>普通类<Tag color="default" style={{ marginLeft: 4, fontSize: 10, lineHeight: '16px' }}>含多专业</Tag></span>;
+            }
+            return <a onClick={() => navigate(`/majors/${r.majorId}`)}>{r.major?.name}</a>;
+          }},
           { title: '最低分', dataIndex: 'minScore', key: 'minScore', width: 70 },
           { title: '最低位次', dataIndex: 'minRank', key: 'minRank', width: 80 },
           { title: '年份', dataIndex: 'year', key: 'year', width: 55 },
@@ -104,12 +120,13 @@ export default function RankConversionPage() {
 
   return (
     <div>
-      <Typography.Title level={4}>位次换算3步法</Typography.Title>
-      <Typography.Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
-        查位次 → 算等效分 → 定区间，科学填报志愿
-      </Typography.Text>
+      <FadeInView>
+        <Typography.Title level={4}>位次换算3步法</Typography.Title>
+        <Typography.Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
+          查位次 → 算等效分 → 定区间，科学填报志愿
+        </Typography.Text>
+      </FadeInView>
 
-      {/* Step indicator */}
       <Steps
         current={currentStep}
         size="small"
@@ -121,7 +138,7 @@ export default function RankConversionPage() {
         ]}
       />
 
-      {/* Step 1: Input Score → Find Rank */}
+      {/* Step 1: Input */}
       <Card title="第1步：查位次" style={{ marginBottom: 16 }}>
         <Form layout="inline" style={{ flexWrap: 'wrap', gap: 8 }}>
           <Form.Item label="选科类别">
@@ -139,27 +156,31 @@ export default function RankConversionPage() {
         </Form>
         <Typography.Text type="secondary" style={{ display: 'block', marginTop: 8 }}>
           输入{CURRENT_YEAR}年高考分数，系统在一分一段表中自动定位你的全省位次。
+          <a onClick={() => navigate('/rank-query')} style={{ marginLeft: 8 }}>查看完整一分一段表 &rarr;</a>
         </Typography.Text>
       </Card>
 
-      {/* Step 1 Result: Rank found */}
+      {/* Step 1 Result: Rank */}
       {currentStep >= 1 && result && (
-        <Card style={{ marginBottom: 16, borderColor: '#1677ff' }}>
-          <Row gutter={24} align="middle">
-            <Col>
-              <Statistic title="你的位次" value={result.rank} suffix="名" valueStyle={{ color: '#1677ff', fontSize: 32, fontWeight: 'bold' }} />
-            </Col>
-            <Col>
-              <Typography.Text type="secondary">
-                {userSubject} | {CURRENT_YEAR}年 | 分数 {userScore} 分
-              </Typography.Text>
-            </Col>
-          </Row>
-        </Card>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+          <Card style={{ marginBottom: 16, borderColor: '#1677ff' }}>
+            <Row gutter={24} align="middle">
+              <Col>
+                <Statistic title="你的位次" value={result.rank} suffix="名" valueStyle={{ color: '#1677ff', fontSize: 32, fontWeight: 'bold' }} />
+              </Col>
+              <Col>
+                <Typography.Text type="secondary">
+                  {userSubject} | {CURRENT_YEAR}年 | 分数 {userScore} 分
+                </Typography.Text>
+              </Col>
+            </Row>
+          </Card>
+        </motion.div>
       )}
 
       {/* Step 2: Equivalent Scores */}
       {currentStep >= 1 && result && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}>
         <Card title="第2步：算等效分" style={{ marginBottom: 16 }}
           extra={<Button type="primary" onClick={handleStep2} ghost>查看详情</Button>}>
           <Typography.Text>
@@ -204,10 +225,12 @@ export default function RankConversionPage() {
             </div>
           )}
         </Card>
+        </motion.div>
       )}
 
-      {/* Step 3: Zone calculation */}
+      {/* Step 3: Zones + Match */}
       {currentStep >= 2 && zones && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
         <Card title="第3步：定区间（冲·稳·保）" style={{ marginBottom: 16 }}
           extra={<Button type="primary" onClick={handleStep3}>匹配院校</Button>}>
           <Space style={{ marginBottom: 16 }}>
@@ -218,6 +241,12 @@ export default function RankConversionPage() {
                 { value: 'aggressive', label: '进取型' },
                 { value: 'conservative', label: '保守型' },
               ]} />
+            <Typography.Text style={{ marginLeft: 16 }}>地区范围：</Typography.Text>
+            <Segmented value={regionFilter} onChange={setRegionFilter} size="small" options={[
+              { value: '省内', label: '甘肃省内' },
+              { value: '省外', label: '省外' },
+              { value: '不限', label: '不限' },
+            ]} />
           </Space>
 
           <Row gutter={[24, 16]}>
@@ -254,12 +283,13 @@ export default function RankConversionPage() {
             建议比例：冲刺 20-30% | 稳妥 40-50% | 保底 20-30%
           </Typography.Text>
         </Card>
+        </motion.div>
       )}
 
-      {/* Step 3 Results: Matching colleges */}
+      {/* Step 3 Results */}
       {currentStep >= 3 && matchResults && (
-        <div style={{ marginTop: 16 }}>
-          <Typography.Title level={5}>匹配院校列表</Typography.Title>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+        <Card title="匹配院校列表" style={{ marginBottom: 16 }}>
           <Tabs
             items={[
               { key: 'reach', label: <span style={{ color: '#ff4d4f' }}>冲刺 ({matchResults.reach.length})</span>,
@@ -270,7 +300,8 @@ export default function RankConversionPage() {
                 children: matchResults.safety.length > 0 ? renderAdmissionTable(matchResults.safety) : <Empty description="没有匹配的保底院校" /> },
             ]}
           />
-        </div>
+        </Card>
+        </motion.div>
       )}
     </div>
   );

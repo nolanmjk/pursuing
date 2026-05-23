@@ -88,12 +88,31 @@ body {
    ================================================ */
 .pursuing-content {
   min-height: calc(100vh - 64px - 70px);
+  position: relative;
+  overflow: hidden;
   background:
     radial-gradient(circle at 20% 15%, rgba(124,92,252,0.02) 0%, transparent 45%),
     radial-gradient(circle at 80% 25%, rgba(0,200,230,0.02) 0%, transparent 45%),
     radial-gradient(circle at 50% 80%, rgba(124,92,252,0.015) 0%, transparent 35%),
     #F0F2F5;
   padding: 32px !important;
+}
+/* Slow cosmic dust orb */
+.pursuing-content::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,200,230,0.015) 0%, rgba(124,92,252,0.01) 30%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: cosmicDrift 40s ease-in-out infinite alternate;
+}
+@keyframes cosmicDrift {
+  0% { top: -10%; left: 0%; }
+  33% { top: 40%; left: 70%; }
+  66% { top: 20%; left: 20%; }
+  100% { top: 60%; left: 50%; }
 }
 
 /* ================================================
@@ -117,7 +136,7 @@ body {
 }
 
 /* ================================================
-   HERO
+   HERO — Galaxy / Space
    ================================================ */
 .pursuing-hero {
   position: relative;
@@ -126,28 +145,50 @@ body {
   margin-bottom: 36px;
   border-radius: 16px;
   overflow: hidden;
-  background: #080C16;
+  background: radial-gradient(ellipse at 50% 40%, #0d1a2d 0%, #080C16 60%, #050812 100%);
   border: 1px solid rgba(255,255,255,0.04);
+  animation: heroBorderGlow 5s ease-in-out infinite;
 }
-/* Dot grid pattern */
+@keyframes heroBorderGlow {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(0,200,230,0.03), 0 0 15px rgba(0,200,230,0.02); }
+  50% { box-shadow: inset 0 0 0 1px rgba(0,200,230,0.08), 0 0 30px rgba(124,92,252,0.05); }
+}
+/* Star layer 1 — fine dust */
 .pursuing-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 36px 36px;
-  mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, black 30%, transparent 75%);
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 70% 30%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 85% 50%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 60% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 35% 85%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 20% 55%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 8% 35%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 45% 40%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 65% 5%, rgba(255,255,255,0.3), transparent);
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 40%, transparent 80%);
   pointer-events: none;
 }
-/* Top glow orb */
+/* Milky Way diagonal band */
 .pursuing-hero::after {
   content: '';
   position: absolute;
-  top: -120px; left: 50%;
-  transform: translateX(-50%);
-  width: 360px; height: 360px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,200,230,0.08) 0%, rgba(124,92,252,0.04) 40%, transparent 70%);
+  top: -30%; left: -10%;
+  width: 160%; height: 160%;
+  background:
+    radial-gradient(ellipse at 35% 40%, rgba(124,92,252,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 50%, rgba(0,200,230,0.04) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 30%, rgba(180,130,255,0.03) 0%, transparent 45%);
+  transform: rotate(-15deg);
   pointer-events: none;
 }
 .pursuing-hero h1 {
@@ -157,12 +198,21 @@ body {
   font-size: 42px;
   font-weight: 800;
   letter-spacing: 4px;
-  background: linear-gradient(135deg, #00C8E0 0%, #5DB8FE 50%, #7C5CFC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 24px rgba(0,200,230,0.3));
   margin-bottom: 14px;
+  color: #00C8E0;
+}
+.pursuing-hero h1 .glass-letter {
+  display: inline-block;
+  /* Solid cyan glass body */
+  color: #00E5FF;
+  /* Glass edge: bright rim */
+  -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+  /* Cyan light bleed */
+  text-shadow:
+    0 0 8px rgba(0,229,255,0.9),
+    0 0 22px rgba(0,200,230,0.5),
+    0 0 50px rgba(0,200,230,0.25),
+    0 0 80px rgba(0,180,210,0.12);
 }
 .pursuing-hero .subtitle {
   position: relative;
@@ -170,6 +220,56 @@ body {
   color: rgba(255,255,255,0.35);
   font-size: 14px;
   letter-spacing: 6px;
+}
+
+/* Hero CTA button breathing glow */
+.hero-cta-btn {
+  animation: ctaBreathe 3s ease-in-out infinite;
+}
+@keyframes ctaBreathe {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0,200,230,0.25); }
+  50% { box-shadow: 0 2px 20px rgba(0,200,230,0.45), 0 0 40px rgba(0,200,230,0.15); }
+}
+
+/* Feature card icon circle */
+.feature-icon-circle {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  transition: all 0.35s;
+}
+.pursuing-feature-card:hover .feature-icon-circle {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  transform: scale(1.08);
+}
+
+/* Feature badge */
+.feature-badge {
+  position: absolute; top: 10px; right: 10px;
+  color: #fff; font-size: 11px; font-weight: 600;
+  padding: 1px 8px; border-radius: 4px; z-index: 1;
+}
+
+/* Stat card accent dot */
+.pursuing-stat-card {
+  position: relative;
+  overflow: hidden;
+}
+.pursuing-stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, #00C8E0, #7C5CFC);
+  transition: width 0.4s ease;
+}
+.pursuing-stat-card:hover::after {
+  width: 60%;
 }
 
 /* ================================================
@@ -202,6 +302,23 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,200,230,0.06) !important;
 }
 .pursuing-feature-card:hover::before {
+  opacity: 1;
+}
+/* Sheen sweep on hover */
+.pursuing-feature-card::after {
+  content: '';
+  position: absolute;
+  top: -20%; left: -40%;
+  width: 60%; height: 140%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+  transform: skewX(-15deg);
+  opacity: 0;
+  transition: left 0.55s ease-out, opacity 0.3s;
+  pointer-events: none;
+  z-index: 2;
+}
+.pursuing-feature-card:hover::after {
+  left: 120%;
   opacity: 1;
 }
 
@@ -475,4 +592,87 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(0,200,230,0.1), transparent);
   margin: 24px 0;
+}
+
+/* ================================================
+   MOBILE RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+  /* Header */
+  .pursuing-header {
+    padding: 0 12px !important;
+  }
+  .pursuing-header .ant-menu-item {
+    padding: 0 8px !important;
+    font-size: 12px !important;
+  }
+
+  /* Hero */
+  .pursuing-hero {
+    padding: 40px 16px 36px !important;
+    border-radius: 10px !important;
+    margin-bottom: 24px;
+  }
+  .pursuing-hero h1 {
+    font-size: 28px !important;
+    letter-spacing: 2px;
+  }
+  .pursuing-hero h1 .glass-letter {
+    font-size: 28px;
+  }
+  .pursuing-hero .subtitle {
+    font-size: 11px !important;
+    letter-spacing: 3px;
+  }
+
+  /* Content */
+  .pursuing-content {
+    padding: 16px !important;
+  }
+
+  /* Feature cards */
+  .feature-icon-circle {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+  }
+
+  /* Section title */
+  .pursuing-section-title {
+    font-size: 14px !important;
+    margin-bottom: 14px;
+  }
+
+  /* Stat cards */
+  .pursuing-stat-card .ant-statistic-content {
+    font-size: 22px !important;
+  }
+
+  /* BackToTop button */
+  .ant-back-top {
+    right: 16px !important;
+    bottom: 70px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pursuing-hero {
+    padding: 32px 12px 28px !important;
+  }
+  .pursuing-hero h1 {
+    font-size: 24px !important;
+    letter-spacing: 1px;
+  }
+  .pursuing-hero h1 .glass-letter {
+    font-size: 24px;
+  }
+  .pursuing-hero .subtitle {
+    font-size: 10px !important;
+    letter-spacing: 2px;
+  }
+  .hero-cta-btn {
+    padding: 0 28px !important;
+    height: 38px !important;
+    font-size: 14px !important;
+  }
 }
