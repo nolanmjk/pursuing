@@ -1,20 +1,22 @@
+import { lazy } from 'react';
 import { createHashRouter } from 'react-router-dom';
 import App from './App';
-import HomePage from './pages/Home/HomePage';
-import ScoreMatchPage from './pages/ScoreMatch/ScoreMatchPage';
-import CollegeSearchPage from './pages/CollegeSearch/CollegeSearchPage';
-import CollegeDetail from './pages/CollegeSearch/CollegeDetail';
-import MajorDetail from './pages/CollegeSearch/MajorDetail';
-import SimulatedFormPage from './pages/SimulatedForm/SimulatedFormPage';
-import AssessmentPage from './pages/Assessment/AssessmentPage';
-import RankConversionPage from './pages/RankConversion/RankConversionPage';
-import CollegeComparePage from './pages/CollegeCompare/CollegeComparePage';
-import MajorComparePage from './pages/MajorCompare/MajorComparePage';
-import PolicyGuidePage from './pages/PolicyGuide/PolicyGuidePage';
-import RankQueryPage from './pages/RankQuery/RankQueryPage';
-import MajorMatchPage from './pages/MajorMatch/MajorMatchPage';
-import AssistantPage from './pages/Assistant/AssistantPage';
-import AiFillPage from './pages/AiFill/AiFillPage';
+
+const HomePage = lazy(() => import('./pages/Home/HomePage'));
+const ScoreMatchPage = lazy(() => import('./pages/ScoreMatch/ScoreMatchPage'));
+const CollegeSearchPage = lazy(() => import('./pages/CollegeSearch/CollegeSearchPage'));
+const CollegeDetail = lazy(() => import('./pages/CollegeSearch/CollegeDetail'));
+const MajorDetail = lazy(() => import('./pages/CollegeSearch/MajorDetail'));
+const SimulatedFormPage = lazy(() => import('./pages/SimulatedForm/SimulatedFormPage'));
+const AssessmentPage = lazy(() => import('./pages/Assessment/AssessmentPage'));
+const RankConversionPage = lazy(() => import('./pages/RankConversion/RankConversionPage'));
+const CollegeComparePage = lazy(() => import('./pages/CollegeCompare/CollegeComparePage'));
+const MajorComparePage = lazy(() => import('./pages/MajorCompare/MajorComparePage'));
+const PolicyGuidePage = lazy(() => import('./pages/PolicyGuide/PolicyGuidePage'));
+const RankQueryPage = lazy(() => import('./pages/RankQuery/RankQueryPage'));
+const MajorMatchPage = lazy(() => import('./pages/MajorMatch/MajorMatchPage'));
+const AssistantPage = lazy(() => import('./pages/Assistant/AssistantPage'));
+const AiFillPage = lazy(() => import('./pages/AiFill/AiFillPage'));
 
 export const router = createHashRouter([
   {

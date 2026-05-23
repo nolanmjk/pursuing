@@ -6,9 +6,6 @@ import { motion } from 'framer-motion';
 import { useAppContext } from '../../context/AppContext';
 import { StaggerCards, CardItem, FadeInView, CountUp } from '../../components/AnimatedPresence';
 import { SUGGESTED_QUESTIONS, findBestMatch, personalizeAnswer } from '../../utils/qaAssistant';
-import collegesData from '../../data/colleges.json';
-import majorsData from '../../data/majors.json';
-import admissionData from '../../data/admission_scores.json';
 import FloatingAssistant from '../../components/FloatingAssistant';
 
 const features = [
@@ -92,13 +89,12 @@ function XiaoKaiCard({ navigate }) {
         }}
         styles={{ body: { padding: 0 } }}
       >
-        <Row wrap={false}>
-          {/* Left: robot + input */}
-          <Col flex="none" style={{
-            width: 200, padding: '20px 0 20px 24px',
+        <Row>
+          {/* Left: robot */}
+          <Col xs={24} sm={4} style={{
+            padding: '20px 16px',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
-            borderRight: '1px solid rgba(255,255,255,0.06)',
-            gap: 12,
+            gap: 8,
           }}>
             <motion.div
               onMouseEnter={() => setHovered(true)}
@@ -236,7 +232,7 @@ function XiaoKaiCard({ navigate }) {
           </Col>
 
           {/* Right: chat area */}
-          <Col flex="auto" style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <Col xs={24} sm={20} style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
             {/* Messages */}
             <div
               ref={chatRef}
@@ -342,7 +338,6 @@ function XiaoKaiCard({ navigate }) {
 export default function HomePage() {
   const navigate = useNavigate();
   const { history } = useAppContext();
-  const gansuColleges = collegesData.filter(c => c.province === '甘肃');
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
 
   const handleMouseMove = useCallback((e) => {
@@ -569,7 +564,7 @@ export default function HomePage() {
         <Col xs={12} sm={6}>
           <FadeInView delay={0}>
             <Card className="pursuing-stat-card">
-              <Statistic title="收录院校" value={collegesData.length}
+              <Statistic title="收录院校" value={1653}
                 formatter={v => <CountUp value={v} suffix="所" style={{ color: '#00C8E0', fontWeight: 700, fontSize: 30 }} />} />
             </Card>
           </FadeInView>
@@ -577,7 +572,7 @@ export default function HomePage() {
         <Col xs={12} sm={6}>
           <FadeInView delay={0.1}>
             <Card className="pursuing-stat-card">
-              <Statistic title="收录专业" value={majorsData.length}
+              <Statistic title="收录专业" value={119}
                 formatter={v => <CountUp value={v} suffix="个" style={{ color: '#7C5CFC', fontWeight: 700, fontSize: 30 }} />} />
             </Card>
           </FadeInView>
@@ -585,7 +580,7 @@ export default function HomePage() {
         <Col xs={12} sm={6}>
           <FadeInView delay={0.2}>
             <Card className="pursuing-stat-card">
-              <Statistic title="录取数据" value={admissionData.length}
+              <Statistic title="录取数据" value={6978}
                 formatter={v => <CountUp value={v} suffix="条" style={{ color: '#52C41A', fontWeight: 700, fontSize: 30 }} />} />
             </Card>
           </FadeInView>
@@ -593,7 +588,7 @@ export default function HomePage() {
         <Col xs={12} sm={6}>
           <FadeInView delay={0.3}>
             <Card className="pursuing-stat-card">
-              <Statistic title="甘肃院校" value={gansuColleges.length}
+              <Statistic title="甘肃院校" value={39}
                 formatter={v => <CountUp value={v} suffix="所" style={{ color: '#FA8C16', fontWeight: 700, fontSize: 30 }} />} />
             </Card>
           </FadeInView>

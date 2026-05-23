@@ -32,10 +32,17 @@ export default function FloatingAssistant() {
   const [greeting, setGreeting] = useState(GREETINGS[0]);
   const [bubbleVisible, setBubbleVisible] = useState(true);
   const [bubbleIdx, setBubbleIdx] = useState(0);
+  const [mobile, setMobile] = useState(() => window.innerWidth < 600);
   const listRef = useRef(null);
   const historyRef = useRef([]);
   const bubbleTimerRef = useRef(null);
   const ctx = useAppContext();
+
+  useEffect(() => {
+    const onResize = () => setMobile(window.innerWidth < 600);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   // Auto-cycle greeting messages
   useEffect(() => {
@@ -128,10 +135,10 @@ export default function FloatingAssistant() {
             transition={{ duration: 0.3 }}
             style={{
               position: 'fixed',
-              bottom: 156,
-              right: 24,
+              bottom: mobile ? 74 : 156,
+              right: mobile ? 12 : 24,
               zIndex: 1000,
-              maxWidth: 240,
+              maxWidth: mobile ? 200 : 240,
               background: '#fff',
               borderRadius: 14,
               padding: '12px 16px',
@@ -171,12 +178,12 @@ export default function FloatingAssistant() {
       <motion.div
         style={{
           position: 'fixed',
-          bottom: 88,
-          right: 24,
+          bottom: mobile ? 16 : 88,
+          right: mobile ? 12 : 24,
           zIndex: 1000,
-          width: 60,
-          height: 60,
-          borderRadius: 30,
+          width: mobile ? 50 : 60,
+          height: mobile ? 50 : 60,
+          borderRadius: mobile ? 25 : 30,
           background: 'linear-gradient(135deg, #0a1628 0%, #1a3a5c 100%)',
           boxShadow: '0 4px 20px rgba(0,20,50,0.4), 0 0 0 2px rgba(250,175,50,0.3)',
           cursor: 'pointer',
@@ -266,9 +273,13 @@ export default function FloatingAssistant() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
             style={{
-              position: 'fixed', bottom: 156, right: 24, zIndex: 1000,
-              width: 380, height: 520, background: '#fff', borderRadius: 16,
-              boxShadow: '0 8px 40px rgba(0,0,0,0.15)',
+              position: 'fixed', zIndex: 1000,
+              ...(mobile
+                ? { inset: 0, borderRadius: 0, height: '100dvh' }
+                : { bottom: 156, right: 24, width: 380, height: 520, borderRadius: 16 }
+              ),
+              background: '#fff',
+              boxShadow: mobile ? 'none' : '0 8px 40px rgba(0,0,0,0.15)',
               display: 'flex', flexDirection: 'column', overflow: 'hidden',
             }}
           >

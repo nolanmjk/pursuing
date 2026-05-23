@@ -676,3 +676,57 @@ body {
     font-size: 14px !important;
   }
 }
+
+/* ── Touch-friendly improvements ── */
+@media (max-width: 768px) {
+  /* Larger touch targets */
+  .ant-btn {
+    min-height: 36px;
+  }
+  .ant-menu-inline .ant-menu-item {
+    height: 44px;
+    line-height: 44px;
+    margin: 0;
+  }
+
+  /* Tables: horizontal scroll */
+  .ant-table {
+    font-size: 12px;
+  }
+  .ant-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Cards tighter spacing */
+  .ant-card {
+    margin-bottom: 12px;
+  }
+  .ant-card-body {
+    padding: 14px;
+  }
+
+  /* Form items full-width on mobile */
+  .ant-form-inline .ant-form-item {
+    margin-right: 0;
+    display: block;
+  }
+
+  /* Footer */
+  .pursuing-footer {
+    font-size: 11px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  /* College detail hero */
+  .ant-descriptions-item-label,
+  .ant-descriptions-item-content {
+    font-size: 12px;
+  }
+
+  /* Hide scroll progress on mobile (too small to see) */
+  .ant-progress-line {
+    display: none;
+  }
+}
