@@ -4,7 +4,21 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/pursuing/',
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'html-inject-reload-on-error',
+      transformIndexHtml(html) {
+        // After deploy, users with stale cached index.html will 404 on the
+        // old JS bundle (filenames are hashed). If the root div is still
+        // empty after 3s, force a one-time reload to get the fresh version.
+        return html.replace(
+          '</head>',
+          '<script>(function(){var k="_rl";var t=sessionStorage.getItem(k);if(t){sessionStorage.removeItem(k)}else{setTimeout(function(){var r=document.getElementById("root");if(r&&!r.children.length&&!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.reload()}},3000)}})();</script></head>'
+        );
+      },
+    },
+  ],
   server: {
     allowedHosts: true,
     proxy: {
