@@ -11,6 +11,7 @@ import { matchColleges, classifyChoice } from '../../utils/matchAlgorithm';
 import { filterByPreferences, allocateVolunteerTable, collegeMap, majorMap } from '../../utils/volunteerAllocator';
 import { aiChat } from '../../utils/aiChat';
 import { aiRecommend } from '../../utils/aiRecommend';
+import { isMajorCompatible } from '../../utils/subjectFilter';
 import admissionData from '../../data/admission_scores.json';
 
 const PHASES = {
@@ -45,7 +46,8 @@ export default function AiFillPage() {
        a.batch?.startsWith('高职(专科)') || a.batch?.startsWith('专科批')) &&
       (a.subjectCategory === subject ||
         (subject === '物理类' && a.subjectCategory === '理科') ||
-        (subject === '历史类' && a.subjectCategory === '文科'))
+        (subject === '历史类' && a.subjectCategory === '文科')) &&
+      isMajorCompatible(a.majorId, subject)
     );
   }, [parsed?.subject, ctx.userSubject]);
 

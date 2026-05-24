@@ -11,6 +11,7 @@ import {
 import { useAppContext } from '../../context/AppContext';
 import { analyzeForm } from '../../utils/formBalance';
 import { matchColleges, classifyChoice } from '../../utils/matchAlgorithm';
+import { isMajorCompatible } from '../../utils/subjectFilter';
 import { FadeInView, CountUp } from '../../components/AnimatedPresence';
 import MonteCarloPanel from '../../components/MonteCarloPanel';
 import collegesData from '../../data/colleges.json';
@@ -97,6 +98,7 @@ export default function SimulatedFormPage() {
       if (a.batch !== batch.name &&
           !a.batch?.startsWith(batch.name) &&
           !batch.name?.startsWith(a.batch)) return false;
+      if (!isMajorCompatible(a.majorId, userSubject)) return false;
       if (a.subjectCategory === userSubject) return true;
       if (userSubject === '物理类' && a.subjectCategory === '理科') return true;
       if (userSubject === '历史类' && a.subjectCategory === '文科') return true;

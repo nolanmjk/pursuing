@@ -10,6 +10,7 @@ import {
 import { useAppContext } from '../../context/AppContext';
 import { computeEquivalentScores, calculateZones, getAvailableYears } from '../../utils/rankConverter';
 import { matchColleges } from '../../utils/matchAlgorithm';
+import { isMajorCompatible } from '../../utils/subjectFilter';
 import admissionData from '../../data/admission_scores.json';
 import collegesData from '../../data/colleges.json';
 import majorsData from '../../data/majors.json';
@@ -53,6 +54,7 @@ export default function RankConversionPage() {
       if (!college) return false;
       if (regionFilter === '省内' && college.province !== '甘肃') return false;
       if (regionFilter === '省外' && college.province === '甘肃') return false;
+      if (!isMajorCompatible(a.majorId, userSubject)) return false;
       if (a.subjectCategory === userSubject) return true;
       if (userSubject === '物理类' && a.subjectCategory === '理科') return true;
       if (userSubject === '历史类' && a.subjectCategory === '文科') return true;
