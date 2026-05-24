@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import { Card, Input, Button, Typography, Table, Tag, Statistic, Row, Col, Alert, Divider, message } from 'antd';
+import { Card, Input, Button, Typography, Table, Tag, Statistic, Row, Col, Alert, Divider, Space, message } from 'antd';
 import { ThunderboltOutlined, SendOutlined, RocketOutlined, ImportOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -404,6 +404,27 @@ export default function AiFillPage() {
                 size="small"
                 scroll={{ x: 700 }}
                 pagination={{ pageSize: 15, showSizeChanger: false, showTotal: (t) => `共 ${t} 个志愿` }}
+                expandable={{
+                  rowExpandable: (r) => (r._groupName || '').includes('普通类'),
+                  expandedRowRender: (r) => {
+                    const college = collegeMap[r.collegeId];
+                    if (!college?.majors?.length) return null;
+                    return (
+                      <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>
+                        <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                          该专业组涵盖以下专业方向（参考）：
+                        </Typography.Text>
+                        <div style={{ marginTop: 6 }}>
+                          <Space wrap size={[4, 4]}>
+                            {college.majors.map(mid => (
+                              <Tag key={mid} color="blue" style={{ fontSize: 12 }}>{majorMap[mid]?.name || mid}</Tag>
+                            ))}
+                          </Space>
+                        </div>
+                      </div>
+                    );
+                  },
+                }}
               />
             </Card>
 

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Card, Form, InputNumber, Select, Button, Tabs, Table, Tag, Typography, Empty, message, Segmented, Row, Col } from 'antd';
+import { Card, Form, InputNumber, Select, Button, Tabs, Table, Tag, Typography, Empty, Space, message, Segmented, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import { matchColleges } from '../../utils/matchAlgorithm';
 import { scoreToRank } from '../../utils/rankConverter';
@@ -77,6 +77,8 @@ export default function ScoreMatchPage() {
   };
 
   const renderTable = (data) => {
+    const majorMap = {};
+    majorsData.forEach(m => { majorMap[m.id] = m; });
     const enriched = data.map(item => {
       const college = collegesData.find(c => c.id === item.collegeId);
       const major = majorsData.find(m => m.id === item.majorId);
@@ -106,7 +108,29 @@ export default function ScoreMatchPage() {
       { title: '录取概率', dataIndex: 'probability', key: 'probability', width: 80, render: v => <Tag color={probColors[v]}>{v}</Tag> },
     ];
 
-    return <Table dataSource={enriched} columns={columns} rowKey="id" pagination={{ pageSize: 10 }} size="small" />;
+    return <Table dataSource={enriched} columns={columns} rowKey="id" pagination={{ pageSize: 10 }} size="small"
+      expandable={{
+        rowExpandable: (r) => (r._groupName || '').includes('普通类'),
+        expandedRowRender: (r) => {
+          const college = r.college;
+          if (!college?.majors?.length) return null;
+          return (
+            <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>
+              <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                该专业组涵盖以下专业方向（参考）：
+              </Typography.Text>
+              <div style={{ marginTop: 6 }}>
+                <Space wrap size={[4, 4]}>
+                  {college.majors.map(mid => (
+                    <Tag key={mid} color="blue" style={{ fontSize: 12 }}>{majorMap[mid]?.name || mid}</Tag>
+                  ))}
+                </Space>
+              </div>
+            </div>
+          );
+        },
+      }}
+    />;
   };
 
   return (

@@ -489,6 +489,20 @@ export default function SimulatedFormPage() {
                           专业组：<Tag style={{ fontSize: 10, padding: '0 4px' }}>{choice.groupCode}{choice.groupName ? ` ${choice.groupName}` : ''}</Tag>
                         </div>
                       )}
+                      {choice.groupName?.includes('普通类') && college?.majors?.length > 0 && (
+                        <details style={{ marginTop: 4, fontSize: 11 }}>
+                          <summary style={{ color: '#327de1', cursor: 'pointer', userSelect: 'none' }}>
+                            查看涵盖专业方向 ({college.majors.length}个)
+                          </summary>
+                          <div style={{ marginTop: 4, maxHeight: 100, overflowY: 'auto' }}>
+                            {college.majors.map(mid => (
+                              <Tag key={mid} color="blue" style={{ fontSize: 10, marginBottom: 2 }}>
+                                {majorMap[mid]?.name || mid}
+                              </Tag>
+                            ))}
+                          </div>
+                        </details>
+                      )}
                       {choice.minRank && (
                         <div>
                           最低位次：<strong style={{ color: '#333' }}>{choice.minRank.toLocaleString()}</strong>
