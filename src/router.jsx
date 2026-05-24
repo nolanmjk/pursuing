@@ -31,6 +31,10 @@ const RankQueryPage = lazyWithReload(() => import('./pages/RankQuery/RankQueryPa
 const MajorMatchPage = lazyWithReload(() => import('./pages/MajorMatch/MajorMatchPage'));
 const AssistantPage = lazyWithReload(() => import('./pages/Assistant/AssistantPage'));
 const AiFillPage = lazyWithReload(() => import('./pages/AiFill/AiFillPage'));
+const SpecialPlanPage = lazyWithReload(() => import('./pages/SpecialPlan/SpecialPlanPage'));
+const EarlyBatchPage = lazyWithReload(() => import('./pages/EarlyBatch/EarlyBatchPage'));
+const ParentGuidePage = lazyWithReload(() => import('./pages/ParentGuide/ParentGuidePage'));
+const RoiCalculatorPage = lazyWithReload(() => import('./pages/RoiCalculator/RoiCalculatorPage'));
 
 export const router = createHashRouter([
   {
@@ -52,6 +56,10 @@ export const router = createHashRouter([
       { path: 'assistant', element: <AssistantPage /> },
       { path: 'ai-fill', element: <AiFillPage /> },
       { path: 'policy', element: <PolicyGuidePage /> },
+      { path: 'special-plan', element: <SpecialPlanPage /> },
+      { path: 'early-batch', element: <EarlyBatchPage /> },
+      { path: 'parent-guide', element: <ParentGuidePage /> },
+      { path: 'roi-calculator', element: <RoiCalculatorPage /> },
     ],
   },
 ]);

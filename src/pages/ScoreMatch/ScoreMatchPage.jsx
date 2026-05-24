@@ -25,6 +25,7 @@ export default function ScoreMatchPage() {
   const [results, setResults] = useState(null);
   const [derivedRank, setDerivedRank] = useState(null);
   const [regionFilter, setRegionFilter] = useState('省内');
+  const [groupTypeFilter, setGroupTypeFilter] = useState('all');
   const [loading, setLoading] = useState(false);
 
   const filteredData = useMemo(() => {
@@ -36,12 +37,14 @@ export default function ScoreMatchPage() {
       if (regionFilter === '省内' && college.province !== '甘肃') return false;
       if (regionFilter === '省外' && college.province === '甘肃') return false;
       if (!isMajorCompatible(a.majorId, userSubject)) return false;
+      if (groupTypeFilter === '中外合作办学' && !(a._groupName || '').includes('中外合作')) return false;
+      if (groupTypeFilter === '普通类' && !(a._groupName || '').includes('普通类')) return false;
       if (a.subjectCategory === userSubject) return true;
       if (userSubject === '物理类' && a.subjectCategory === '理科') return true;
       if (userSubject === '历史类' && a.subjectCategory === '文科') return true;
       return false;
     });
-  }, [regionFilter, userSubject]);
+  }, [regionFilter, userSubject, groupTypeFilter]);
 
   const cutoffInfo = useMemo(() => {
     if (userScore == null) return null;
@@ -180,6 +183,19 @@ export default function ScoreMatchPage() {
               { value: '省外', label: '省外' },
               { value: '不限', label: '不限' },
             ]} />
+          </Col>
+          <Col xs={24} sm={4}>
+            <div style={{ fontSize: 12, color: '#999', marginBottom: 4 }}>专业组类型</div>
+            <Select
+              value={groupTypeFilter}
+              onChange={setGroupTypeFilter}
+              style={{ width: '100%' }}
+              options={[
+                { value: 'all', label: '全部' },
+                { value: '普通类', label: '普通类' },
+                { value: '中外合作办学', label: '中外合作办学' },
+              ]}
+            />
           </Col>
           <Col xs={12} sm={4}>
             <div style={{ fontSize: 12, color: '#999', marginBottom: 4 }}>你的分数</div>

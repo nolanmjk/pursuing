@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Typography, Statistic, Button, Tag, Input } from 'antd';
-import { SearchOutlined, FormOutlined, ExperimentOutlined, HeartOutlined, TrophyOutlined, SwapOutlined, BookOutlined, ReadOutlined, ThunderboltOutlined, SendOutlined, RobotOutlined } from '@ant-design/icons';
+import { SearchOutlined, FormOutlined, ExperimentOutlined, HeartOutlined, TrophyOutlined, SwapOutlined, BookOutlined, ReadOutlined, ThunderboltOutlined, SendOutlined, RobotOutlined, TeamOutlined, DollarOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../../context/AppContext';
 import { StaggerCards, CardItem, FadeInView, CountUp } from '../../components/AnimatedPresence';
@@ -18,6 +18,10 @@ const features = [
   { key: '/simulate', icon: <FormOutlined style={{ fontSize: 34, color: '#FA8C16' }} />, title: '模拟填报', desc: '按规则模拟，分析梯度合理性', color: '#FA8C16' },
   { key: '/assessment', icon: <ExperimentOutlined style={{ fontSize: 34, color: '#EB2F96' }} />, title: '兴趣测评', desc: '霍兰德测评，发现适合你的专业', color: '#EB2F96' },
   { key: '/policy', icon: <ReadOutlined style={{ fontSize: 34, color: '#13C2C2' }} />, title: '报考指南', desc: '省控线、填报规则、征集志愿', color: '#13C2C2' },
+  { key: '/early-batch', icon: <TrophyOutlined style={{ fontSize: 34, color: '#FF6B35' }} />, title: '提前批指南', desc: '军校警校公费师范生报考攻略', color: '#FF6B35', badge: '新' },
+  { key: '/special-plan', icon: <ExperimentOutlined style={{ fontSize: 34, color: '#2DB7F5' }} />, title: '专项计划自测', desc: '8道题测你能不能报专项计划', color: '#2DB7F5', badge: '新' },
+  { key: '/parent-guide', icon: <TeamOutlined style={{ fontSize: 34, color: '#F5A623' }} />, title: '家长导航', desc: '考研保研选调央企一站式参考', color: '#F5A623', badge: '新' },
+  { key: '/roi-calculator', icon: <DollarOutlined style={{ fontSize: 34, color: '#4CAF50' }} />, title: 'ROI计算器', desc: '算清教育投资回报率', color: '#4CAF50', badge: '新' },
 ];
 
 const nebulaOrbs = [

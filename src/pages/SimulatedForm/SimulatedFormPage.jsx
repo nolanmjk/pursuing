@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import { useAppContext } from '../../context/AppContext';
 import { analyzeForm } from '../../utils/formBalance';
+import { diagnoseForm } from '../../utils/diagnoseForm';
 import { matchColleges, classifyChoice } from '../../utils/matchAlgorithm';
 import { isMajorCompatible } from '../../utils/subjectFilter';
 import { FadeInView, CountUp } from '../../components/AnimatedPresence';
@@ -180,7 +181,13 @@ export default function SimulatedFormPage() {
       const admission = filteredAdmissions.find(a => a.collegeId === c.collegeId && a.majorId === c.majorId);
       return admission || { collegeId: c.collegeId, majorId: c.majorId, minRank: 999999, minScore: 0 };
     });
-    setAnalysis(analyzeForm(validChoices, userRank));
+    const formAnalysis = analyzeForm(validChoices, userRank);
+    const enriched = validChoices.map(c => {
+      const admission = filteredAdmissions.find(a => a.collegeId === c.collegeId && a.majorId === c.majorId);
+      return { ...c, minRank: admission?.minRank || c.minRank, zone: admission ? formAnalysis.choices.find(fc => fc.collegeId === c.collegeId)?.level : c.zone, groupName: admission?._groupName || c.groupName };
+    });
+    formAnalysis.diagnosis = diagnoseForm(enriched, userRank, userSubject);
+    setAnalysis(formAnalysis);
   };
 
   // Export志愿表 as printable HTML
@@ -416,6 +423,13 @@ export default function SimulatedFormPage() {
         >
           AI 压力测试
         </Button>
+        {(userRank == null || validCount === 0) && (
+          <Typography.Text type="secondary" style={{ fontSize: 11 }}>
+            {userRank == null ? '请先在「位次换算」或「分数匹配」中设置你的位次 ' : ''}
+            {userRank == null && validCount === 0 ? '| ' : ''}
+            {validCount === 0 ? '请先添加至少1个志愿' : ''}
+          </Typography.Text>
+        )}
         <Button danger icon={<ClearOutlined />} onClick={clearAll} disabled={choices.length === 0}>
           清空重填
         </Button>
@@ -610,6 +624,47 @@ export default function SimulatedFormPage() {
               );
             })}
           </div>
+
+          {/* ── Diagnosis Section ── */}
+          {analysis.diagnosis && (
+            <div style={{ marginTop: 20, borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 20 }}>
+              <Typography.Title level={5} style={{ marginBottom: 12 }}>
+                志愿表体检得分：
+                <span style={{
+                  color: analysis.diagnosis.score >= 80 ? '#52c41a' :
+                    analysis.diagnosis.score >= 60 ? '#fa8c16' : '#ff4d4f',
+                  fontSize: 28, fontWeight: 700, marginLeft: 8,
+                }}>
+                  {analysis.diagnosis.score}分
+                </span>
+              </Typography.Title>
+
+              {analysis.diagnosis.findings.length === 0 ? (
+                <Alert type="success" showIcon message="未发现明显问题，志愿表结构合理！" />
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {analysis.diagnosis.findings.map((f, i) => (
+                    <Alert
+                      key={i}
+                      type={f.severity === 'error' ? 'error' : f.severity === 'warning' ? 'warning' : 'info'}
+                      showIcon
+                      message={<Typography.Text strong>{f.title}</Typography.Text>}
+                      description={
+                        <div>
+                          <Typography.Text style={{ fontSize: 13 }}>{f.detail}</Typography.Text>
+                          {f.fix && (
+                            <Typography.Text type="secondary" style={{ display: 'block', marginTop: 4, fontSize: 12 }}>
+                              建议：{f.fix}
+                            </Typography.Text>
+                          )}
+                        </div>
+                      }
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </Card>
       )}
 

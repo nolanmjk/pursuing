@@ -8,6 +8,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import collegesData from '../../data/colleges.json';
 import majorsData from '../../data/majors.json';
 import admissionData from '../../data/admission_scores.json';
+import guideData from '../../data/parent_guide_data.json';
 import { useAppContext } from '../../context/AppContext';
 import { FadeInView } from '../../components/AnimatedPresence';
 
@@ -157,6 +158,155 @@ export default function CollegeDetail() {
             />
           </Card>
         </div>
+      ),
+    },
+    {
+      key: 'career',
+      label: '升学就业',
+      children: (
+        <Row gutter={[16, 16]}>
+          {/* 保研梯队 */}
+          {(() => {
+            let tier = null;
+            for (const [tKey, tVal] of Object.entries(guideData.postgradRates.tiers)) {
+              if (tVal.schools && tVal.schools.includes(college.name)) {
+                tier = tVal.label;
+                break;
+              }
+            }
+            const tierColor = !tier ? '#d9d9d9' :
+              tier.includes('顶尖') ? '#ff4d4f' :
+              tier.includes('优秀') ? '#fa8c16' :
+              tier.includes('良好') ? '#1890ff' : '#d9d9d9';
+            return (
+              <Col xs={24} sm={12}>
+                <Card size="small" style={{ borderRadius: 12, borderLeft: `3px solid ${tierColor}` }}>
+                  <Typography.Text strong>保研率梯队</Typography.Text>
+                  <div style={{ fontSize: 20, fontWeight: 700, color: tierColor, margin: '8px 0' }}>
+                    {tier || '数据暂缺'}
+                  </div>
+                  <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                    {tier
+                      ? '保研率越高，本科生获得推免资格的机会越大，读研压力越小。'
+                      : '该院校暂未收录保研率数据。985/有研究生院的院校保研率通常更高。'}
+                  </Typography.Text>
+                </Card>
+              </Col>
+            );
+          })()}
+
+          {/* 选调生资格 */}
+          <Col xs={24} sm={12}>
+            <Card size="small" style={{
+              borderRadius: 12,
+              borderLeft: `3px solid ${guideData.selectionTransfer.targetSchools.includes(college.name) ? '#faad14' : '#d9d9d9'}`,
+            }}>
+              <Typography.Text strong>甘肃省定向选调</Typography.Text>
+              <div style={{ fontSize: 16, fontWeight: 700, margin: '8px 0', color: guideData.selectionTransfer.targetSchools.includes(college.name) ? '#faad14' : '#999' }}>
+                {guideData.selectionTransfer.targetSchools.includes(college.name) ? '目标院校' : '非目标院校'}
+              </div>
+              <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                {guideData.selectionTransfer.targetSchools.includes(college.name)
+                  ? '甘肃省定向选调面向41所指定高校招录，该校毕业生可参加定向选调。'
+                  : '该校不在甘肃省定向选调41所目标院校之列，毕业生可通过省考进入公务员系统。'}
+              </Typography.Text>
+            </Card>
+          </Col>
+
+          {/* 企业目标校 */}
+          {(() => {
+            const tags = [];
+            for (const [cat, info] of Object.entries(guideData.targetEmployers.categories)) {
+              if (info.schools && info.schools.includes(college.name)) {
+                tags.push(cat);
+              }
+            }
+            return tags.length > 0 ? (
+              <Col xs={24} sm={12}>
+                <Card size="small" style={{ borderRadius: 12, borderLeft: '3px solid #1890ff' }}>
+                  <Typography.Text strong>企业校招目标校</Typography.Text>
+                  <div style={{ marginTop: 8 }}>
+                    <Space wrap size={[4, 4]}>
+                      {tags.map(t => <Tag key={t} color="blue">{t}</Tag>)}
+                    </Space>
+                  </div>
+                  <Typography.Text type="secondary" style={{ fontSize: 12, display: 'block', marginTop: 4 }}>
+                    该校毕业生在以上领域的校招中具有明显优势。
+                  </Typography.Text>
+                </Card>
+              </Col>
+            ) : null;
+          })()}
+
+          {/* 中外合作办学 */}
+          {(() => {
+            const hasSino = admissionData.some(a => a.collegeId === college.id && (a._groupName || '').includes('中外合作'));
+            return (
+              <Col xs={24} sm={12}>
+                <Card size="small" style={{
+                  borderRadius: 12,
+                  borderLeft: `3px solid ${hasSino ? '#722ed1' : '#d9d9d9'}`,
+                }}>
+                  <Typography.Text strong>中外合作办学项目</Typography.Text>
+                  <div style={{ fontSize: 16, fontWeight: 700, margin: '8px 0', color: hasSino ? '#722ed1' : '#999' }}>
+                    {hasSino ? '有合作项目' : '未收录'}
+                  </div>
+                  <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                    {hasSino
+                      ? '该院校在甘肃有中外合作办学专业组招生，学费通常高于普通专业。'
+                      : '该院校暂未收录中外合作办学项目在甘肃的招生数据。'}
+                  </Typography.Text>
+                </Card>
+              </Col>
+            );
+          })()}
+
+          {/* 回乡就业 */}
+          <Col xs={24} sm={12}>
+            <Card size="small" style={{
+              borderRadius: 12,
+              borderLeft: `3px solid ${college.province === '甘肃' ? '#52c41a' : '#d9d9d9'}`,
+            }}>
+              <Typography.Text strong>甘肃就业优势</Typography.Text>
+              <div style={{ fontSize: 16, fontWeight: 700, margin: '8px 0', color: college.province === '甘肃' ? '#52c41a' : '#999' }}>
+                {college.province === '甘肃'
+                  ? (guideData.backHomeEmployment.gansuAdvantage.high.includes(college.name) ? '省内高认可度' : '省内院校')
+                  : '省外院校'}
+              </div>
+              <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                {college.province === '甘肃'
+                  ? '省内院校在甘肃就业市场认可度高，本地企事业单位校招时优先考虑。'
+                  : '省外院校甘肃籍学生回省就业主要通过考公/选调/央企驻甘机构等渠道。'}
+              </Typography.Text>
+            </Card>
+          </Col>
+
+          {/* 转专业建议 */}
+          <Col xs={24}>
+            <Card size="small" style={{ borderRadius: 12 }}>
+              <Typography.Text strong>转专业政策参考</Typography.Text>
+              <Typography.Paragraph style={{ fontSize: 13, marginTop: 8, marginBottom: 0 }}>
+                不同层次院校的转专业难度差异显著：
+              </Typography.Paragraph>
+              <Table
+                dataSource={[
+                  { level: '985高校', policy: '转专业政策较为宽松', detail: '如浙大、中科大等实行大类招生，大二再选专业；多数985允许成绩达标后申请转专业' },
+                  { level: '211高校', policy: '有一定门槛', detail: '通常要求大一成绩排名前10-20%，通过笔试/面试方可转专业' },
+                  { level: '省属本科', policy: '门槛较高', detail: '名额有限，通常要求成绩排名前列，热门专业转入竞争激烈' },
+                  { level: '一般建议', policy: '', detail: '报考前直接选择目标专业最稳妥。如需转专业，入学后尽早了解本校转专业实施细则（一般大一下学期或大二上学期申请）。' },
+                ]}
+                rowKey="level"
+                size="small"
+                pagination={false}
+                columns={[
+                  { title: '院校层次', dataIndex: 'level', key: 'level', width: 100, render: v => <Typography.Text strong>{v}</Typography.Text> },
+                  { title: '转专业难度', dataIndex: 'policy', key: 'policy', width: 120, render: v => v ? <Tag>{v}</Tag> : null },
+                  { title: '说明', dataIndex: 'detail', key: 'detail' },
+                ]}
+              />
+            </Card>
+          </Col>
+        </Row>
       ),
     },
   ];

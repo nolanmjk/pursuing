@@ -4,6 +4,22 @@ import collegesData from '../data/colleges.json';
 const collegeMap = Object.fromEntries(collegesData.map(c => [c.id, c]));
 const majorMap = Object.fromEntries(majorsData.map(m => [m.id, m]));
 
+// Normalize city name for comparison: strip "市" suffix, lowercase
+const norm = (s) => (s || '').replace(/市$/, '').trim();
+
+function cityMatches(college, userCity) {
+  if (!college || !college.city) return false;
+  const colCity = norm(college.city);
+  const usrCity = norm(userCity);
+  // Direct match
+  if (colCity === usrCity) return true;
+  // College name contains the city (e.g. 上海交通大学 for 上海)
+  if (college.name && college.name.includes(usrCity)) return true;
+  // Province-level fallback: if user types 兰州, match colleges in 兰州 OR 兰州市
+  if (colCity.includes(usrCity) || usrCity.includes(colCity)) return true;
+  return false;
+}
+
 /**
  * Filter match pools by user's city and major preferences.
  * Falls back progressively if a pool becomes too small.
@@ -23,7 +39,7 @@ export function filterByPreferences(pools, preferences, isSafetyOnly = false) {
       filtered = filtered.filter(e => {
         const c = collegeMap[e.collegeId];
         if (!c) return false;
-        return cities.some(city => c.city?.includes(city) || c.name?.includes(city));
+        return cities.some(city => cityMatches(c, city));
       });
     }
     if (hasMajorFilter) {
