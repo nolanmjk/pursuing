@@ -412,10 +412,12 @@ export default function AiFillPage() {
                 expandable={{
                   rowExpandable: (r) => (r._groupName || '').includes('普通类'),
                   expandedRowRender: (r) => {
-                    const college = collegeMap[r.collegeId];
-                    if (!college?.majors?.length) return null;
                     const subject = parsed?.subject || ctx.userSubject || '物理类';
-                    const compatibleMajors = college.majors.filter(mid => isMajorCompatible(mid, subject));
+                    const compatibleMajors = [...new Set(
+                      admissionData
+                        .filter(a => a.collegeId === r.collegeId)
+                        .map(a => a.majorId)
+                    )].filter(mid => isMajorCompatible(mid, subject));
                     if (!compatibleMajors.length) {
                       return (
                         <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>

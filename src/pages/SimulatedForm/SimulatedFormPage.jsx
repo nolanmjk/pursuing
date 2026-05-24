@@ -491,8 +491,12 @@ export default function SimulatedFormPage() {
                           专业组：<Tag style={{ fontSize: 10, padding: '0 4px' }}>{choice.groupCode}{choice.groupName ? ` ${choice.groupName}` : ''}</Tag>
                         </div>
                       )}
-                      {choice.groupName?.includes('普通类') && college?.majors?.length > 0 && (() => {
-                        const compatibleMajors = college.majors.filter(mid => isMajorCompatible(mid, userSubject));
+                      {choice.groupName?.includes('普通类') && (() => {
+                        const compatibleMajors = [...new Set(
+                          admissionData
+                            .filter(a => a.collegeId === choice.collegeId)
+                            .map(a => a.majorId)
+                        )].filter(mid => isMajorCompatible(mid, userSubject));
                         if (!compatibleMajors.length) return null;
                         return (
                           <details style={{ marginTop: 4, fontSize: 11 }}>
