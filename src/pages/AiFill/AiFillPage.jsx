@@ -411,14 +411,25 @@ export default function AiFillPage() {
                   expandedRowRender: (r) => {
                     const college = collegeMap[r.collegeId];
                     if (!college?.majors?.length) return null;
+                    const subject = parsed?.subject || ctx.userSubject || '物理类';
+                    const compatibleMajors = college.majors.filter(mid => isMajorCompatible(mid, subject));
+                    if (!compatibleMajors.length) {
+                      return (
+                        <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>
+                          <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                            该院校在{subject}下暂无适配的专业方向数据
+                          </Typography.Text>
+                        </div>
+                      );
+                    }
                     return (
                       <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>
                         <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-                          该专业组涵盖以下专业方向（参考）：
+                          该专业组涵盖以下专业方向（{compatibleMajors.length}个）：
                         </Typography.Text>
                         <div style={{ marginTop: 6 }}>
                           <Space wrap size={[4, 4]}>
-                            {college.majors.map(mid => (
+                            {compatibleMajors.map(mid => (
                               <Tag key={mid} color="blue" style={{ fontSize: 12 }}>{majorMap[mid]?.name || mid}</Tag>
                             ))}
                           </Space>
