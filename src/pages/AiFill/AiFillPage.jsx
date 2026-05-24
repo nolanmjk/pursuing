@@ -64,7 +64,7 @@ export default function AiFillPage() {
     const rank = parsedResult.rank || (score ? scoreToRank(score, 2025, subject) : null);
 
     if (!score && !rank) {
-      message.warning('请告诉我你的分数（如"580分"）或位次（如"位次8000名"），或先在首页设置成绩');
+      message.warning('请告诉我你的分数（如"580分"）或位次（如"位次8000名"）');
       setPhase('idle');
       return;
     }
@@ -292,6 +292,15 @@ export default function AiFillPage() {
                 />
               </div>
               <CountUp value={Math.floor(progress)} suffix="%" style={{ fontSize: 18, color: '#327de1', fontWeight: 600 }} />
+              {parsed && (
+                <div style={{ marginTop: 16, padding: '12px 16px', background: '#f6f8fa', borderRadius: 8, textAlign: 'left', display: 'inline-block' }}>
+                  <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                    已理解：{parsed.subject || '物理类'} · 位次{parsed.rank?.toLocaleString() || stats?.rank?.toLocaleString() || (parsed.score ? parsed.score + '分' : '?')}名
+                    {parsed.cities?.length > 0 && <span> · 倾向城市：{parsed.cities.join('、')}</span>}
+                    {parsed.majors?.length > 0 && <span> · 意向专业：{parsed.majors.slice(0, 5).join('、')}</span>}
+                  </Typography.Text>
+                </div>
+              )}
             </Card>
           </FadeInView>
         )}

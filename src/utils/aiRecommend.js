@@ -19,10 +19,15 @@ function buildPrompt(userContext, pools, preferences, collegeMap, majorMap) {
   const cityStr = preferences.cities?.length > 0 ? preferences.cities.join('、') : '不限';
   const majorStr = preferences.majors?.length > 0 ? [...new Set(preferences.majors)].slice(0, 8).join('、') : '不限';
 
-  const header = `你是甘肃高考志愿填报专家"小楷"。请根据以下信息，从候选池中为用户挑选最合适的${TOTAL_PICKS}个志愿。
+  const totalCandidates = pools.reach.length + pools.match.length + pools.safety.length;
+  const targetPicks = Math.min(TOTAL_PICKS, totalCandidates);
+
+  const scoreLine = score != null ? `- 分数：${score}分` : `- 分数：未提供（位次${rank.toLocaleString()}名）`;
+
+  const header = `你是甘肃高考志愿填报专家"小楷"。请根据以下信息，从候选池中为用户挑选最合适的${targetPicks}个志愿。
 
 **用户情况**：
-- 分数：${score}分
+${scoreLine}
 - 全省位次：${rank.toLocaleString()}名
 - 科类：${subject}
 - 偏好城市：${cityStr}
@@ -35,15 +40,20 @@ function buildPrompt(userContext, pools, preferences, collegeMap, majorMap) {
   const matchStr = formatPool(pools.match, '【稳妥池】ratio 1.00-1.49', collegeMap, majorMap);
   const safetyStr = formatPool(pools.safety, '【保底池】ratio 1.50+', collegeMap, majorMap);
 
+  const hasPrefs = preferences.cities?.length > 0 || preferences.majors?.length > 0;
+  const prefInstruction = hasPrefs
+    ? `\n**极其重要 — 用户偏好必须优先**：用户指定了${cityStr !== '不限' ? `城市偏好「${cityStr}」` : ''}${cityStr !== '不限' && majorStr !== '不限' ? '和' : ''}${majorStr !== '不限' ? `专业偏好「${majorStr}」` : ''}。在候选池中，凡是匹配用户城市或专业偏好的候选，请**优先选中**。即使用户偏好的候选位于保底池而非冲刺池，也请优先选中它们，而不是选一些不相关的冲刺候选。用户想要的是一份贴近他/她需求的真实志愿表，而不是理论上的"好学校"。`
+    : '';
+
   const footer = `**任务**：
-从以上三个候选池中，综合考虑院校层次、专业实力、城市发展、用户偏好，挑选出${TOTAL_PICKS}个最优志愿。
-- 冲刺约15个（ratio接近用户位次的优先，跳一跳够得着的）
-- 稳妥约17个（匹配度最高的）
-- 保底约13个（确保有学上的，优先用户偏好城市）
+从以上三个候选池中，挑选出${targetPicks}个最优志愿。
+- 冲刺约${Math.round(targetPicks * 0.33)}个（ratio接近用户位次的优先）
+- 稳妥约${Math.round(targetPicks * 0.37)}个（匹配度最高的）
+- 保底约${targetPicks - Math.round(targetPicks * 0.33) - Math.round(targetPicks * 0.37)}个（确保有学上的）${prefInstruction}
 
 **重要规则**：
 1. 只能从候选池中挑选，不要推荐候选池之外的院校
-2. 优先用户偏好的城市和专业，但也要适当保留不同梯度的备选
+2. 用户偏好的城市和专业比院校层次更重要 — 匹配偏好优先
 3. 冲刺池中ratio过低（<0.50）的学校基本没希望，谨慎选择
 4. 保底池确保足够数量，防止滑档
 
