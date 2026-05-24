@@ -128,7 +128,10 @@ export default function AiFillPage() {
 
       // Fallback AI analysis (no structured recommendation, just a summary)
       const scoreStr = score ? `${score}分` : `位次${rank.toLocaleString()}名`;
-      const prompt = `用户是甘肃${subject}考生，${scoreStr}，全省位次${rank.toLocaleString()}名。偏好城市：${cityStr}，偏好专业：${majorStr}。
+      const subjectNote = subject === '历史类'
+        ? ` 重要：用户是历史类考生，只能报考文科专业（文学、法学、经济学、管理学等），绝对不能推荐任何理工医农专业或提及工科优势。`
+        : '';
+      const prompt = `用户是甘肃${subject}考生，${scoreStr}，全省位次${rank.toLocaleString()}名。偏好城市：${cityStr}，偏好专业：${majorStr}。${subjectNote}
 
 系统已自动生成一份${table.length}个志愿的冲稳保志愿表：冲刺${reachCount}个、稳妥${matchCount}个、保底${safetyCount}个。
 
