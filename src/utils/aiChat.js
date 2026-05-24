@@ -1,4 +1,10 @@
-const API_BASE = '/api';
+// Dev: Vite proxy rewrites /api → DeepSeek and injects the key.
+// Prod: call DeepSeek directly (CORS is allowed).
+// TODO: replace with Cloudflare Worker to keep the key off the wire.
+const DEEPSEEK_KEY = 'sk-f506eba81c5c485bb03e76774aedc7ef';
+const API_BASE = import.meta.env.DEV
+  ? '/api'
+  : 'https://api.deepseek.com/v1';
 
 const SYSTEM_PROMPT = `你是"小楷"，一个专注于甘肃高考志愿填报的AI助手。你的特点：
 - 热情、耐心、专业，像一位有经验的学长/学姐
@@ -28,9 +34,13 @@ const SYSTEM_PROMPT = `你是"小楷"，一个专注于甘肃高考志愿填报�
 export async function aiChat(messages, options = {}) {
   const { max_tokens = 600 } = options;
   try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (!import.meta.env.DEV) {
+      headers['Authorization'] = `Bearer ${DEEPSEEK_KEY}`;
+    }
     const res = await fetch(`${API_BASE}/chat/completions`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
         model: 'deepseek-chat',
         messages: [
