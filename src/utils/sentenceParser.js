@@ -56,6 +56,10 @@ const REGION_KEYWORDS = {
   '江浙沪': ['上海','江苏','浙江'],
   '珠三角': ['广东'],
   '粤港澳': ['广东'],
+  '北上广': ['北京','上海','广东'],
+  '北上广深': ['北京','上海','广东','深圳'],
+  '江浙': ['江苏','浙江'],
+  '川渝': ['四川','重庆'],
 };
 
 const MAJOR_KEYWORDS = {
@@ -94,18 +98,79 @@ const SUBJECT_KEYWORDS = {
   '历史类': ['历史类', '文科', '历史', '史政', '史地', '史化', '史生'],
 };
 
-export function parseSentence(input) {
-  if (!input || !input.trim()) return { score: null, subject: null, cities: [], majors: [], keywords: [] };
-
-  const text = input.trim();
-  const result = { score: null, subject: null, cities: [], majors: [], keywords: [] };
-
-  // Extract score (3-digit number 200-750)
-  const scoreMatch = text.match(/(\d{3})/);
-  if (scoreMatch) {
-    const s = parseInt(scoreMatch[1], 10);
-    if (s >= 200 && s <= 750) result.score = s;
+// Helper: extract all cities from a text fragment (direct + province + region)
+function extractCitiesFromText(text) {
+  const cities = [];
+  for (const city of CITY_SET) {
+    if (text.includes(city)) cities.push(city);
   }
+  for (const [province, provinceCities] of Object.entries(PROVINCE_KEYWORDS)) {
+    if (text.includes(province)) {
+      for (const city of provinceCities) {
+        if (!cities.includes(city)) cities.push(city);
+      }
+    }
+  }
+  for (const [region, provinces] of Object.entries(REGION_KEYWORDS)) {
+    if (text.includes(region)) {
+      for (const province of provinces) {
+        const pcities = PROVINCE_KEYWORDS[province];
+        if (pcities) {
+          for (const city of pcities) {
+            if (!cities.includes(city)) cities.push(city);
+          }
+        } else if (CITY_SET.has(province) && !cities.includes(province)) {
+          // 直辖市 or city-level entry (北京, 上海, 天津, 重庆, 深圳 etc.)
+          cities.push(province);
+        }
+      }
+    }
+  }
+  return cities;
+}
+
+// Convert Chinese numeral score expression to digits (e.g. "五百八十分" → "580分")
+const CN_DIGITS = { 零:0, 一:1, 二:2, 两:2, 三:3, 四:4, 五:5, 六:6, 七:7, 八:8, 九:9 };
+const CN_SCORE_RE = /([二三四五六七]百)([零一二三四五六七八九]十)?([一二三四五六七八九])?(?=分|左右|约)/g;
+
+function replaceChineseScore(text) {
+  return text.replace(CN_SCORE_RE, (_, hundreds, tens, ones) => {
+    const h = CN_DIGITS[hundreds.charAt(0)] * 100;
+    let t = 0;
+    if (tens) {
+      t = CN_DIGITS[tens.charAt(0)] * 10;
+    } else if (ones && !tens) {
+      // "五百八" shorthand: 八 means 八十 when after 百 without explicit 十
+      t = CN_DIGITS[ones] * 10;
+      return String(h + t);
+    }
+    const o = ones ? CN_DIGITS[ones] : 0;
+    return String(h + t + o);
+  });
+}
+
+export function parseSentence(input) {
+  if (!input || !input.trim()) return { score: null, subject: null, cities: [], safetyCities: [], majors: [], keywords: [] };
+
+  // Preprocess: convert Chinese numerals to Arabic (五百八十分 → 580分)
+  const text = replaceChineseScore(input.trim());
+  const result = { score: null, subject: null, cities: [], safetyCities: [], majors: [], keywords: [] };
+
+  // Extract score: prefer 3-digit followed by "分" in range 200-750, unless it's part of a range
+  const scoreMatches = [...text.matchAll(/(?<!\d)(\d{3})(?!\d)/g)];
+  const match = scoreMatches.find(m => {
+    const s = parseInt(m[1], 10);
+    if (s < 200 || s > 750) return false;
+    if (text.charAt(m.index + 3) !== '分') return false;
+    // Check if this is the upper bound of a range like "580-600分", prefer lower
+    if (text.charAt(m.index - 1) === '-' || text.charAt(m.index - 1) === '~' ||
+        text.charAt(m.index - 1) === '到') return false;
+    return true;
+  }) || scoreMatches.find(m => {
+    const s = parseInt(m[1], 10);
+    return s >= 200 && s <= 750;
+  });
+  if (match) result.score = parseInt(match[1], 10);
 
   // Extract rank: "位次5000" or "排名8000" or "8000名" or "全省5000"
   const rankMatch = text.match(/(?:位次|排名|全省)\s*(\d{2,7})|(\d{2,7})\s*名/);
@@ -122,43 +187,41 @@ export function parseSentence(input) {
     }
   }
 
-  // Extract cities (direct match)
-  for (const city of CITY_SET) {
-    if (text.includes(city)) result.cities.push(city);
-  }
+  // Split text: safety clause vs main intent, so "去成都西安" and "保底留甘肃" don't mix
+  const safetyMatch = text.match(/(?:保底留|保底在|保底放)([一-龥]+(?:[\s，、]+[一-龥]+)*)/);
+  let mainText = text;
+  let safetyText = '';
 
-  // Expand province keywords to cities
-  for (const [province, cities] of Object.entries(PROVINCE_KEYWORDS)) {
-    if (text.includes(province)) {
-      for (const city of cities) {
-        if (!result.cities.includes(city)) result.cities.push(city);
-      }
-    }
-  }
-
-  // Expand region keywords to provinces to cities
-  for (const [region, provinces] of Object.entries(REGION_KEYWORDS)) {
-    if (text.includes(region)) {
-      for (const province of provinces) {
-        const cities = PROVINCE_KEYWORDS[province];
-        if (cities) {
-          for (const city of cities) {
-            if (!result.cities.includes(city)) result.cities.push(city);
-          }
-        }
-      }
-    }
-  }
-
-  // Detect "保底留X" pattern → cities used only for safety
-  if (/(?:保底留|保底在|保底放)([一-龥]+)/.test(text)) {
+  if (safetyMatch) {
     result.keywords.push('safety_only_cities');
+    safetyText = safetyMatch[1];
+    mainText = text.replace(/(?:保底留|保底在|保底放)[一-龥\s，、]+/, '');
   }
 
-  // Extract major preferences
+  // Preferred cities from main intent (excludes safety clause)
+  result.cities = extractCitiesFromText(mainText);
+
+  // Safety cities from safety clause
+  result.safetyCities = safetyText ? extractCitiesFromText(safetyText) : [];
+
+  // Extract major preferences — match by keyword, then also by major name directly
   for (const [keyword, majorNames] of Object.entries(MAJOR_KEYWORDS)) {
     if (text.includes(keyword)) {
       result.majors.push(...majorNames);
+    }
+  }
+  // Also check if user typed a major name directly (e.g. "法学" not "法律")
+  for (const majorNames of Object.values(MAJOR_KEYWORDS)) {
+    for (const name of majorNames) {
+      if (text.includes(name)) {
+        // Add all sibling majors in the same keyword group
+        for (const [keyword, names] of Object.entries(MAJOR_KEYWORDS)) {
+          if (names.includes(name)) {
+            result.majors.push(...names);
+            break;
+          }
+        }
+      }
     }
   }
   // Dedup majors
@@ -167,6 +230,7 @@ export function parseSentence(input) {
   // Detect strategy hints
   if (/激进|冒险|冲一冲/.test(text)) result.keywords.push('aggressive');
   if (/保守|稳一稳|保险/.test(text)) result.keywords.push('conservative');
+  if (/冲985|冲211|冲双一流|985.*冲|211.*冲/.test(text)) result.keywords.push('prefer_elite');
 
   return result;
 }

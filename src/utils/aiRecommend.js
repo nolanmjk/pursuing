@@ -15,22 +15,23 @@ function formatPool(entries, poolName, collegeMap, majorMap) {
 }
 
 function buildPrompt(userContext, pools, preferences, collegeMap, majorMap) {
-  const { score, rank, subject } = userContext;
+  const { score, rank, subject, preferElite } = userContext;
   const cityStr = preferences.cities?.length > 0 ? preferences.cities.join('、') : '不限';
+  const safetyCityStr = preferences.safetyCities?.length > 0 ? preferences.safetyCities.join('、') : '';
   const majorStr = preferences.majors?.length > 0 ? [...new Set(preferences.majors)].slice(0, 8).join('、') : '不限';
 
   const totalCandidates = pools.reach.length + pools.match.length + pools.safety.length;
   const targetPicks = Math.min(TOTAL_PICKS, totalCandidates);
 
-  const scoreLine = score != null ? `- 分数：${score}分` : `- 分数：未提供（位次${rank.toLocaleString()}名）`;
+  const scoreLine = score != null ? `- 分数：${score}分` : `- 分数：未提供（位次${rank?.toLocaleString() ?? '未知'}名）`;
 
   const header = `你是甘肃高考志愿填报专家"小楷"。请根据以下信息，从候选池中为用户挑选最合适的${targetPicks}个志愿。
 
 **用户情况**：
 ${scoreLine}
-- 全省位次：${rank.toLocaleString()}名
-- 科类：${subject}
-- 偏好城市：${cityStr}
+- 全省位次：${rank?.toLocaleString() ?? '未知'}名
+- 科类：${subject}${preferElite ? `\n- 特别要求：优先推荐985/211/双一流院校` : ''}
+- 倾向城市：${cityStr}${safetyCityStr ? `\n- 保底城市：${safetyCityStr}` : ''}
 - 偏好专业：${majorStr}
 
 **候选池**（系统已按位次法预筛选，ratio=院校最低位次/用户位次）：
@@ -85,9 +86,16 @@ function parseResponse(content, pools) {
     const parsed = JSON.parse(jsonStr.trim());
     const { reach = [], match = [], safety = [], analysis = '' } = parsed;
 
-    // Map indices back to actual pool entries (indices are 1-based)
-    const mapIndices = (indices, pool) =>
-      indices.map(i => pool[i - 1]).filter(Boolean);
+    // Map indices back to actual pool entries (indices are 1-based), deduplicate
+    const mapIndices = (indices, pool) => {
+      const seen = new Set();
+      return indices
+        .map(i => {
+          const n = typeof i === 'string' ? parseInt(i, 10) : i;
+          return (typeof n === 'number' && n >= 1 && n <= pool.length) ? pool[n - 1] : null;
+        })
+        .filter(e => e && !seen.has(e.collegeId + '_' + e.majorId) && seen.add(e.collegeId + '_' + e.majorId));
+    };
 
     const reachPicks = mapIndices(reach, pools.reach);
     const matchPicks = mapIndices(match, pools.match);

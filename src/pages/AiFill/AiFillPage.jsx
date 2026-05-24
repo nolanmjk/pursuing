@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from '../../context/AppContext';
 import { FadeInView, CountUp } from '../../components/AnimatedPresence';
 import { parseSentence } from '../../utils/sentenceParser';
-import { scoreToRank } from '../../utils/rankConverter';
+import { scoreToRank, getAvailableYears } from '../../utils/rankConverter';
 import { matchColleges, classifyChoice } from '../../utils/matchAlgorithm';
 import { filterByPreferences, allocateVolunteerTable, collegeMap, majorMap } from '../../utils/volunteerAllocator';
 import { aiChat } from '../../utils/aiChat';
@@ -37,6 +37,7 @@ export default function AiFillPage() {
   const [aiExplanation, setAiExplanation] = useState('');
   const [aiPowered, setAiPowered] = useState(false);
   const [stats, setStats] = useState(null);
+  const [filterWarnings, setFilterWarnings] = useState([]);
   const [progress, setProgress] = useState(0);
 
   const filteredAdmissions = useMemo(() => {
@@ -63,7 +64,7 @@ export default function AiFillPage() {
     const parsedResult = parseSentence(input);
     const score = parsedResult.score || ctx.userScore;
     const subject = parsedResult.subject || ctx.userSubject || '物理类';
-    const rank = parsedResult.rank || (score ? scoreToRank(score, 2025, subject) : null);
+    const rank = parsedResult.rank || (score ? scoreToRank(score, getAvailableYears()[0], subject) : null);
 
     if (!score && !rank) {
       message.warning('请告诉我你的分数（如"580分"）或位次（如"位次8000名"）');
@@ -85,8 +86,11 @@ export default function AiFillPage() {
     const isSafetyOnly = parsedResult.keywords?.includes('safety_only_cities');
     const filteredPools = filterByPreferences(pools, {
       cities: parsedResult.cities,
+      safetyCities: parsedResult.safetyCities || [],
       majors: parsedResult.majors,
     }, isSafetyOnly);
+    const filterWarnings = filteredPools.warnings || [];
+    setFilterWarnings(filterWarnings);
     setProgress(50);
 
     // Phase 3: AI recommends (primary path)
@@ -96,9 +100,9 @@ export default function AiFillPage() {
     let analysis = '';
 
     const aiResult = await aiRecommend({
-      userContext: { score, rank, subject },
+      userContext: { score, rank, subject, preferElite: parsedResult.keywords?.includes('prefer_elite') },
       pools: filteredPools,
-      preferences: { cities: parsedResult.cities, majors: parsedResult.majors },
+      preferences: { cities: parsedResult.cities, safetyCities: parsedResult.safetyCities || [], majors: parsedResult.majors },
       collegeMap,
       majorMap,
     });
@@ -121,24 +125,26 @@ export default function AiFillPage() {
       table = allocateVolunteerTable(filteredPools, rank);
 
       const cityStr = parsedResult.cities.length > 0 ? parsedResult.cities.join('、') : '不限';
+      const safetyCityStr = parsedResult.safetyCities?.length > 0 ? parsedResult.safetyCities.join('、') : '';
       const majorStr = parsedResult.majors.length > 0 ? [...new Set(parsedResult.majors)].slice(0, 5).join('、') : '不限';
       const reachCount = table.filter(t => t.zone === '冲刺').length;
       const matchCount = table.filter(t => t.zone === '稳妥').length;
       const safetyCount = table.filter(t => t.zone === '保底').length;
 
       // Fallback AI analysis (no structured recommendation, just a summary)
-      const scoreStr = score ? `${score}分` : `位次${rank.toLocaleString()}名`;
+      const scoreStr = score ? `${score}分` : `位次${rank?.toLocaleString() ?? '未知'}名`;
       const subjectNote = subject === '历史类'
         ? ` 重要：用户是历史类考生，只能报考文科专业（文学、法学、经济学、管理学等），绝对不能推荐任何理工医农专业或提及工科优势。`
         : '';
-      const prompt = `用户是甘肃${subject}考生，${scoreStr}，全省位次${rank.toLocaleString()}名。偏好城市：${cityStr}，偏好专业：${majorStr}。${subjectNote}
+      const eliteNote = parsedResult.keywords?.includes('prefer_elite') ? ' 用户希望优先考虑985/211/双一流院校。' : '';
+      const prompt = `用户是甘肃${subject}考生，${scoreStr}，全省位次${rank?.toLocaleString() ?? '未知'}名。偏好城市：${cityStr}，偏好专业：${majorStr}。${eliteNote}${subjectNote}
 
 系统已自动生成一份${table.length}个志愿的冲稳保志愿表：冲刺${reachCount}个、稳妥${matchCount}个、保底${safetyCount}个。
 
 请用热情、鼓励的语气（像学长学姐一样），简要分析这份志愿表的特点和1-2条关键建议。控制在200字以内，开头祝贺一下。`;
 
       const reply = await aiChat([{ role: 'user', content: prompt }]);
-      analysis = reply || `你的${score}分（位次${rank.toLocaleString()}名）志愿表已生成！共${table.length}个志愿：冲刺${reachCount}个、稳妥${matchCount}个、保底${safetyCount}个。建议重点审视冲刺志愿的前5个，那是你"够一够"最可能够到的好学校。保底志愿确保至少10个以上，防止滑档。`;
+      analysis = reply || `你的${score}分（位次${rank?.toLocaleString() ?? '未知'}名）志愿表已生成！共${table.length}个志愿：冲刺${reachCount}个、稳妥${matchCount}个、保底${safetyCount}个。建议重点审视冲刺志愿的前5个，那是你"够一够"最可能够到的好学校。保底志愿确保至少10个以上，防止滑档。`;
     }
 
     setProgress(90);
@@ -302,6 +308,7 @@ export default function AiFillPage() {
                   <Typography.Text type="secondary" style={{ fontSize: 12 }}>
                     已理解：{parsed.subject || '物理类'} · 位次{parsed.rank?.toLocaleString() || stats?.rank?.toLocaleString() || (parsed.score ? parsed.score + '分' : '?')}名
                     {parsed.cities?.length > 0 && <span> · 倾向城市：{parsed.cities.join('、')}</span>}
+                    {parsed.safetyCities?.length > 0 && <span> · 保底城市：{parsed.safetyCities.join('、')}</span>}
                     {parsed.majors?.length > 0 && <span> · 意向专业：{parsed.majors.slice(0, 5).join('、')}</span>}
                   </Typography.Text>
                 </div>
@@ -351,6 +358,17 @@ export default function AiFillPage() {
                     ? `数据库中暂无${stats.subject}"${parsed.majors.slice(0,3).join('、')}"的录取记录。建议前往"小楷"助手咨询，或放宽专业/地区限制。`
                     : `"${parsed.majors.slice(0,3).join('、')}"在${stats.subject}本科批仅有 ${stats.total} 条录取记录，且全部为保底层次。这是因为数据库尚未收录更多院校的该专业数据。建议前往"小楷"助手获取更全面的择校建议。`
                 }
+              />
+            )}
+
+            {/* Filter relaxation warnings */}
+            {filterWarnings.length > 0 && (
+              <Alert
+                type="info"
+                showIcon
+                style={{ marginBottom: 16, borderRadius: 10 }}
+                message="搜索条件已自动放宽"
+                description={filterWarnings.map((w, i) => <div key={i}>{w}</div>)}
               />
             )}
 
@@ -415,7 +433,7 @@ export default function AiFillPage() {
                     const subject = parsed?.subject || ctx.userSubject || '物理类';
                     const college = collegeMap[r.collegeId];
                     const adsMajors = admissionData
-                      .filter(a => a.collegeId === r.collegeId)
+                      .filter(a => a.collegeId === r.collegeId && a._groupCode === r._groupCode)
                       .map(a => a.majorId);
                     const clgMajors = college?.majors || [];
                     const compatibleMajors = [...new Set([...adsMajors, ...clgMajors])]

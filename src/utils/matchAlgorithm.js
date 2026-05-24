@@ -21,6 +21,9 @@ function probabilityLabel(ratio) {
 }
 
 export function matchColleges(userRank, admissionData, strategyType = 'moderate') {
+  if (!userRank || userRank <= 0) {
+    return { reach: [], match: [], safety: [] };
+  }
   const { reachMax, matchMax } = STRATEGY_RATIOS[strategyType] || STRATEGY_RATIOS.moderate;
 
   // Deduplicate: same college+major → keep most recent year, then lowest minRank
@@ -68,6 +71,7 @@ export function matchColleges(userRank, admissionData, strategyType = 'moderate'
 }
 
 export function classifyChoice(userRank, entryMinRank) {
+  if (!entryMinRank || entryMinRank <= 0) return { level: '数据缺失', color: 'default' };
   const ratio = entryMinRank / userRank;
   if (ratio >= 1.50) return { level: '保底', color: 'green' };
   if (ratio >= 1.00) return { level: '稳妥', color: 'orange' };

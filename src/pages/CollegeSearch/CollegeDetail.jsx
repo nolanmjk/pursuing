@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Descriptions, Tag, Tabs, Table, Typography, Button, Empty, Row, Col, Statistic } from 'antd';
+import { Card, Descriptions, Tag, Tabs, Table, Typography, Button, Empty, Row, Col, Statistic, Segmented } from 'antd';
 import {
   ArrowLeftOutlined, EnvironmentOutlined, BankOutlined, StarOutlined,
   TeamOutlined, BookOutlined, TrophyOutlined, RiseOutlined,
@@ -40,21 +41,81 @@ export default function CollegeDetail() {
 
   const accent = levelAccent(college.level);
   const collegeMajors = majorsData.filter(m => college.majors.includes(m.id));
-  const collegeAdmissions = admissionData.filter(a => a.collegeId === id);
+  const allAdmissions = admissionData.filter(a => a.collegeId === id);
+
+  // Dedup: prefer 本科批(C段) per-major data over 本科批 group-level data
+  // for the same (majorId, subjectCategory, groupType)
+  const collegeAdmissions = (() => {
+    const groups = {};
+    allAdmissions.forEach(a => {
+      const groupType = (a._groupName || '').includes('国家专项') ? '国家专项' :
+        (a._groupName || '').includes('高校专项') ? '高校专项' :
+        (a._groupName || '').includes('民族班') ? '民族班' :
+        (a._groupName || '').includes('预科') ? '预科' :
+        (a._groupName || '').includes('中外合作') ? '中外合作' : '普通类';
+      const key = [a.majorId, a.subjectCategory, groupType].join('||');
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(a);
+    });
+    const result = [];
+    for (const [key, records] of Object.entries(groups)) {
+      const batchC = records.filter(r => r.batch === '本科批(C段)');
+      const batchMain = records.filter(r => r.batch === '本科批');
+      // When per-major data exists, remove group-level approximations
+      if (batchC.length > 0) {
+        result.push(...batchC);
+        // Keep non-本科批/本科批(C段) records (e.g. 本科提前批)
+        const other = records.filter(r => r.batch !== '本科批(C段)' && r.batch !== '本科批');
+        result.push(...other);
+      } else {
+        result.push(...records);
+      }
+    }
+    return result;
+  })();
+
+  // Group admissions by group type for chart & filter
+  const groupTypes = [...new Set(collegeAdmissions.map(a => {
+    const gn = a._groupName || '';
+    if (gn.includes('国家专项')) return '国家专项';
+    if (gn.includes('高校专项')) return '高校专项';
+    if (gn.includes('民族班')) return '民族班';
+    if (gn.includes('预科')) return '预科';
+    if (gn.includes('中外合作')) return '中外合作';
+    return '普通类';
+  }))];
+
+  const [admissionFilter, setAdmissionFilter] = useState('普通类');
+
+  const filteredAdmissions = collegeAdmissions.filter(a => {
+    const gn = a._groupName || '';
+    if (admissionFilter === '全部') return true;
+    if (admissionFilter === '普通类') return !gn.includes('国家专项') && !gn.includes('高校专项') && !gn.includes('民族班') && !gn.includes('预科') && !gn.includes('中外合作');
+    return gn.includes(admissionFilter);
+  });
 
   const chartData = (() => {
-    const years = [...new Set(collegeAdmissions.map(a => a.year))].sort();
+    // Only use 普通类 for the trend chart
+    const normalEntries = collegeAdmissions.filter(a => {
+      const gn = a._groupName || '';
+      return !gn.includes('国家专项') && !gn.includes('高校专项') && !gn.includes('民族班') && !gn.includes('预科') && !gn.includes('中外合作');
+    });
+    const years = [...new Set(normalEntries.map(a => a.year))].sort();
     return years.map(year => {
-      const entries = collegeAdmissions.filter(a => a.year === year);
+      const entries = normalEntries.filter(a => a.year === year);
       const avgMin = entries.length > 0 ? Math.round(entries.reduce((s, e) => s + e.minScore, 0) / entries.length) : null;
       return { year: `${year}年`, 最低分: avgMin };
     }).filter(d => d.最低分 !== null);
   })();
 
-  // Stats
+  // Stats: use filtered admissions
   const latestYear = Math.max(...collegeAdmissions.map(a => a.year), 0);
   const latestEntries = collegeAdmissions.filter(a => a.year === latestYear);
-  const avgScore = latestEntries.length > 0 ? Math.round(latestEntries.reduce((s, e) => s + e.minScore, 0) / latestEntries.length) : '-';
+  const normalLatest = latestEntries.filter(a => {
+    const gn = a._groupName || '';
+    return !gn.includes('国家专项') && !gn.includes('高校专项') && !gn.includes('民族班') && !gn.includes('预科') && !gn.includes('中外合作');
+  });
+  const avgScore = normalLatest.length > 0 ? Math.round(normalLatest.reduce((s, e) => s + e.minScore, 0) / normalLatest.length) : '-';
 
   const tabItems = [
     {
@@ -128,7 +189,7 @@ export default function CollegeDetail() {
           {chartData.length > 0 && (
             <Card style={{ borderRadius: 12, background: '#fff', border: '1px solid #E2E5EA', marginBottom: 16 }}>
               <Typography.Title level={5} style={{ marginBottom: 16 }}>
-                <RiseOutlined style={{ color: '#327de1', marginRight: 8 }} />录取趋势
+                <RiseOutlined style={{ color: '#327de1', marginRight: 8 }} />录取趋势（普通类）
               </Typography.Title>
               <ResponsiveContainer width="100%" height={280}>
                 <LineChart data={chartData}>
@@ -142,18 +203,43 @@ export default function CollegeDetail() {
             </Card>
           )}
           <Card style={{ borderRadius: 12, background: '#fff', border: '1px solid #E2E5EA' }}>
+            <div style={{ marginBottom: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography.Text strong style={{ fontSize: 15 }}>录取明细</Typography.Text>
+              {groupTypes.length > 1 && (
+                <Segmented
+                  size="small"
+                  value={admissionFilter}
+                  onChange={setAdmissionFilter}
+                  options={[
+                    '普通类',
+                    ...groupTypes.filter(g => g !== '普通类'),
+                    '全部',
+                  ].map(g => ({ label: g, value: g }))}
+                />
+              )}
+            </div>
             <Table
-              dataSource={collegeAdmissions}
+              dataSource={filteredAdmissions}
               rowKey="id"
               size="small"
               columns={[
-                { title: '年份', dataIndex: 'year', key: 'year', width: 60 },
-                { title: '批次', dataIndex: 'batch', key: 'batch', width: 100 },
-                { title: '科类', dataIndex: 'subjectCategory', key: 'subjectCategory', width: 80 },
-                { title: '最低分', dataIndex: 'minScore', key: 'minScore', width: 80 },
-                { title: '最低位次', dataIndex: 'minRank', key: 'minRank', width: 100 },
-                { title: '平均分', dataIndex: 'avgScore', key: 'avgScore', width: 80 },
-                { title: '招生人数', dataIndex: 'plannedEnrollment', key: 'plannedEnrollment', width: 80 },
+                { title: '年份', dataIndex: 'year', key: 'year', width: 55 },
+                { title: '批次', dataIndex: 'batch', key: 'batch', width: 85 },
+                { title: '科类', dataIndex: 'subjectCategory', key: 'subjectCategory', width: 65 },
+                { title: '专业', dataIndex: 'majorId', key: 'major', width: 110, ellipsis: true,
+                  render: (id) => {
+                    const m = majorsData.find(x => x.id === id);
+                    return m ? <span title={m.name}>{m.name}</span> : id;
+                  }
+                },
+                { title: '专业组', dataIndex: '_groupName', key: 'groupName', width: 130, ellipsis: true,
+                  render: (text) => text ? <Tag style={{ maxWidth: 120, overflow: 'hidden', textOverflow: 'ellipsis' }}>{text}</Tag> : '-'
+                },
+                { title: '最低分', dataIndex: 'minScore', key: 'minScore', width: 65 },
+                { title: '位次', dataIndex: 'minRank', key: 'minRank', width: 80,
+                  render: (v) => v ? v.toLocaleString() : '-'
+                },
+                { title: '招生', dataIndex: 'plannedEnrollment', key: 'plannedEnrollment', width: 55 },
               ]}
             />
           </Card>

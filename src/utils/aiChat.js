@@ -1,7 +1,8 @@
 // Dev: Vite proxy rewrites /api → DeepSeek and injects the key.
 // Prod: call DeepSeek directly (CORS is allowed).
+// Set VITE_DEEPSEEK_KEY in .env for production builds.
 // TODO: replace with Cloudflare Worker to keep the key off the wire.
-const DEEPSEEK_KEY = 'sk-f506eba81c5c485bb03e76774aedc7ef';
+const DEEPSEEK_KEY = import.meta.env.VITE_DEEPSEEK_KEY || '';
 const API_BASE = import.meta.env.DEV
   ? '/api'
   : 'https://api.deepseek.com/v1';

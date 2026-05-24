@@ -8,7 +8,7 @@ export function analyzeForm(choices, userRank) {
     return { ...choice, index: index + 1, level, color };
   });
 
-  const counts = { 冲刺: 0, 稳妥: 0, 保底: 0 };
+  const counts = { 冲刺: 0, 稳妥: 0, 保底: 0, 数据缺失: 0 };
   analysis.forEach(c => { if (counts[c.level] !== undefined) counts[c.level]++; });
 
   const warnings = [];

@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Card, Form, InputNumber, Select, Button, Tabs, Table, Tag, Typography, Empty, Space, message, Segmented, Row, Col } from 'antd';
 import { useAppContext } from '../../context/AppContext';
 import { matchColleges } from '../../utils/matchAlgorithm';
-import { scoreToRank } from '../../utils/rankConverter';
+import { scoreToRank, getAvailableYears } from '../../utils/rankConverter';
 import { isMajorCompatible } from '../../utils/subjectFilter';
 import admissionData from '../../data/admission_scores.json';
 import collegesData from '../../data/colleges.json';
@@ -13,7 +13,7 @@ import { FadeInView } from '../../components/AnimatedPresence';
 import { StatSkeleton, TableSkeleton } from '../../components/Skeleton';
 import { motion } from 'framer-motion';
 
-const CURRENT_YEAR = 2025;
+const CURRENT_YEAR = getAvailableYears()[0] || 2025;
 
 const tierColors = { reach: '#ff4d4f', match: '#fa8c16', safety: '#52c41a' };
 const tierLabels = { reach: '冲刺', match: '稳妥', safety: '保底' };

@@ -13,6 +13,9 @@ collegesData.forEach(c => { collegeMap[c.id] = c; });
  * @returns {{ findings: Array, score: number }}
  */
 export function diagnoseForm(choices, userRank, userSubject) {
+  if (!userRank || userRank <= 0) {
+    return { findings: [{ severity: 'error', title: '缺少位次信息', detail: '请先设置你的全省位次后再进行诊断' }], score: 0 };
+  }
   const findings = [];
   const valid = choices.filter(c => c.collegeId && c.majorId && c.minRank > 0);
 

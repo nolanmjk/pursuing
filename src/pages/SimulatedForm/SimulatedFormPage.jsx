@@ -12,6 +12,7 @@ import { useAppContext } from '../../context/AppContext';
 import { analyzeForm } from '../../utils/formBalance';
 import { diagnoseForm } from '../../utils/diagnoseForm';
 import { matchColleges, classifyChoice } from '../../utils/matchAlgorithm';
+import { getAvailableYears } from '../../utils/rankConverter';
 import { isMajorCompatible } from '../../utils/subjectFilter';
 import { FadeInView, CountUp } from '../../components/AnimatedPresence';
 import MonteCarloPanel from '../../components/MonteCarloPanel';
@@ -23,7 +24,7 @@ import cutoffData from '../../data/cutoff_lines.json';
 
 const levelColorMap = { '冲刺': '#ff4d4f', '稳妥': '#fa8c16', '保底': '#52c41a', '差距较大': '#999' };
 const probColorMap = { '很高': 'green', '较高': 'blue', '中等': 'orange', '较低': 'red', '很低': 'default' };
-const CURRENT_YEAR = 2025;
+const CURRENT_YEAR = getAvailableYears()[0] || 2025;
 
 export default function SimulatedFormPage() {
   const { userRank, userScore, userSubject } = useAppContext();
@@ -179,12 +180,13 @@ export default function SimulatedFormPage() {
     if (userRank == null) return;
     const validChoices = choices.filter(c => c.collegeId && c.majorId).map(c => {
       const admission = filteredAdmissions.find(a => a.collegeId === c.collegeId && a.majorId === c.majorId);
-      return admission || { collegeId: c.collegeId, majorId: c.majorId, minRank: 999999, minScore: 0 };
+      return admission || { collegeId: c.collegeId, majorId: c.majorId, minRank: null, minScore: null, _noData: true };
     });
     const formAnalysis = analyzeForm(validChoices, userRank);
     const enriched = validChoices.map(c => {
       const admission = filteredAdmissions.find(a => a.collegeId === c.collegeId && a.majorId === c.majorId);
-      return { ...c, minRank: admission?.minRank || c.minRank, zone: admission ? formAnalysis.choices.find(fc => fc.collegeId === c.collegeId)?.level : c.zone, groupName: admission?._groupName || c.groupName };
+      const zoneMatch = formAnalysis.choices.find(fc => fc.collegeId === c.collegeId && fc.majorId === c.majorId);
+      return { ...c, minRank: admission?.minRank || c.minRank, zone: admission ? zoneMatch?.level : c.zone, groupName: admission?._groupName || c.groupName };
     });
     formAnalysis.diagnosis = diagnoseForm(enriched, userRank, userSubject);
     setAnalysis(formAnalysis);
@@ -507,7 +509,7 @@ export default function SimulatedFormPage() {
                       )}
                       {choice.groupName?.includes('普通类') && (() => {
                         const adsMajors = admissionData
-                          .filter(a => a.collegeId === choice.collegeId)
+                          .filter(a => a.collegeId === choice.collegeId && a._groupCode === choice.groupCode)
                           .map(a => a.majorId);
                         const clgMajors = college?.majors || [];
                         const compatibleMajors = [...new Set([...adsMajors, ...clgMajors])]
@@ -538,6 +540,9 @@ export default function SimulatedFormPage() {
                             </span>
                           )}
                         </div>
+                      )}
+                      {!choice.minRank && choice._noData && (
+                        <div style={{ color: '#999', fontSize: 12 }}>暂无该组合的录取数据</div>
                       )}
                       {choice.minScore && (
                         <div>最低分：<strong style={{ color: '#327de1' }}>{choice.minScore}分</strong></div>
