@@ -1,0 +1,1 @@
+import{t as e}from"./majors-VtPEE1_7.js";var t=new Set([`工学`,`医学`,`农学`]),n={};e.forEach(e=>{n[e.id]=e.category});function r(e,r){if(r===`物理类`||r===`理科`)return!0;if(r===`历史类`||r===`文科`){let r=n[e];return r?!t.has(r):!0}return!0}export{r as t};
