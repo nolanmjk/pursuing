@@ -115,11 +115,12 @@ export default function ScoreMatchPage() {
         rowExpandable: (r) => (r._groupName || '').includes('普通类'),
         expandedRowRender: (r) => {
           const college = r.college;
-          const compatibleMajors = [...new Set(
-            admissionData
-              .filter(a => a.collegeId === r.collegeId)
-              .map(a => a.majorId)
-          )].filter(mid => isMajorCompatible(mid, userSubject));
+          const adsMajors = admissionData
+            .filter(a => a.collegeId === r.collegeId)
+            .map(a => a.majorId);
+          const clgMajors = college?.majors || [];
+          const compatibleMajors = [...new Set([...adsMajors, ...clgMajors])]
+            .filter(mid => isMajorCompatible(mid, userSubject));
           if (!compatibleMajors.length) {
             return (
               <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>

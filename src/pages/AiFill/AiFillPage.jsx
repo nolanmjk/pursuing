@@ -413,11 +413,13 @@ export default function AiFillPage() {
                   rowExpandable: (r) => (r._groupName || '').includes('普通类'),
                   expandedRowRender: (r) => {
                     const subject = parsed?.subject || ctx.userSubject || '物理类';
-                    const compatibleMajors = [...new Set(
-                      admissionData
-                        .filter(a => a.collegeId === r.collegeId)
-                        .map(a => a.majorId)
-                    )].filter(mid => isMajorCompatible(mid, subject));
+                    const college = collegeMap[r.collegeId];
+                    const adsMajors = admissionData
+                      .filter(a => a.collegeId === r.collegeId)
+                      .map(a => a.majorId);
+                    const clgMajors = college?.majors || [];
+                    const compatibleMajors = [...new Set([...adsMajors, ...clgMajors])]
+                      .filter(mid => isMajorCompatible(mid, subject));
                     if (!compatibleMajors.length) {
                       return (
                         <div style={{ padding: '8px 12px', background: '#f8f9fb', borderRadius: 6 }}>

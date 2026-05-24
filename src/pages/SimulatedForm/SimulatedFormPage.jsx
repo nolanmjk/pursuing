@@ -492,11 +492,12 @@ export default function SimulatedFormPage() {
                         </div>
                       )}
                       {choice.groupName?.includes('普通类') && (() => {
-                        const compatibleMajors = [...new Set(
-                          admissionData
-                            .filter(a => a.collegeId === choice.collegeId)
-                            .map(a => a.majorId)
-                        )].filter(mid => isMajorCompatible(mid, userSubject));
+                        const adsMajors = admissionData
+                          .filter(a => a.collegeId === choice.collegeId)
+                          .map(a => a.majorId);
+                        const clgMajors = college?.majors || [];
+                        const compatibleMajors = [...new Set([...adsMajors, ...clgMajors])]
+                          .filter(mid => isMajorCompatible(mid, userSubject));
                         if (!compatibleMajors.length) return null;
                         return (
                           <details style={{ marginTop: 4, fontSize: 11 }}>
