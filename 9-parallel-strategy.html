@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9个平行志愿怎么排 — 冲稳保黄金梯度</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+    background: #080c14;
+    color: #e8e8f0;
+    overflow: hidden;
+    height: 100vh;
+    user-select: none;
+  }
+
+  .slides { width: 100%; height: 100%; position: relative; }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.96);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    padding: 60px 80px;
+  }
+  .slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+  /* ── Slide 1: Title ── */
+  .s1 { background: radial-gradient(ellipse at 30% 40%, #0d1a2d 0%, #080c14 70%); }
+  .s1 .tag { font-size: 14px; letter-spacing: 6px; color: #00C8E0; text-transform: uppercase; margin-bottom: 24px; }
+  .s1 h1 { font-size: 64px; font-weight: 900; text-align: center; line-height: 1.25; margin-bottom: 16px; }
+  .s1 h1 .grad { background: linear-gradient(135deg, #00C8E0 0%, #7C5CFC 50%, #EB2F96 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .s1 .sub { font-size: 22px; color: #8890a8; font-weight: 300; letter-spacing: 4px; margin-bottom: 48px; }
+  .s1 .blood { background: rgba(235,47,150,0.08); border: 1px solid rgba(235,47,150,0.25); border-radius: 12px; padding: 18px 32px; display: flex; align-items: center; gap: 14px; }
+  .s1 .blood .icon { font-size: 40px; }
+  .s1 .blood .text { font-size: 18px; color: #ff6b9d; font-weight: 500; }
+
+  /* ── Slide 2: The Horror Story ── */
+  .s2 { background: radial-gradient(ellipse at 70% 30%, #2d0a15 0%, #0d0408 50%, #080c14 100%); }
+  .s2 .story-label { font-size: 13px; letter-spacing: 5px; color: #EB2F96; margin-bottom: 16px; }
+  .s2 h2 { font-size: 44px; font-weight: 900; margin-bottom: 40px; text-align: center; }
+  .s2 h2 .hl { color: #ff4d6a; }
+  .s2 .grid-9 { display: grid; grid-template-columns: repeat(9, 1fr); gap: 10px; margin-bottom: 36px; width: 100%; max-width: 900px; }
+  .s2 .cell { aspect-ratio: 1; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+  .s2 .cell.bad { background: rgba(235,47,150,0.2); border: 2px solid rgba(235,47,150,0.5); color: #ff6b9d; }
+  .s2 .arrow-down { font-size: 32px; color: #ff4d6a; margin-bottom: 20px; animation: bounce 0.8s ease infinite alternate; }
+  @keyframes bounce { to { transform: translateY(10px); } }
+  .s2 .crash { background: rgba(255,60,60,0.12); border: 1px solid rgba(255,60,60,0.35); border-radius: 14px; padding: 16px 36px; }
+  .s2 .crash span { color: #ff4d6a; font-size: 22px; font-weight: 700; }
+
+  /* ── Slide 3: Formula ── */
+  .s3 { background: radial-gradient(ellipse at 50% 60%, #0d1a2d 0%, #080c14 70%); }
+  .s3 .formula-label { font-size: 13px; letter-spacing: 5px; color: #7C5CFC; margin-bottom: 16px; }
+  .s3 h2 { font-size: 44px; font-weight: 900; margin-bottom: 48px; }
+  .s3 h2 .gold { background: linear-gradient(135deg, #FA8C16, #FFD666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .s3 .formula-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 40px 56px; margin-bottom: 32px; text-align: center; }
+  .s3 .formula-box .big { font-size: 56px; font-weight: 900; letter-spacing: 8px; }
+  .s3 .formula-box .big .r { color: #ff4d6a; } .s3 .formula-box .big .m { color: #FA8C16; } .s3 .formula-box .big .s { color: #52C41A; }
+  .s3 .formula-box .eq { font-size: 28px; margin: 0 8px; color: #556; }
+  .s3 .desc { color: #8890a8; font-size: 16px; letter-spacing: 2px; }
+
+  /* ── Slide 4: The 9 slots ── */
+  .s4 { background: radial-gradient(ellipse at 40% 50%, #0d1a2d 0%, #080c14 70%); }
+  .s4 .slot-label { font-size: 13px; letter-spacing: 5px; color: #00C8E0; margin-bottom: 16px; }
+  .s4 h2 { font-size: 40px; font-weight: 900; margin-bottom: 10px; }
+  .s4 .subtitle { color: #8890a8; font-size: 16px; margin-bottom: 40px; }
+  .s4 .slots { display: grid; grid-template-columns: repeat(9, 1fr); gap: 12px; width: 100%; max-width: 960px; margin-bottom: 28px; }
+  .s4 .slot { border-radius: 14px; padding: 20px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .s4 .slot .num { font-size: 12px; font-weight: 400; opacity: 0.7; }
+  .s4 .slot .label { font-size: 18px; font-weight: 700; }
+  .s4 .slot .pct { font-size: 11px; opacity: 0.7; }
+  .s4 .slot.r { background: rgba(235,47,150,0.08); border: 1px solid rgba(235,47,150,0.3); }
+  .s4 .slot.r .label { color: #ff6b9d; }
+  .s4 .slot.m { background: rgba(250,140,22,0.08); border: 1px solid rgba(250,140,22,0.3); }
+  .s4 .slot.m .label { color: #ffa940; }
+  .s4 .slot.s { background: rgba(82,196,26,0.08); border: 1px solid rgba(82,196,26,0.3); }
+  .s4 .slot.s .label { color: #73d13d; }
+  .s4 .tip { color: #8890a8; font-size: 14px; }
+
+  /* ── Slide 5: Calculation ── */
+  .s5 { background: radial-gradient(ellipse at 50% 40%, #0d1a2d 0%, #080c14 70%); }
+  .s5 .calc-label { font-size: 13px; letter-spacing: 5px; color: #FA8C16; margin-bottom: 16px; }
+  .s5 h2 { font-size: 40px; font-weight: 900; margin-bottom: 36px; }
+  .s5 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; width: 100%; max-width: 860px; }
+  .s5 .calc-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px 32px; }
+  .s5 .calc-card h3 { font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .s5 .calc-card .k { font-size: 32px; font-weight: 900; margin: 8px 0; }
+  .s5 .calc-card .k.up { color: #ff6b9d; } .s5 .calc-card .k.stable { color: #ffa940; } .s5 .calc-card .k.safe { color: #73d13d; }
+  .s5 .calc-card .math { font-family: 'Courier New', monospace; background: rgba(255,255,255,0.04); padding: 12px 16px; border-radius: 8px; font-size: 15px; color: #aab; margin-top: 10px; }
+  .s5 .calc-card p { color: #8890a8; font-size: 14px; margin-top: 10px; line-height: 1.6; }
+
+  /* ── Slide 6: Summary ── */
+  .s6 { background: radial-gradient(ellipse at 50% 50%, #0d1a2d 0%, #080c14 70%); }
+  .s6 .summary-label { font-size: 13px; letter-spacing: 5px; color: #52C41A; margin-bottom: 16px; }
+  .s6 h2 { font-size: 44px; font-weight: 900; margin-bottom: 44px; }
+  .s6 .rules { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 700px; }
+  .s6 .rule { display: flex; align-items: flex-start; gap: 16px; padding: 18px 24px; background: rgba(255,255,255,0.02); border-radius: 14px; border-left: 4px solid; }
+  .s6 .rule:nth-child(1) { border-color: #ff4d6a; }
+  .s6 .rule:nth-child(2) { border-color: #FA8C16; }
+  .s6 .rule:nth-child(3) { border-color: #52C41A; }
+  .s6 .rule .idx { font-size: 28px; font-weight: 900; min-width: 48px; text-align: center; }
+  .s6 .rule h4 { font-size: 18px; margin-bottom: 4px; }
+  .s6 .rule p { color: #8890a8; font-size: 14px; }
+
+  /* ── Nav ── */
+  .nav { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10; }
+  .nav button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #aab; cursor: pointer; font-size: 18px; transition: all 0.2s; }
+  .nav button:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; }
+  .nav .dots { display: flex; align-items: center; gap: 8px; padding: 0 12px; }
+  .nav .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s; }
+  .nav .dot.active { background: #00C8E0; box-shadow: 0 0 8px rgba(0,200,224,0.5); width: 10px; height: 10px; }
+
+  .page-num { position: fixed; top: 32px; right: 40px; font-size: 13px; color: #556; letter-spacing: 2px; z-index: 10; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .slide { padding: 40px 24px; }
+    .s1 h1 { font-size: 36px; } .s2 h2, .s3 h2, .s6 h2 { font-size: 28px; }
+    .s4 .slots { grid-template-columns: repeat(3, 1fr); }
+    .s5 .calc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slides" id="slides">
+
+  <!-- Slide 1: Title -->
+  <div class="slide s1 active">
+    <div class="tag">高考志愿 · 平行志愿策略</div>
+    <h1><span class="grad">9个平行志愿<br>怎么排？</span></h1>
+    <div class="sub">冲 · 稳 · 保 黄金梯度公式</div>
+    <div class="blood">
+      <span class="icon">⚠️</span>
+      <span class="text">警示：9个志愿全填"冲"，结果滑档到专科</span>
+    </div>
+  </div>
+
+  <!-- Slide 2: Horror Story -->
+  <div class="slide s2">
+    <div class="story-label">真实案例</div>
+    <h2>9个志愿全填 <span class="hl">"冲"</span></h2>
+    <div class="grid-9">
+      <div class="cell bad">冲</div><div class="cell bad">冲</div><div class="cell bad">冲</div>
+      <div class="cell bad">冲</div><div class="cell bad">冲</div><div class="cell bad">冲</div>
+      <div class="cell bad">冲</div><div class="cell bad">冲</div><div class="cell bad">冲</div>
+    </div>
+    <div class="arrow-down">↓</div>
+    <div class="crash">
+      <span>💀 全部滑档 → 掉到专科批次</span>
+    </div>
+    <p style="color:#8890a8; margin-top:24px; font-size:15px; text-align:center; max-width:560px;">
+      平行志愿只有<strong style="color:#fff;">一次投档机会</strong>。第1个志愿分不够 → 看第2个 → 第3个……<br>
+      如果<strong style="color:#ff6b9d;">9个都够不着</strong>，直接进入征集志愿或下一批次，本科变专科。
+    </p>
+  </div>
+
+  <!-- Slide 3: The Formula -->
+  <div class="slide s3">
+    <div class="formula-label">黄金梯度公式</div>
+    <h2>冲稳保 <span class="gold">3 : 3 : 3</span> 法则</h2>
+    <div class="formula-box">
+      <div class="big">
+        <span class="r">3</span><span class="eq">:</span>
+        <span class="m">3</span><span class="eq">:</span>
+        <span class="s">3</span>
+      </div>
+    </div>
+    <div class="desc">冲一冲 · 稳得住 · 保得住底</div>
+
+    <div style="display:flex; gap:32px; margin-top:40px; text-align:center;">
+      <div>
+        <div style="font-size:36px;font-weight:900;color:#ff6b9d;">20-30%</div>
+        <div style="color:#8890a8;font-size:13px;">录取位次比你高</div>
+        <div style="color:#ff6b9d;font-size:14px;font-weight:500;">冲刺区间</div>
+      </div>
+      <div>
+        <div style="font-size:36px;font-weight:900;color:#ffa940;">40-50%</div>
+        <div style="color:#8890a8;font-size:13px;">录取位次与你相近</div>
+        <div style="color:#ffa940;font-size:14px;font-weight:500;">稳妥区间</div>
+      </div>
+      <div>
+        <div style="font-size:36px;font-weight:900;color:#73d13d;">20-30%</div>
+        <div style="color:#8890a8;font-size:13px;">录取位次比你低</div>
+        <div style="color:#73d13d;font-size:14px;font-weight:500;">保底区间</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: 9 Slots -->
+  <div class="slide s4">
+    <div class="slot-label">9个志愿具体怎么填</div>
+    <h2>一志愿一策略</h2>
+    <div class="subtitle">每个位置都有它的使命</div>
+
+    <div class="slots">
+      <div class="slot r"><span class="num">志愿 1</span><span class="label">梦想冲</span><span class="pct">位次±0%</span></div>
+      <div class="slot r"><span class="num">志愿 2</span><span class="label">积极冲</span><span class="pct">位次+5%</span></div>
+      <div class="slot r"><span class="num">志愿 3</span><span class="label">理性冲</span><span class="pct">位次+10%</span></div>
+      <div class="slot m"><span class="num">志愿 4</span><span class="label">稳妥一</span><span class="pct">核心目标</span></div>
+      <div class="slot m"><span class="num">志愿 5</span><span class="label">稳妥二</span><span class="pct">核心目标</span></div>
+      <div class="slot m"><span class="num">志愿 6</span><span class="label">稳妥三</span><span class="pct">核心目标</span></div>
+      <div class="slot s"><span class="num">志愿 7</span><span class="label">保底一</span><span class="pct">绝对安全</span></div>
+      <div class="slot s"><span class="num">志愿 8</span><span class="label">保底二</span><span class="pct">绝对安全</span></div>
+      <div class="slot s"><span class="num">志愿 9</span><span class="label">铁底</span><span class="pct">万无一失</span></div>
+    </div>
+
+    <div class="tip">💡 保底的第9个志愿，位次至少要低于你 30% 以上，确保 "有学上"</div>
+  </div>
+
+  <!-- Slide 5: How to Calculate -->
+  <div class="slide s5">
+    <div class="calc-label">怎么算出来的</div>
+    <h2>位次比公式</h2>
+
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h3>🔴 冲刺</h3>
+        <div class="k up">院校位次 ÷ 你的位次 < 1.0</div>
+        <div class="math">你排 5000 名 → 冲 4500~5500 名的学校</div>
+        <p>院校录取位次比你<strong>高或持平</strong>，有一定差距但值得冲击。往年有"大小年"波动，碰运气。</p>
+      </div>
+      <div class="calc-card">
+        <h3>🟠 稳妥</h3>
+        <div class="k stable">院校位次 ÷ 你的位次 ≈ 1.0~1.2</div>
+        <div class="math">你排 5000 名 → 稳 5000~6000 名的学校</div>
+        <p>院校录取位次与你<strong>接近或略低</strong>，正常发挥大概率被录取。</p>
+      </div>
+      <div class="calc-card">
+        <h3>🟢 保底</h3>
+        <div class="k safe">院校位次 ÷ 你的位次 > 1.2</div>
+        <div class="math">你排 5000 名 → 保 6000+ 名的学校</div>
+        <p>院校录取位次<strong>远低于你</strong>，即使发挥失常也能上。最后一所确保万无一失。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Summary -->
+  <div class="slide s6">
+    <div class="summary-label">记住三点</div>
+    <h2>填报铁律</h2>
+    <div class="rules">
+      <div class="rule">
+        <div class="idx" style="color:#ff4d6a;">01</div>
+        <div>
+          <h4>永远不要全部填"冲"</h4>
+          <p>平行志愿只有一次投档机会，全部冲 = 全部滑档 = 本科变专科</p>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="idx" style="color:#FA8C16;">02</div>
+        <div>
+          <h4>保底的学校必须真的"保得住"</h4>
+          <p>第7-9志愿的录取位次必须大幅低于你的位次，不能"假保底"</p>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="idx" style="color:#52C41A;">03</div>
+        <div>
+          <h4>每个志愿都是你愿意去的</h4>
+          <p>被任何一所录取都不后悔。不要为了填满而填不喜欢的学校</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prevSlide()">◀</button>
+  <div class="dots" id="dots"></div>
+  <button onclick="nextSlide()">▶</button>
+</div>
+<div class="page-num" id="pageNum">1 / 6</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+const pageNum = document.getElementById('pageNum');
+const total = slides.length;
+let current = 0;
+
+// Build dots
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('span');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => goTo(i);
+  dotsEl.appendChild(dot);
+}
+
+function update() {
+  slides.forEach((s, i) => s.classList.toggle('active', i === current));
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  pageNum.textContent = `${current + 1} / ${total}`;
+}
+
+function goTo(i) { current = i; update(); }
+function nextSlide() { current = (current + 1) % total; update(); }
+function prevSlide() { current = (current - 1 + total) % total; update(); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+});
+</script>
+
+</body>
+</html>
